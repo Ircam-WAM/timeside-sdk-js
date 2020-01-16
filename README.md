@@ -1,4 +1,4 @@
-## timeside-client@1.0.0
+## timeside-sdk
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -51,7 +51,7 @@ async function showItems () {
 		console.log(items)
 	} catch (e) {
 		if (e.status === 401) {
-			console.error('Woops. Seems like you're not authorized')
+			console.error(`Woops. Seems like you're not authorized`)
 		} else {
 			console.error('Something occured', e)
 		}
