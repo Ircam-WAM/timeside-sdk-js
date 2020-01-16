@@ -17,7 +17,7 @@ Module system
 
 It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
 
-### Usage
+### Install
 
 ```
 npm install --save @ircam/timeside-sdk
@@ -26,9 +26,10 @@ npm install --save @ircam/timeside-sdk
 npm install --save portable-fetch
 ```
 
-```javascript
-import { DefaultApi, Configuration } from 'timeside-sdk'
+### Example for Typescript
 
+```javascript
+import { DefaultApi, Configuration } from '@ircam/timeside-sdk'
 // Use alternative fetch API (for Node / Polyfill)
 import portableFetch from 'portable-fetch'
 
@@ -45,18 +46,69 @@ const config = new Configuration({
 
 const api = new DefaultApi(config)
 
-async function showItems () {
-	try {
-		const items = await api.listItems({})
-		console.log(items)
-	} catch (e) {
-		if (e.status === 401) {
-			console.error(`Woops. Seems like you're not authorized`)
-		} else {
-			console.error('Something occured', e)
-		}
+async function callApi () {
+	// List items
+	const items = await api.listItems({})
+	console.log(items)
+
+	// Create an item
+	const body: Item = {
+		title: 'test'
 	}
+	const item = await api.createItem({ body })
+	console.log(item)
 }
 
-showItems()
+try {
+	callApi()
+} catch (e) {
+	if (e.status === 401) {
+		console.error(`Woops. Seems like you're not authorized`)
+	} else {
+		console.error('Something occured', e)
+	}
+}
+```
+
+### Example for Javascript
+
+```typescript
+import { DefaultApi } from '@ircam/timeside-sdk'
+// Use alternative fetch API (for Node / Polyfill)
+import portableFetch from 'portable-fetch'
+
+
+const api = new DefaultApi({
+	// API URL
+	basepath: 'https://wasabi.telemeta.org',
+
+	// Send cookies with requests
+	credentials: 'include',
+
+	// Use alternative fetch API (for Node / Polyfill)
+	fetchApi: portableFetch
+})
+
+async function callApi () {
+	// List items
+	const items = await api.listItems({})
+	console.log(items)
+
+	// Create an item
+	const body = {
+		title: 'test'
+	}
+	const item = await api.createItem({ body })
+	console.log(item)
+}
+
+try {
+	callApi()
+} catch (e) {
+	if (e.status === 401) {
+		console.error(`Woops. Seems like you're not authorized`)
+	} else {
+		console.error('Something occured', e)
+	}
+}
 ```
