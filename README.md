@@ -20,7 +20,7 @@ It can be used in both TypeScript and JavaScript. In TypeScript, the definition 
 ### Usage
 
 ```
-npm install --save timeside-sdk
+npm install --save @ircam/timeside-sdk
 
 # If you need to polyfill Fetch (for Node / older browsers), you may use
 npm install --save portable-fetch
