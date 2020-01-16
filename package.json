@@ -1,0 +1,20 @@
+{
+  "name": "timeside-sdk",
+  "version": "1.0.0",
+  "description": "OpenAPI client for timeside",
+  "author": "OpenAPI-Generator",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^3.6"
+  },
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ircam-web/timeside-sdk-js.git"
+  }
+}

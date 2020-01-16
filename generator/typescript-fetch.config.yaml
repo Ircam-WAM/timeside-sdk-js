@@ -1,0 +1,4 @@
+# See docs: https://openapi-generator.tech/docs/generators/typescript-fetch
+typescriptThreePlus: true
+npmName: timeside-client
+npmVersion: '1.0.0'
