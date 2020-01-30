@@ -16,67 +16,81 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface AnnotationTrackAnnotations
+ * @interface ItemList
  */
-export interface AnnotationTrackAnnotations {
+export interface ItemList {
     /**
      * 
      * @type {string}
-     * @memberof AnnotationTrackAnnotations
+     * @memberof ItemList
      */
     description?: string;
     /**
      * 
-     * @type {number}
-     * @memberof AnnotationTrackAnnotations
+     * @type {string}
+     * @memberof ItemList
      */
-    startTime?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof AnnotationTrackAnnotations
-     */
-    stopTime: number;
+    mimeType?: string;
     /**
      * 
      * @type {string}
-     * @memberof AnnotationTrackAnnotations
+     * @memberof ItemList
+     */
+    readonly playerUrl?: string;
+    /**
+     * Audio file to process
+     * @type {Blob}
+     * @memberof ItemList
+     */
+    sourceFile?: Blob;
+    /**
+     * URL of a streamable audio source to process
+     * @type {string}
+     * @memberof ItemList
+     */
+    sourceUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemList
      */
     title?: string;
     /**
      * 
      * @type {string}
-     * @memberof AnnotationTrackAnnotations
+     * @memberof ItemList
      */
     readonly url?: string;
     /**
      * 
      * @type {string}
-     * @memberof AnnotationTrackAnnotations
+     * @memberof ItemList
      */
     readonly uuid?: string;
 }
 
-export function AnnotationTrackAnnotationsFromJSON(json: any): AnnotationTrackAnnotations {
-    return AnnotationTrackAnnotationsFromJSONTyped(json, false);
+export function ItemListFromJSON(json: any): ItemList {
+    return ItemListFromJSONTyped(json, false);
 }
 
-export function AnnotationTrackAnnotationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AnnotationTrackAnnotations {
+export function ItemListFromJSONTyped(json: any, ignoreDiscriminator: boolean): ItemList {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'startTime': !exists(json, 'start_time') ? undefined : json['start_time'],
-        'stopTime': json['stop_time'],
+        'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
+        'playerUrl': !exists(json, 'player_url') ? undefined : json['player_url'],
+        'sourceFile': !exists(json, 'source_file') ? undefined : json['source_file'],
+        'sourceUrl': !exists(json, 'source_url') ? undefined : json['source_url'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
     };
 }
 
-export function AnnotationTrackAnnotationsToJSON(value?: AnnotationTrackAnnotations | null): any {
+export function ItemListToJSON(value?: ItemList | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -86,8 +100,9 @@ export function AnnotationTrackAnnotationsToJSON(value?: AnnotationTrackAnnotati
     return {
         
         'description': value.description,
-        'start_time': value.startTime,
-        'stop_time': value.stopTime,
+        'mime_type': value.mimeType,
+        'source_file': value.sourceFile,
+        'source_url': value.sourceUrl,
         'title': value.title,
     };
 }

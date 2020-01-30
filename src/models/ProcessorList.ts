@@ -16,60 +16,53 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Processor
+ * @interface ProcessorList
  */
-export interface Processor {
+export interface ProcessorList {
     /**
      * 
      * @type {string}
-     * @memberof Processor
+     * @memberof ProcessorList
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof Processor
+     * @memberof ProcessorList
      */
-    readonly parametersSchema?: string;
+    pid: ProcessorListPidEnum;
     /**
      * 
      * @type {string}
-     * @memberof Processor
-     */
-    pid: ProcessorPidEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Processor
+     * @memberof ProcessorList
      */
     readonly url?: string;
     /**
      * 
      * @type {string}
-     * @memberof Processor
+     * @memberof ProcessorList
      */
     version?: string;
 }
 
-export function ProcessorFromJSON(json: any): Processor {
-    return ProcessorFromJSONTyped(json, false);
+export function ProcessorListFromJSON(json: any): ProcessorList {
+    return ProcessorListFromJSONTyped(json, false);
 }
 
-export function ProcessorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Processor {
+export function ProcessorListFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProcessorList {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'parametersSchema': !exists(json, 'parameters_schema') ? undefined : json['parameters_schema'],
         'pid': json['pid'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
 }
 
-export function ProcessorToJSON(value?: Processor | null): any {
+export function ProcessorListToJSON(value?: ProcessorList | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -88,7 +81,7 @@ export function ProcessorToJSON(value?: Processor | null): any {
 * @export
 * @enum {string}
 */
-export enum ProcessorPidEnum {
+export enum ProcessorListPidEnum {
     VampSimpleHost = 'vamp_simple_host',
     AubioMelenergy = 'aubio_melenergy',
     AubioMfcc = 'aubio_mfcc',

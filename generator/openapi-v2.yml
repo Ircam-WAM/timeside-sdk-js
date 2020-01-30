@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   Analysis:
     properties:
@@ -161,6 +162,7 @@ definitions:
         readOnly: true
         type: array
       audio_duration:
+        description: Duration of audio track
         readOnly: true
         type: number
       audio_url:
@@ -169,9 +171,21 @@ definitions:
       description:
         type: string
       external_id:
+        description: |2-
+
+                  Provider's id of the audio source.
+                  e.g. for Deezer preview: 4763165
+                  e.g. for YouTube: oRdxUFDoQe0
+                  
         maxLength: 256
         type: string
       external_uri:
+        description: |2-
+
+                  Provider's URI of the audio source.
+                  e.g. for Deezer preview: http://www.deezer.com/track/4763165
+                  e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
+                  
         maxLength: 1024
         type: string
       mime_type:
@@ -181,12 +195,15 @@ definitions:
         readOnly: true
         type: string
       provider:
+        description: 'Audio provider (e.g. Deezer, Youtube, etc.)'
         nullable: true
         type: string
       source_file:
+        description: Audio file to process
         format: binary
         type: string
       source_url:
+        description: URL of a streamable audio source to process
         format: uri
         maxLength: 1024
         pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?\\Z"
@@ -199,6 +216,53 @@ definitions:
         type: string
       uuid:
         format: uuid
+        readOnly: true
+        type: string
+      waveform_url:
+        readOnly: true
+        type: string
+  ItemList:
+    properties:
+      description:
+        type: string
+      mime_type:
+        maxLength: 256
+        type: string
+      player_url:
+        readOnly: true
+        type: string
+      source_file:
+        description: Audio file to process
+        format: binary
+        type: string
+      source_url:
+        description: URL of a streamable audio source to process
+        format: uri
+        maxLength: 1024
+        pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?\\Z"
+        type: string
+      title:
+        maxLength: 512
+        type: string
+      url:
+        readOnly: true
+        type: string
+      uuid:
+        format: uuid
+        readOnly: true
+        type: string
+  ItemWaveform:
+    properties:
+      item_url:
+        readOnly: true
+        type: string
+      title:
+        maxLength: 512
+        type: string
+      waveform:
+        readOnly: true
+        type: string
+      waveform_image_url:
         readOnly: true
         type: string
       waveform_url:
@@ -278,11 +342,73 @@ definitions:
         type: string
     required:
       - pid
+  ProcessorList:
+    properties:
+      name:
+        maxLength: 256
+        type: string
+      pid:
+        enum:
+          - vamp_simple_host
+          - aubio_melenergy
+          - aubio_mfcc
+          - aubio_pitch
+          - aubio_silence
+          - aubio_specdesc
+          - aubio_temporal
+          - essentia_dissonance
+          - vamp_constantq
+          - loudness_itu
+          - spectrogram_analyzer
+          - onset_detection_function
+          - spectrogram_analyzer_buffer
+          - waveform_analyzer
+          - mean_dc_shift
+          - essentia_dissonance_value
+          - vamp_tempo
+          - vamp_tuning
+          - level
+          - live_encoder
+          - flac_encoder
+          - aac_encoder
+          - mp3_encoder
+          - vorbis_encoder
+          - opus_encoder
+          - wav_encoder
+          - webm_encoder
+          - grapher_aubio_pitch
+          - grapher_aubio_silence
+          - grapher_dissonance
+          - grapher_vamp_cqt
+          - grapher_loudness_itu
+          - spectrogram
+          - grapher_onset_detection_function
+          - grapher_waveform
+          - spectrogram_log
+          - spectrogram_lin
+          - waveform_simple
+          - waveform_centroid
+          - waveform_contour_black
+          - waveform_contour_white
+          - waveform_transparent
+      url:
+        readOnly: true
+        type: string
+      version:
+        maxLength: 64
+        type: string
+    required:
+      - pid
   Provider:
     properties:
       pid:
         maxLength: 128
         type: string
+      source_access:
+        description: |-
+          whether or not the audio is
+                      freely available from the provider
+        type: boolean
       uuid:
         format: uuid
         readOnly: true
@@ -290,21 +416,39 @@ definitions:
   Result:
     properties:
       file:
+        description: |2-
+
+                  non numerical result (image, transcoded audio, etc.)
+                  stored in a file
+                  
         format: binary
         type: string
       hdf5:
+        description: numerical result of the processing stored in an hdf5 file
         format: binary
         type: string
       item:
+        description: item on which a preset has been applied
         nullable: true
         type: string
       preset:
+        description: preset applied on an item
         nullable: true
         type: string
       run_time:
+        description: duration of the result computing
         nullable: true
         type: string
       status:
+        description: |2-
+
+                  status of the task giving the result:
+                  failed: 0
+                  draft: 1
+                  pending: 2
+                  running: 3
+                  done: 4
+                  
         enum:
           - 0
           - 1
@@ -330,6 +474,7 @@ definitions:
           type: string
         type: array
       selections:
+        description: include other selections in an selection
         items:
           type: string
         type: array
@@ -343,37 +488,33 @@ definitions:
         format: uuid
         readOnly: true
         type: string
-  SubProcessor:
-    properties:
-      name:
-        maxLength: 256
-        type: string
-      processor:
-        nullable: true
-        type: string
-      sub_processor_id:
-        maxLength: 128
-        type: string
-      url:
-        readOnly: true
-        type: string
-    required:
-      - sub_processor_id
   Task:
     properties:
       author:
         nullable: true
         type: string
       experience:
+        description: experience prossessed in the task
         nullable: true
         type: string
       item:
+        description: single item prossessed in the task
         nullable: true
         type: string
       selection:
+        description: selection prossessed in the task
         nullable: true
         type: string
       status:
+        description: |2-
+
+                  Task's status:
+                  failed: {_FAILED}
+                  draft: {_DRAFT}
+                  pending: {_PENDING}
+                  running: {_RUNNING}
+                  done: {_DONE}
+                  
         enum:
           - 0
           - 1
@@ -401,15 +542,19 @@ definitions:
         readOnly: true
         type: string
       username:
-        description: "Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères «\_@\_», «\_.\_», «\_+\_», «\_-\_» et «\__\_»."
+        description: 'Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'
         maxLength: 150
         pattern: '^[\w.@+-]+$'
         type: string
     required:
       - username
+host: wasabi.telemeta.org
 info:
-  title: ''
-  version: ''
+  description: |-
+    RESTful API of TimeSide,
+                    a scalable audio processing framework
+  title: TimeSide API
+  version: 1.0.0
 paths:
   /timeside/api/analysis/:
     get:
@@ -895,7 +1040,7 @@ paths:
             $ref: '#/definitions/Annotation'
   /timeside/api/experiences/:
     get:
-      description: ''
+      description: Set of presets and other experiences
       operationId: listExperiences
       parameters: []
       produces:
@@ -912,7 +1057,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Set of presets and other experiences
       operationId: createExperience
       parameters:
         - in: body
@@ -928,7 +1073,7 @@ paths:
             $ref: '#/definitions/Experience'
   '/timeside/api/experiences/{uuid}/':
     delete:
-      description: ''
+      description: Set of presets and other experiences
       operationId: destroyExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -940,7 +1085,7 @@ paths:
         '204':
           description: ''
     get:
-      description: ''
+      description: Set of presets and other experiences
       operationId: retrieveExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -960,7 +1105,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Set of presets and other experiences
       operationId: partial_updateExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -984,7 +1129,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Set of presets and other experiences
       operationId: updateExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -1020,7 +1165,7 @@ paths:
           description: ''
           schema:
             items:
-              $ref: '#/definitions/Item'
+              $ref: '#/definitions/ItemList'
             type: array
     post:
       consumes:
@@ -1140,7 +1285,7 @@ paths:
             $ref: '#/definitions/Item'
   '/timeside/api/items/{uuid}/waveform/':
     get:
-      description: ''
+      description: Gives waveform of item's audio
       operationId: RetrieveItem
       parameters:
         - description: A UUID string identifying this item.
@@ -1154,10 +1299,10 @@ paths:
         '200':
           description: ''
           schema:
-            $ref: '#/definitions/Item'
+            $ref: '#/definitions/ItemWaveform'
   /timeside/api/presets/:
     get:
-      description: ''
+      description: Processor with its potential parameters
       operationId: listPresets
       parameters: []
       produces:
@@ -1174,7 +1319,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Processor with its potential parameters
       operationId: createPreset
       parameters:
         - in: body
@@ -1190,7 +1335,7 @@ paths:
             $ref: '#/definitions/Preset'
   '/timeside/api/presets/{uuid}/':
     delete:
-      description: ''
+      description: Processor with its potential parameters
       operationId: destroyPreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1202,7 +1347,7 @@ paths:
         '204':
           description: ''
     get:
-      description: ''
+      description: Processor with its potential parameters
       operationId: retrievePreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1222,7 +1367,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Processor with its potential parameters
       operationId: partial_updatePreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1246,7 +1391,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Processor with its potential parameters
       operationId: updatePreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1267,7 +1412,7 @@ paths:
             $ref: '#/definitions/Preset'
   /timeside/api/processors/:
     get:
-      description: ''
+      description: Audio process to compute on items given potential parameters
       operationId: listProcessors
       parameters: []
       produces:
@@ -1277,42 +1422,11 @@ paths:
           description: ''
           schema:
             items:
-              $ref: '#/definitions/Processor'
+              $ref: '#/definitions/ProcessorList'
             type: array
-    post:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: createProcessor
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Processor'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Processor'
   '/timeside/api/processors/{pid}/':
-    delete:
-      description: ''
-      operationId: destroyProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: pid
-          required: true
-          type: string
-      responses:
-        '204':
-          description: ''
     get:
-      description: ''
+      description: Audio process to compute on items given potential parameters
       operationId: retrieveProcessor
       parameters:
         - description: ''
@@ -1327,57 +1441,9 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Processor'
-    patch:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: partial_updateProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: pid
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Processor'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Processor'
-    put:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: updateProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: pid
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Processor'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Processor'
   '/timeside/api/processors/{pid}/parameters_default/':
     get:
-      description: ''
+      description: Audio process to compute on items given potential parameters
       operationId: parameters_defaultProcessor
       parameters:
         - description: ''
@@ -1394,7 +1460,7 @@ paths:
             $ref: '#/definitions/Processor'
   '/timeside/api/processors/{pid}/parameters_schema/':
     get:
-      description: ''
+      description: Audio process to compute on items given potential parameters
       operationId: parameters_schemaProcessor
       parameters:
         - description: ''
@@ -1411,7 +1477,7 @@ paths:
             $ref: '#/definitions/Processor'
   /timeside/api/providers/:
     get:
-      description: ''
+      description: Audio providers available in the API
       operationId: listProviders
       parameters: []
       produces:
@@ -1423,40 +1489,9 @@ paths:
             items:
               $ref: '#/definitions/Provider'
             type: array
-    post:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: createProvider
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Provider'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Provider'
   '/timeside/api/providers/{uuid}/':
-    delete:
-      description: ''
-      operationId: destroyProvider
-      parameters:
-        - description: A UUID string identifying this provider.
-          in: path
-          name: uuid
-          required: true
-          type: string
-      responses:
-        '204':
-          description: ''
     get:
-      description: ''
+      description: Audio providers available in the API
       operationId: retrieveProvider
       parameters:
         - description: A UUID string identifying this provider.
@@ -1471,57 +1506,9 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Provider'
-    patch:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: partial_updateProvider
-      parameters:
-        - description: A UUID string identifying this provider.
-          in: path
-          name: uuid
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Provider'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Provider'
-    put:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: updateProvider
-      parameters:
-        - description: A UUID string identifying this provider.
-          in: path
-          name: uuid
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Provider'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Provider'
   /timeside/api/results/:
     get:
-      description: ''
+      description: Result of processing on items
       operationId: listResults
       parameters:
         - description: A search term.
@@ -1538,45 +1525,9 @@ paths:
             items:
               $ref: '#/definitions/Result'
             type: array
-    post:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: createResult
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Result'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Result'
   '/timeside/api/results/{uuid}/':
-    delete:
-      description: ''
-      operationId: destroyResult
-      parameters:
-        - description: A UUID string identifying this Result.
-          in: path
-          name: uuid
-          required: true
-          type: string
-        - description: A search term.
-          in: query
-          name: search
-          required: false
-          type: string
-      responses:
-        '204':
-          description: ''
     get:
-      description: ''
+      description: Result of processing on items
       operationId: retrieveResult
       parameters:
         - description: A UUID string identifying this Result.
@@ -1596,67 +1547,9 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Result'
-    patch:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: partial_updateResult
-      parameters:
-        - description: A UUID string identifying this Result.
-          in: path
-          name: uuid
-          required: true
-          type: string
-        - description: A search term.
-          in: query
-          name: search
-          required: false
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Result'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Result'
-    put:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: updateResult
-      parameters:
-        - description: A UUID string identifying this Result.
-          in: path
-          name: uuid
-          required: true
-          type: string
-        - description: A search term.
-          in: query
-          name: search
-          required: false
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/Result'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Result'
   '/timeside/api/results/{uuid}/visual/':
     get:
-      description: ''
+      description: '"png rendering of 2D numerical data (example: a spectrogram)'
       operationId: RetrieveResult
       parameters:
         - description: A UUID string identifying this Result.
@@ -1672,7 +1565,7 @@ paths:
           schema: {}
   /timeside/api/selections/:
     get:
-      description: ''
+      description: Set of items and other selections
       operationId: listSelections
       parameters: []
       produces:
@@ -1689,7 +1582,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Set of items and other selections
       operationId: createSelection
       parameters:
         - in: body
@@ -1705,7 +1598,7 @@ paths:
             $ref: '#/definitions/Selection'
   '/timeside/api/selections/{uuid}/':
     delete:
-      description: ''
+      description: Set of items and other selections
       operationId: destroySelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1717,7 +1610,7 @@ paths:
         '204':
           description: ''
     get:
-      description: ''
+      description: Set of items and other selections
       operationId: retrieveSelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1737,7 +1630,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Set of items and other selections
       operationId: partial_updateSelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1761,7 +1654,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Set of items and other selections
       operationId: updateSelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1780,119 +1673,9 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Selection'
-  /timeside/api/subprocessors/:
-    get:
-      description: ''
-      operationId: listSubProcessors
-      parameters: []
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            items:
-              $ref: '#/definitions/SubProcessor'
-            type: array
-    post:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: createSubProcessor
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/SubProcessor'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubProcessor'
-  '/timeside/api/subprocessors/{sub_processor_id}/':
-    delete:
-      description: ''
-      operationId: destroySubProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: sub_processor_id
-          required: true
-          type: string
-      responses:
-        '204':
-          description: ''
-    get:
-      description: ''
-      operationId: retrieveSubProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: sub_processor_id
-          required: true
-          type: string
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubProcessor'
-    patch:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: partial_updateSubProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: sub_processor_id
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/SubProcessor'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubProcessor'
-    put:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: updateSubProcessor
-      parameters:
-        - description: ''
-          in: path
-          name: sub_processor_id
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/SubProcessor'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/SubProcessor'
   /timeside/api/tasks/:
     get:
-      description: ''
+      description: Experience applied to a selection or a single item
       operationId: listTasks
       parameters: []
       produces:
@@ -1909,7 +1692,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Experience applied to a selection or a single item
       operationId: createTask
       parameters:
         - in: body
@@ -1925,7 +1708,7 @@ paths:
             $ref: '#/definitions/Task'
   '/timeside/api/tasks/{uuid}/':
     delete:
-      description: ''
+      description: Experience applied to a selection or a single item
       operationId: destroyTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1937,7 +1720,7 @@ paths:
         '204':
           description: ''
     get:
-      description: ''
+      description: Experience applied to a selection or a single item
       operationId: retrieveTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1957,7 +1740,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Experience applied to a selection or a single item
       operationId: partial_updateTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1981,7 +1764,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: ''
+      description: Experience applied to a selection or a single item
       operationId: updateTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -2013,9 +1796,101 @@ paths:
           schema:
             items: {}
             type: array
+  /timeside/api/token/:
+    post:
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+        - multipart/form-data
+      description: >-
+        Takes a set of user credentials and returns an access and refresh JSON
+        web
+
+        token pair to prove the authentication of those credentials.
+      operationId: CreateTokenObtainPair
+      parameters:
+        - in: body
+          name: body
+          schema:
+            properties:
+              username:
+                type: string
+            required:
+              - username
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              username:
+                type: string
+            required:
+              - username
+  /timeside/api/token/refresh/:
+    post:
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+        - multipart/form-data
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      operationId: CreateTokenRefresh
+      parameters:
+        - in: body
+          name: body
+          schema:
+            properties:
+              refresh:
+                type: string
+            required:
+              - refresh
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              refresh:
+                type: string
+            required:
+              - refresh
+  /timeside/api/token/verify/:
+    post:
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+        - multipart/form-data
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      operationId: CreateTokenVerify
+      parameters:
+        - in: body
+          name: body
+          schema:
+            properties:
+              token:
+                type: string
+            required:
+              - token
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              token:
+                type: string
+            required:
+              - token
   /timeside/api/users/:
     get:
-      description: ''
+      description: Users of the API able to share data
       operationId: listUsers
       parameters: []
       produces:
@@ -2027,43 +1902,14 @@ paths:
             items:
               $ref: '#/definitions/User'
             type: array
-    post:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: createUser
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/User'
   '/timeside/api/users/{username}/':
-    delete:
-      description: ''
-      operationId: destroyUser
-      parameters:
-        - description: "Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères «\_@\_», «\_.\_», «\_+\_», «\_-\_» et «\__\_»."
-          in: path
-          name: username
-          required: true
-          type: string
-      responses:
-        '204':
-          description: ''
     get:
-      description: ''
+      description: Users of the API able to share data
       operationId: retrieveUser
       parameters:
-        - description: "Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères «\_@\_», «\_.\_», «\_+\_», «\_-\_» et «\__\_»."
+        - description: >-
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
           in: path
           name: username
           required: true
@@ -2075,54 +1921,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/User'
-    patch:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: partial_updateUser
-      parameters:
-        - description: "Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères «\_@\_», «\_.\_», «\_+\_», «\_-\_» et «\__\_»."
-          in: path
-          name: username
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/User'
-    put:
-      consumes:
-        - application/json
-        - application/x-www-form-urlencoded
-        - multipart/form-data
-      description: ''
-      operationId: updateUser
-      parameters:
-        - description: "Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères «\_@\_», «\_.\_», «\_+\_», «\_-\_» et «\__\_»."
-          in: path
-          name: username
-          required: true
-          type: string
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/User'
+schemes:
+  - https
 swagger: '2.0'
 x-components: {}
 
