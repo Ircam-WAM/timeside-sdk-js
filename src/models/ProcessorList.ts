@@ -82,7 +82,6 @@ export function ProcessorListToJSON(value?: ProcessorList | null): any {
 * @enum {string}
 */
 export enum ProcessorListPidEnum {
-    VampSimpleHost = 'vamp_simple_host',
     AubioMelenergy = 'aubio_melenergy',
     AubioMfcc = 'aubio_mfcc',
     AubioPitch = 'aubio_pitch',
@@ -91,6 +90,7 @@ export enum ProcessorListPidEnum {
     AubioTemporal = 'aubio_temporal',
     EssentiaDissonance = 'essentia_dissonance',
     VampConstantq = 'vamp_constantq',
+    VampSimpleHost = 'vamp_simple_host',
     LoudnessItu = 'loudness_itu',
     SpectrogramAnalyzer = 'spectrogram_analyzer',
     OnsetDetectionFunction = 'onset_detection_function',
@@ -101,6 +101,9 @@ export enum ProcessorListPidEnum {
     VampTempo = 'vamp_tempo',
     VampTuning = 'vamp_tuning',
     Level = 'level',
+    FlacAubioEncoder = 'flac_aubio_encoder',
+    VorbisAubioEncoder = 'vorbis_aubio_encoder',
+    WavAubioEncoder = 'wav_aubio_encoder',
     LiveEncoder = 'live_encoder',
     FlacEncoder = 'flac_encoder',
     AacEncoder = 'aac_encoder',

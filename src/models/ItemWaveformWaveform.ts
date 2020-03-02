@@ -24,13 +24,13 @@ export interface ItemWaveformWaveform {
      * @type {Array<number>}
      * @memberof ItemWaveformWaveform
      */
-    maxValues: Array<number>;
+    max: Array<number>;
     /**
      * 
      * @type {Array<number>}
      * @memberof ItemWaveformWaveform
      */
-    minValues: Array<number>;
+    min: Array<number>;
     /**
      * 
      * @type {number}
@@ -54,7 +54,7 @@ export interface ItemWaveformWaveform {
      * @type {Array<number>}
      * @memberof ItemWaveformWaveform
      */
-    timeValues: Array<number>;
+    time: Array<number>;
 }
 
 export function ItemWaveformWaveformFromJSON(json: any): ItemWaveformWaveform {
@@ -67,12 +67,12 @@ export function ItemWaveformWaveformFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'maxValues': json['max_values'],
-        'minValues': json['min_values'],
+        'max': json['max'],
+        'min': json['min'],
         'nbPixels': json['nb_pixels'],
         'start': !exists(json, 'start') ? undefined : json['start'],
         'stop': !exists(json, 'stop') ? undefined : json['stop'],
-        'timeValues': json['time_values'],
+        'time': json['time'],
     };
 }
 
@@ -85,12 +85,12 @@ export function ItemWaveformWaveformToJSON(value?: ItemWaveformWaveform | null):
     }
     return {
         
-        'max_values': value.maxValues,
-        'min_values': value.minValues,
+        'max': value.max,
+        'min': value.min,
         'nb_pixels': value.nbPixels,
         'start': value.start,
         'stop': value.stop,
-        'time_values': value.timeValues,
+        'time': value.time,
     };
 }
 

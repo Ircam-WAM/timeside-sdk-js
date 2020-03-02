@@ -272,11 +272,11 @@ definitions:
         type: string
       waveform:
         properties:
-          max_values:
+          max:
             items:
               type: number
             type: array
-          min_values:
+          min:
             items:
               type: number
             type: array
@@ -288,16 +288,16 @@ definitions:
           stop:
             default: -1
             type: integer
-          time_values:
+          time:
             items:
               type: integer
             type: array
         readOnly: true
         required:
           - nb_pixels
-          - min_values
-          - max_values
-          - time_values
+          - min
+          - max
+          - time
         type: object
       waveform_image_url:
         readOnly: true
@@ -329,7 +329,6 @@ definitions:
         type: string
       pid:
         enum:
-          - vamp_simple_host
           - aubio_melenergy
           - aubio_mfcc
           - aubio_pitch
@@ -338,6 +337,7 @@ definitions:
           - aubio_temporal
           - essentia_dissonance
           - vamp_constantq
+          - vamp_simple_host
           - loudness_itu
           - spectrogram_analyzer
           - onset_detection_function
@@ -348,6 +348,9 @@ definitions:
           - vamp_tempo
           - vamp_tuning
           - level
+          - flac_aubio_encoder
+          - vorbis_aubio_encoder
+          - wav_aubio_encoder
           - live_encoder
           - flac_encoder
           - aac_encoder
@@ -386,7 +389,6 @@ definitions:
         type: string
       pid:
         enum:
-          - vamp_simple_host
           - aubio_melenergy
           - aubio_mfcc
           - aubio_pitch
@@ -395,6 +397,7 @@ definitions:
           - aubio_temporal
           - essentia_dissonance
           - vamp_constantq
+          - vamp_simple_host
           - loudness_itu
           - spectrogram_analyzer
           - onset_detection_function
@@ -405,6 +408,9 @@ definitions:
           - vamp_tempo
           - vamp_tuning
           - level
+          - flac_aubio_encoder
+          - vorbis_aubio_encoder
+          - wav_aubio_encoder
           - live_encoder
           - flac_encoder
           - aac_encoder
