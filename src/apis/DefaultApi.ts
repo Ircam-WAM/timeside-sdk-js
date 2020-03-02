@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -452,7 +452,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async createExperienceRaw(requestParameters: CreateExperienceRequest): Promise<runtime.ApiResponse<Experience>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -473,7 +473,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async createExperience(requestParameters: CreateExperienceRequest): Promise<Experience> {
         const response = await this.createExperienceRaw(requestParameters);
@@ -508,7 +508,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async createPresetRaw(requestParameters: CreatePresetRequest): Promise<runtime.ApiResponse<Preset>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -529,7 +529,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async createPreset(requestParameters: CreatePresetRequest): Promise<Preset> {
         const response = await this.createPresetRaw(requestParameters);
@@ -537,7 +537,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async createSelectionRaw(requestParameters: CreateSelectionRequest): Promise<runtime.ApiResponse<Selection>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -558,7 +558,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async createSelection(requestParameters: CreateSelectionRequest): Promise<Selection> {
         const response = await this.createSelectionRaw(requestParameters);
@@ -566,7 +566,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async createTaskRaw(requestParameters: CreateTaskRequest): Promise<runtime.ApiResponse<Task>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -587,7 +587,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async createTask(requestParameters: CreateTaskRequest): Promise<Task> {
         const response = await this.createTaskRaw(requestParameters);
@@ -790,7 +790,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async destroyExperienceRaw(requestParameters: DestroyExperienceRequest): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -812,7 +812,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async destroyExperience(requestParameters: DestroyExperienceRequest): Promise<void> {
         await this.destroyExperienceRaw(requestParameters);
@@ -850,7 +850,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async destroyPresetRaw(requestParameters: DestroyPresetRequest): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -872,14 +872,14 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async destroyPreset(requestParameters: DestroyPresetRequest): Promise<void> {
         await this.destroyPresetRaw(requestParameters);
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async destroySelectionRaw(requestParameters: DestroySelectionRequest): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -901,14 +901,14 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async destroySelection(requestParameters: DestroySelectionRequest): Promise<void> {
         await this.destroySelectionRaw(requestParameters);
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async destroyTaskRaw(requestParameters: DestroyTaskRequest): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -930,7 +930,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async destroyTask(requestParameters: DestroyTaskRequest): Promise<void> {
         await this.destroyTaskRaw(requestParameters);
@@ -1057,7 +1057,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async listExperiencesRaw(): Promise<runtime.ApiResponse<Array<Experience>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1075,7 +1075,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async listExperiences(): Promise<Array<Experience>> {
         const response = await this.listExperiencesRaw();
@@ -1111,7 +1111,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async listPresetsRaw(): Promise<runtime.ApiResponse<Array<Preset>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1129,7 +1129,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async listPresets(): Promise<Array<Preset>> {
         const response = await this.listPresetsRaw();
@@ -1163,7 +1163,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Audio providers available in the API
+     * Audio providers available in the API.
      */
     async listProvidersRaw(): Promise<runtime.ApiResponse<Array<Provider>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1181,7 +1181,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Audio providers available in the API
+     * Audio providers available in the API.
      */
     async listProviders(): Promise<Array<Provider>> {
         const response = await this.listProvidersRaw();
@@ -1189,7 +1189,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Result of processing on items
+     * Result of processing on items.
      */
     async listResultsRaw(requestParameters: ListResultsRequest): Promise<runtime.ApiResponse<Array<Result>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1211,7 +1211,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Result of processing on items
+     * Result of processing on items.
      */
     async listResults(requestParameters: ListResultsRequest): Promise<Array<Result>> {
         const response = await this.listResultsRaw(requestParameters);
@@ -1219,7 +1219,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async listSelectionsRaw(): Promise<runtime.ApiResponse<Array<Selection>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1237,7 +1237,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async listSelections(): Promise<Array<Selection>> {
         const response = await this.listSelectionsRaw();
@@ -1245,7 +1245,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async listTasksRaw(): Promise<runtime.ApiResponse<Array<Task>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1263,7 +1263,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async listTasks(): Promise<Array<Task>> {
         const response = await this.listTasksRaw();
@@ -1271,7 +1271,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Users of the API able to share data
+     * Users of the API able to share data.
      */
     async listUsersRaw(): Promise<runtime.ApiResponse<Array<User>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1289,7 +1289,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Users of the API able to share data
+     * Users of the API able to share data.
      */
     async listUsers(): Promise<Array<User>> {
         const response = await this.listUsersRaw();
@@ -1509,7 +1509,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async partialUpdateExperienceRaw(requestParameters: PartialUpdateExperienceRequest): Promise<runtime.ApiResponse<Experience>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1534,7 +1534,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async partialUpdateExperience(requestParameters: PartialUpdateExperienceRequest): Promise<Experience> {
         const response = await this.partialUpdateExperienceRaw(requestParameters);
@@ -1577,7 +1577,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async partialUpdatePresetRaw(requestParameters: PartialUpdatePresetRequest): Promise<runtime.ApiResponse<Preset>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1602,7 +1602,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async partialUpdatePreset(requestParameters: PartialUpdatePresetRequest): Promise<Preset> {
         const response = await this.partialUpdatePresetRaw(requestParameters);
@@ -1610,7 +1610,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async partialUpdateSelectionRaw(requestParameters: PartialUpdateSelectionRequest): Promise<runtime.ApiResponse<Selection>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1635,7 +1635,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async partialUpdateSelection(requestParameters: PartialUpdateSelectionRequest): Promise<Selection> {
         const response = await this.partialUpdateSelectionRaw(requestParameters);
@@ -1643,7 +1643,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async partialUpdateTaskRaw(requestParameters: PartialUpdateTaskRequest): Promise<runtime.ApiResponse<Task>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1668,7 +1668,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async partialUpdateTask(requestParameters: PartialUpdateTaskRequest): Promise<Task> {
         const response = await this.partialUpdateTaskRaw(requestParameters);
@@ -1788,7 +1788,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async retrieveExperienceRaw(requestParameters: RetrieveExperienceRequest): Promise<runtime.ApiResponse<Experience>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1810,7 +1810,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async retrieveExperience(requestParameters: RetrieveExperienceRequest): Promise<Experience> {
         const response = await this.retrieveExperienceRaw(requestParameters);
@@ -1850,7 +1850,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gives waveform of item\'s audio
+     * Gives audio waveform of an item.
      */
     async retrieveItem_1Raw(requestParameters: RetrieveItem0Request): Promise<runtime.ApiResponse<ItemWaveform>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1872,7 +1872,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gives waveform of item\'s audio
+     * Gives audio waveform of an item.
      */
     async retrieveItem_1(requestParameters: RetrieveItem0Request): Promise<ItemWaveform> {
         const response = await this.retrieveItem_1Raw(requestParameters);
@@ -1880,7 +1880,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async retrievePresetRaw(requestParameters: RetrievePresetRequest): Promise<runtime.ApiResponse<Preset>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1902,7 +1902,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async retrievePreset(requestParameters: RetrievePresetRequest): Promise<Preset> {
         const response = await this.retrievePresetRaw(requestParameters);
@@ -1940,7 +1940,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Audio providers available in the API
+     * Audio providers available in the API.
      */
     async retrieveProviderRaw(requestParameters: RetrieveProviderRequest): Promise<runtime.ApiResponse<Provider>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1962,7 +1962,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Audio providers available in the API
+     * Audio providers available in the API.
      */
     async retrieveProvider(requestParameters: RetrieveProviderRequest): Promise<Provider> {
         const response = await this.retrieveProviderRaw(requestParameters);
@@ -1970,7 +1970,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Result of processing on items
+     * Result of processing on items.
      */
     async retrieveResultRaw(requestParameters: RetrieveResultRequest): Promise<runtime.ApiResponse<Result>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -1996,7 +1996,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Result of processing on items
+     * Result of processing on items.
      */
     async retrieveResult(requestParameters: RetrieveResultRequest): Promise<Result> {
         const response = await this.retrieveResultRaw(requestParameters);
@@ -2004,7 +2004,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * \"png rendering of 2D numerical data (example: a spectrogram)
+     * PNG rendering of 2D numerical data (example: a spectrogram).
      */
     async retrieveResult_2Raw(requestParameters: RetrieveResult0Request): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2026,7 +2026,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * \"png rendering of 2D numerical data (example: a spectrogram)
+     * PNG rendering of 2D numerical data (example: a spectrogram).
      */
     async retrieveResult_2(requestParameters: RetrieveResult0Request): Promise<object> {
         const response = await this.retrieveResult_2Raw(requestParameters);
@@ -2034,7 +2034,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async retrieveSelectionRaw(requestParameters: RetrieveSelectionRequest): Promise<runtime.ApiResponse<Selection>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2056,7 +2056,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async retrieveSelection(requestParameters: RetrieveSelectionRequest): Promise<Selection> {
         const response = await this.retrieveSelectionRaw(requestParameters);
@@ -2064,7 +2064,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async retrieveTaskRaw(requestParameters: RetrieveTaskRequest): Promise<runtime.ApiResponse<Task>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2086,7 +2086,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async retrieveTask(requestParameters: RetrieveTaskRequest): Promise<Task> {
         const response = await this.retrieveTaskRaw(requestParameters);
@@ -2094,7 +2094,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Users of the API able to share data
+     * Users of the API able to share data.
      */
     async retrieveUserRaw(requestParameters: RetrieveUserRequest): Promise<runtime.ApiResponse<User>> {
         if (requestParameters.username === null || requestParameters.username === undefined) {
@@ -2116,7 +2116,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Users of the API able to share data
+     * Users of the API able to share data.
      */
     async retrieveUser(requestParameters: RetrieveUserRequest): Promise<User> {
         const response = await this.retrieveUserRaw(requestParameters);
@@ -2279,7 +2279,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async updateExperienceRaw(requestParameters: UpdateExperienceRequest): Promise<runtime.ApiResponse<Experience>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2304,7 +2304,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of presets and other experiences
+     * Set of presets and other experiences.
      */
     async updateExperience(requestParameters: UpdateExperienceRequest): Promise<Experience> {
         const response = await this.updateExperienceRaw(requestParameters);
@@ -2347,7 +2347,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async updatePresetRaw(requestParameters: UpdatePresetRequest): Promise<runtime.ApiResponse<Preset>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2372,7 +2372,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Processor with its potential parameters
+     * Processor with its potential parameters.
      */
     async updatePreset(requestParameters: UpdatePresetRequest): Promise<Preset> {
         const response = await this.updatePresetRaw(requestParameters);
@@ -2380,7 +2380,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async updateSelectionRaw(requestParameters: UpdateSelectionRequest): Promise<runtime.ApiResponse<Selection>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2405,7 +2405,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set of items and other selections
+     * Set of items and other selections.
      */
     async updateSelection(requestParameters: UpdateSelectionRequest): Promise<Selection> {
         const response = await this.updateSelectionRaw(requestParameters);
@@ -2413,7 +2413,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async updateTaskRaw(requestParameters: UpdateTaskRequest): Promise<runtime.ApiResponse<Task>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
@@ -2438,7 +2438,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Experience applied to a selection or a single item
+     * Experience applied to a selection or a single item.
      */
     async updateTask(requestParameters: UpdateTaskRequest): Promise<Task> {
         const response = await this.updateTaskRaw(requestParameters);

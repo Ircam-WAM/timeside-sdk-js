@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 

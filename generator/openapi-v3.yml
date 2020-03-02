@@ -2,13 +2,12 @@ openapi: 3.0.2
 info:
   title: TimeSide API
   version: 1.0.0
-  description: "RESTful API of TimeSide,\n                a scalable audio processing\
-    \ framework"
+  description: RESTful API of TimeSide, a scalable audio processing framework.
 paths:
   /timeside/api/users/:
     get:
       operationId: listUsers
-      description: Users of the API able to share data
+      description: Users of the API able to share data.
       parameters: []
       responses:
         '200':
@@ -22,7 +21,7 @@ paths:
   /timeside/api/users/{username}/:
     get:
       operationId: retrieveUser
-      description: Users of the API able to share data
+      description: Users of the API able to share data.
       parameters:
       - name: username
         in: path
@@ -188,7 +187,7 @@ paths:
   /timeside/api/providers/:
     get:
       operationId: listProviders
-      description: Audio providers available in the API
+      description: Audio providers available in the API.
       parameters: []
       responses:
         '200':
@@ -202,7 +201,7 @@ paths:
   /timeside/api/providers/{uuid}/:
     get:
       operationId: retrieveProvider
-      description: Audio providers available in the API
+      description: Audio providers available in the API.
       parameters:
       - name: uuid
         in: path
@@ -220,7 +219,7 @@ paths:
   /timeside/api/selections/:
     get:
       operationId: listSelections
-      description: Set of items and other selections
+      description: Set of items and other selections.
       parameters: []
       responses:
         '200':
@@ -233,7 +232,7 @@ paths:
           description: ''
     post:
       operationId: createSelection
-      description: Set of items and other selections
+      description: Set of items and other selections.
       parameters: []
       requestBody:
         content:
@@ -254,7 +253,7 @@ paths:
   /timeside/api/selections/{uuid}/:
     get:
       operationId: retrieveSelection
-      description: Set of items and other selections
+      description: Set of items and other selections.
       parameters:
       - name: uuid
         in: path
@@ -271,7 +270,7 @@ paths:
           description: ''
     put:
       operationId: updateSelection
-      description: Set of items and other selections
+      description: Set of items and other selections.
       parameters:
       - name: uuid
         in: path
@@ -297,7 +296,7 @@ paths:
           description: ''
     patch:
       operationId: partial_updateSelection
-      description: Set of items and other selections
+      description: Set of items and other selections.
       parameters:
       - name: uuid
         in: path
@@ -323,7 +322,7 @@ paths:
           description: ''
     delete:
       operationId: destroySelection
-      description: Set of items and other selections
+      description: Set of items and other selections.
       parameters:
       - name: uuid
         in: path
@@ -405,7 +404,7 @@ paths:
   /timeside/api/presets/:
     get:
       operationId: listPresets
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       parameters: []
       responses:
         '200':
@@ -418,7 +417,7 @@ paths:
           description: ''
     post:
       operationId: createPreset
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       parameters: []
       requestBody:
         content:
@@ -439,7 +438,7 @@ paths:
   /timeside/api/presets/{uuid}/:
     get:
       operationId: retrievePreset
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       parameters:
       - name: uuid
         in: path
@@ -456,7 +455,7 @@ paths:
           description: ''
     put:
       operationId: updatePreset
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       parameters:
       - name: uuid
         in: path
@@ -482,7 +481,7 @@ paths:
           description: ''
     patch:
       operationId: partial_updatePreset
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       parameters:
       - name: uuid
         in: path
@@ -508,7 +507,7 @@ paths:
           description: ''
     delete:
       operationId: destroyPreset
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       parameters:
       - name: uuid
         in: path
@@ -522,7 +521,7 @@ paths:
   /timeside/api/experiences/:
     get:
       operationId: listExperiences
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       parameters: []
       responses:
         '200':
@@ -535,7 +534,7 @@ paths:
           description: ''
     post:
       operationId: createExperience
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       parameters: []
       requestBody:
         content:
@@ -556,7 +555,7 @@ paths:
   /timeside/api/experiences/{uuid}/:
     get:
       operationId: retrieveExperience
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       parameters:
       - name: uuid
         in: path
@@ -573,7 +572,7 @@ paths:
           description: ''
     put:
       operationId: updateExperience
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       parameters:
       - name: uuid
         in: path
@@ -599,7 +598,7 @@ paths:
           description: ''
     patch:
       operationId: partial_updateExperience
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       parameters:
       - name: uuid
         in: path
@@ -625,7 +624,7 @@ paths:
           description: ''
     delete:
       operationId: destroyExperience
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       parameters:
       - name: uuid
         in: path
@@ -639,7 +638,7 @@ paths:
   /timeside/api/tasks/:
     get:
       operationId: listTasks
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       parameters: []
       responses:
         '200':
@@ -652,7 +651,7 @@ paths:
           description: ''
     post:
       operationId: createTask
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       parameters: []
       requestBody:
         content:
@@ -673,7 +672,7 @@ paths:
   /timeside/api/tasks/{uuid}/:
     get:
       operationId: retrieveTask
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       parameters:
       - name: uuid
         in: path
@@ -690,7 +689,7 @@ paths:
           description: ''
     put:
       operationId: updateTask
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       parameters:
       - name: uuid
         in: path
@@ -716,7 +715,7 @@ paths:
           description: ''
     patch:
       operationId: partial_updateTask
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       parameters:
       - name: uuid
         in: path
@@ -742,7 +741,7 @@ paths:
           description: ''
     delete:
       operationId: destroyTask
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       parameters:
       - name: uuid
         in: path
@@ -1242,7 +1241,7 @@ paths:
   /timeside/api/results/:
     get:
       operationId: listResults
-      description: Result of processing on items
+      description: Result of processing on items.
       parameters:
       - name: search
         required: false
@@ -1262,7 +1261,7 @@ paths:
   /timeside/api/results/{uuid}/:
     get:
       operationId: retrieveResult
-      description: Result of processing on items
+      description: Result of processing on items.
       parameters:
       - name: uuid
         in: path
@@ -1299,7 +1298,7 @@ paths:
   /timeside/api/items/{uuid}/waveform/:
     get:
       operationId: RetrieveItem
-      description: Gives waveform of item's audio
+      description: Gives audio waveform of an item.
       parameters:
       - name: uuid
         in: path
@@ -1317,7 +1316,7 @@ paths:
   /timeside/api/results/{uuid}/visual/:
     get:
       operationId: RetrieveResult
-      description: '"png rendering of 2D numerical data (example: a spectrogram)'
+      description: 'PNG rendering of 2D numerical data (example: a spectrogram).'
       parameters:
       - name: uuid
         in: path
@@ -1495,11 +1494,11 @@ components:
         source_file:
           type: string
           format: binary
-          description: Audio file to process
+          description: Audio file to process.
         source_url:
           type: string
           format: uri
-          description: URL of a streamable audio source to process
+          description: URL of a streamable audio source to process.
           maxLength: 1024
           pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\\
             d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\\
@@ -1530,11 +1529,11 @@ components:
         source_file:
           type: string
           format: binary
-          description: Audio file to process
+          description: Audio file to process.
         source_url:
           type: string
           format: uri
-          description: URL of a streamable audio source to process
+          description: URL of a streamable audio source to process.
           maxLength: 1024
           pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\\
             d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\\
@@ -1546,23 +1545,52 @@ components:
           type: string
           maxLength: 256
         audio_url:
-          type: string
+          properties:
+            mp3:
+              type: string
+              format: uri
+              readOnly: true
+              pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\\
+                d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\\
+                .]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF\
+                0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+                -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\\
+                s]*)?\\Z"
+            ogg:
+              type: string
+              format: uri
+              readOnly: true
+              pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\\
+                d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\\
+                .]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF\
+                0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+                -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\\
+                s]*)?\\Z"
+          type: object
           readOnly: true
         audio_duration:
           type: number
           readOnly: true
-          description: Duration of audio track
+          description: Duration of audio track.
         external_uri:
           type: string
-          description: "\n        Provider's URI of the audio source.\n        e.g.\
-            \ for Deezer preview: http://www.deezer.com/track/4763165\n        e.g.\
-            \ for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0\n        "
+          description: 'Provider''s URI of the audio source.
+
+
+            e.g. for Deezer preview: http://www.deezer.com/track/4763165
+
+
+            e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0'
           maxLength: 1024
         external_id:
           type: string
-          description: "\n        Provider's id of the audio source.\n        e.g.\
-            \ for Deezer preview: 4763165\n        e.g. for YouTube: oRdxUFDoQe0\n\
-            \        "
+          description: 'Provider''s id of the audio source.
+
+
+            e.g. for Deezer preview: 4763165
+
+
+            e.g. for YouTube: oRdxUFDoQe0'
           maxLength: 256
         waveform_url:
           type: string
@@ -1592,8 +1620,7 @@ components:
           readOnly: true
         source_access:
           type: boolean
-          description: "whether or not the audio is\n            freely available\
-            \ from the provider"
+          description: Whether or not the audio is freely available from the provider.
     Selection:
       properties:
         title:
@@ -1614,7 +1641,7 @@ components:
           type: array
           items:
             type: string
-          description: include other selections in an selection
+          description: Include other selections in an selection.
         author:
           type: string
           nullable: true
@@ -1782,11 +1809,11 @@ components:
         experience:
           type: string
           nullable: true
-          description: experience prossessed in the task
+          description: Experience prossessed in the task.
         selection:
           type: string
           nullable: true
-          description: selection prossessed in the task
+          description: Selection prossessed in the task.
         status:
           enum:
           - 0
@@ -1794,9 +1821,22 @@ components:
           - 2
           - 3
           - 4
-          description: "\n        Task's status:\n        failed: {_FAILED}\n    \
-            \    draft: {_DRAFT}\n        pending: {_PENDING}\n        running: {_RUNNING}\n\
-            \        done: {_DONE}\n        "
+          description: 'Task''s status:
+
+
+            failed: 0
+
+
+            draft: 1
+
+
+            pending: 2
+
+
+            running: 3
+
+
+            done: 4'
           minimum: -2147483648
           maximum: 2147483647
         author:
@@ -1805,7 +1845,7 @@ components:
         item:
           type: string
           nullable: true
-          description: single item prossessed in the task
+          description: Single item prossessed in the task.
     Analysis:
       properties:
         url:
@@ -1946,11 +1986,11 @@ components:
         item:
           type: string
           nullable: true
-          description: item on which a preset has been applied
+          description: Item on which a preset has been applied.
         preset:
           type: string
           nullable: true
-          description: preset applied on an item
+          description: Preset applied on an item.
         status:
           enum:
           - 0
@@ -1958,24 +1998,38 @@ components:
           - 2
           - 3
           - 4
-          description: "\n        status of the task giving the result:\n        failed:\
-            \ 0\n        draft: 1\n        pending: 2\n        running: 3\n      \
-            \  done: 4\n        "
+          description: 'Status of the task giving the result:
+
+
+            failed: 0
+
+
+            draft: 1
+
+
+            pending: 2
+
+
+            running: 3
+
+
+            done: 4'
           minimum: -2147483648
           maximum: 2147483647
         hdf5:
           type: string
           format: binary
-          description: numerical result of the processing stored in an hdf5 file
+          description: Numerical result of the processing stored in an hdf5 file.
         file:
           type: string
           format: binary
-          description: "\n        non numerical result (image, transcoded audio, etc.)\n\
-            \        stored in a file\n        "
+          description: 'Non numerical result stored in a file
+
+            (image, transcoded audio, etc.)'
         run_time:
           type: string
           nullable: true
-          description: duration of the result computing
+          description: Duration of the result computing.
     ItemWaveform:
       properties:
         item_url:
@@ -1988,7 +2042,33 @@ components:
           type: string
           readOnly: true
         waveform:
-          type: string
+          properties:
+            start:
+              type: integer
+            stop:
+              type: integer
+              default: -1
+            nb_pixels:
+              type: integer
+              minimum: 0
+            min_values:
+              type: array
+              items:
+                type: number
+            max_values:
+              type: array
+              items:
+                type: number
+            time_values:
+              type: array
+              items:
+                type: integer
+          required:
+          - nb_pixels
+          - min_values
+          - max_values
+          - time_values
+          type: object
           readOnly: true
         waveform_image_url:
           type: string

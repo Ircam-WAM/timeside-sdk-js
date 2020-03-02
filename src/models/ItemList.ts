@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -38,13 +38,13 @@ export interface ItemList {
      */
     readonly playerUrl?: string;
     /**
-     * Audio file to process
+     * Audio file to process.
      * @type {Blob}
      * @memberof ItemList
      */
     sourceFile?: Blob;
     /**
-     * URL of a streamable audio source to process
+     * URL of a streamable audio source to process.
      * @type {string}
      * @memberof ItemList
      */

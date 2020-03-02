@@ -162,30 +162,41 @@ definitions:
         readOnly: true
         type: array
       audio_duration:
-        description: Duration of audio track
+        description: Duration of audio track.
         readOnly: true
         type: number
       audio_url:
+        properties:
+          mp3:
+            format: uri
+            pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?\\Z"
+            readOnly: true
+            type: string
+          ogg:
+            format: uri
+            pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?\\Z"
+            readOnly: true
+            type: string
         readOnly: true
-        type: string
+        type: object
       description:
         type: string
       external_id:
-        description: |2-
+        description: |-
+          Provider's id of the audio source.
 
-                  Provider's id of the audio source.
-                  e.g. for Deezer preview: 4763165
-                  e.g. for YouTube: oRdxUFDoQe0
-                  
+          e.g. for Deezer preview: 4763165
+
+          e.g. for YouTube: oRdxUFDoQe0
         maxLength: 256
         type: string
       external_uri:
-        description: |2-
+        description: |-
+          Provider's URI of the audio source.
 
-                  Provider's URI of the audio source.
-                  e.g. for Deezer preview: http://www.deezer.com/track/4763165
-                  e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
-                  
+          e.g. for Deezer preview: http://www.deezer.com/track/4763165
+
+          e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
         maxLength: 1024
         type: string
       mime_type:
@@ -199,11 +210,11 @@ definitions:
         nullable: true
         type: string
       source_file:
-        description: Audio file to process
+        description: Audio file to process.
         format: binary
         type: string
       source_url:
-        description: URL of a streamable audio source to process
+        description: URL of a streamable audio source to process.
         format: uri
         maxLength: 1024
         pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?\\Z"
@@ -232,11 +243,11 @@ definitions:
         readOnly: true
         type: string
       source_file:
-        description: Audio file to process
+        description: Audio file to process.
         format: binary
         type: string
       source_url:
-        description: URL of a streamable audio source to process
+        description: URL of a streamable audio source to process.
         format: uri
         maxLength: 1024
         pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\s]*)?\\Z"
@@ -260,8 +271,34 @@ definitions:
         maxLength: 512
         type: string
       waveform:
+        properties:
+          max_values:
+            items:
+              type: number
+            type: array
+          min_values:
+            items:
+              type: number
+            type: array
+          nb_pixels:
+            minimum: 0
+            type: integer
+          start:
+            type: integer
+          stop:
+            default: -1
+            type: integer
+          time_values:
+            items:
+              type: integer
+            type: array
         readOnly: true
-        type: string
+        required:
+          - nb_pixels
+          - min_values
+          - max_values
+          - time_values
+        type: object
       waveform_image_url:
         readOnly: true
         type: string
@@ -405,9 +442,7 @@ definitions:
         maxLength: 128
         type: string
       source_access:
-        description: |-
-          whether or not the audio is
-                      freely available from the provider
+        description: Whether or not the audio is freely available from the provider.
         type: boolean
       uuid:
         format: uuid
@@ -416,39 +451,40 @@ definitions:
   Result:
     properties:
       file:
-        description: |2-
-
-                  non numerical result (image, transcoded audio, etc.)
-                  stored in a file
-                  
+        description: |-
+          Non numerical result stored in a file
+          (image, transcoded audio, etc.)
         format: binary
         type: string
       hdf5:
-        description: numerical result of the processing stored in an hdf5 file
+        description: Numerical result of the processing stored in an hdf5 file.
         format: binary
         type: string
       item:
-        description: item on which a preset has been applied
+        description: Item on which a preset has been applied.
         nullable: true
         type: string
       preset:
-        description: preset applied on an item
+        description: Preset applied on an item.
         nullable: true
         type: string
       run_time:
-        description: duration of the result computing
+        description: Duration of the result computing.
         nullable: true
         type: string
       status:
-        description: |2-
+        description: |-
+          Status of the task giving the result:
 
-                  status of the task giving the result:
-                  failed: 0
-                  draft: 1
-                  pending: 2
-                  running: 3
-                  done: 4
-                  
+          failed: 0
+
+          draft: 1
+
+          pending: 2
+
+          running: 3
+
+          done: 4
         enum:
           - 0
           - 1
@@ -474,7 +510,7 @@ definitions:
           type: string
         type: array
       selections:
-        description: include other selections in an selection
+        description: Include other selections in an selection.
         items:
           type: string
         type: array
@@ -494,27 +530,30 @@ definitions:
         nullable: true
         type: string
       experience:
-        description: experience prossessed in the task
+        description: Experience prossessed in the task.
         nullable: true
         type: string
       item:
-        description: single item prossessed in the task
+        description: Single item prossessed in the task.
         nullable: true
         type: string
       selection:
-        description: selection prossessed in the task
+        description: Selection prossessed in the task.
         nullable: true
         type: string
       status:
-        description: |2-
+        description: |-
+          Task's status:
 
-                  Task's status:
-                  failed: {_FAILED}
-                  draft: {_DRAFT}
-                  pending: {_PENDING}
-                  running: {_RUNNING}
-                  done: {_DONE}
-                  
+          failed: 0
+
+          draft: 1
+
+          pending: 2
+
+          running: 3
+
+          done: 4
         enum:
           - 0
           - 1
@@ -550,9 +589,7 @@ definitions:
       - username
 host: wasabi.telemeta.org
 info:
-  description: |-
-    RESTful API of TimeSide,
-                    a scalable audio processing framework
+  description: 'RESTful API of TimeSide, a scalable audio processing framework.'
   title: TimeSide API
   version: 1.0.0
 paths:
@@ -1040,7 +1077,7 @@ paths:
             $ref: '#/definitions/Annotation'
   /timeside/api/experiences/:
     get:
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       operationId: listExperiences
       parameters: []
       produces:
@@ -1057,7 +1094,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       operationId: createExperience
       parameters:
         - in: body
@@ -1073,7 +1110,7 @@ paths:
             $ref: '#/definitions/Experience'
   '/timeside/api/experiences/{uuid}/':
     delete:
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       operationId: destroyExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -1085,7 +1122,7 @@ paths:
         '204':
           description: ''
     get:
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       operationId: retrieveExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -1105,7 +1142,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       operationId: partial_updateExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -1129,7 +1166,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Set of presets and other experiences
+      description: Set of presets and other experiences.
       operationId: updateExperience
       parameters:
         - description: A UUID string identifying this Experience.
@@ -1285,7 +1322,7 @@ paths:
             $ref: '#/definitions/Item'
   '/timeside/api/items/{uuid}/waveform/':
     get:
-      description: Gives waveform of item's audio
+      description: Gives audio waveform of an item.
       operationId: RetrieveItem
       parameters:
         - description: A UUID string identifying this item.
@@ -1302,7 +1339,7 @@ paths:
             $ref: '#/definitions/ItemWaveform'
   /timeside/api/presets/:
     get:
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       operationId: listPresets
       parameters: []
       produces:
@@ -1319,7 +1356,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       operationId: createPreset
       parameters:
         - in: body
@@ -1335,7 +1372,7 @@ paths:
             $ref: '#/definitions/Preset'
   '/timeside/api/presets/{uuid}/':
     delete:
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       operationId: destroyPreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1347,7 +1384,7 @@ paths:
         '204':
           description: ''
     get:
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       operationId: retrievePreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1367,7 +1404,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       operationId: partial_updatePreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1391,7 +1428,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Processor with its potential parameters
+      description: Processor with its potential parameters.
       operationId: updatePreset
       parameters:
         - description: A UUID string identifying this Preset.
@@ -1477,7 +1514,7 @@ paths:
             $ref: '#/definitions/Processor'
   /timeside/api/providers/:
     get:
-      description: Audio providers available in the API
+      description: Audio providers available in the API.
       operationId: listProviders
       parameters: []
       produces:
@@ -1491,7 +1528,7 @@ paths:
             type: array
   '/timeside/api/providers/{uuid}/':
     get:
-      description: Audio providers available in the API
+      description: Audio providers available in the API.
       operationId: retrieveProvider
       parameters:
         - description: A UUID string identifying this provider.
@@ -1508,7 +1545,7 @@ paths:
             $ref: '#/definitions/Provider'
   /timeside/api/results/:
     get:
-      description: Result of processing on items
+      description: Result of processing on items.
       operationId: listResults
       parameters:
         - description: A search term.
@@ -1527,7 +1564,7 @@ paths:
             type: array
   '/timeside/api/results/{uuid}/':
     get:
-      description: Result of processing on items
+      description: Result of processing on items.
       operationId: retrieveResult
       parameters:
         - description: A UUID string identifying this Result.
@@ -1549,7 +1586,7 @@ paths:
             $ref: '#/definitions/Result'
   '/timeside/api/results/{uuid}/visual/':
     get:
-      description: '"png rendering of 2D numerical data (example: a spectrogram)'
+      description: 'PNG rendering of 2D numerical data (example: a spectrogram).'
       operationId: RetrieveResult
       parameters:
         - description: A UUID string identifying this Result.
@@ -1565,7 +1602,7 @@ paths:
           schema: {}
   /timeside/api/selections/:
     get:
-      description: Set of items and other selections
+      description: Set of items and other selections.
       operationId: listSelections
       parameters: []
       produces:
@@ -1582,7 +1619,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Set of items and other selections
+      description: Set of items and other selections.
       operationId: createSelection
       parameters:
         - in: body
@@ -1598,7 +1635,7 @@ paths:
             $ref: '#/definitions/Selection'
   '/timeside/api/selections/{uuid}/':
     delete:
-      description: Set of items and other selections
+      description: Set of items and other selections.
       operationId: destroySelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1610,7 +1647,7 @@ paths:
         '204':
           description: ''
     get:
-      description: Set of items and other selections
+      description: Set of items and other selections.
       operationId: retrieveSelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1630,7 +1667,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Set of items and other selections
+      description: Set of items and other selections.
       operationId: partial_updateSelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1654,7 +1691,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Set of items and other selections
+      description: Set of items and other selections.
       operationId: updateSelection
       parameters:
         - description: A UUID string identifying this selection.
@@ -1675,7 +1712,7 @@ paths:
             $ref: '#/definitions/Selection'
   /timeside/api/tasks/:
     get:
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       operationId: listTasks
       parameters: []
       produces:
@@ -1692,7 +1729,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       operationId: createTask
       parameters:
         - in: body
@@ -1708,7 +1745,7 @@ paths:
             $ref: '#/definitions/Task'
   '/timeside/api/tasks/{uuid}/':
     delete:
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       operationId: destroyTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1720,7 +1757,7 @@ paths:
         '204':
           description: ''
     get:
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       operationId: retrieveTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1740,7 +1777,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       operationId: partial_updateTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1764,7 +1801,7 @@ paths:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
-      description: Experience applied to a selection or a single item
+      description: Experience applied to a selection or a single item.
       operationId: updateTask
       parameters:
         - description: A UUID string identifying this Task.
@@ -1890,7 +1927,7 @@ paths:
               - token
   /timeside/api/users/:
     get:
-      description: Users of the API able to share data
+      description: Users of the API able to share data.
       operationId: listUsers
       parameters: []
       produces:
@@ -1904,7 +1941,7 @@ paths:
             type: array
   '/timeside/api/users/{username}/':
     get:
-      description: Users of the API able to share data
+      description: Users of the API able to share data.
       operationId: retrieveUser
       parameters:
         - description: >-

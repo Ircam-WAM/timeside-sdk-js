@@ -16,32 +16,39 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineObject
+ * @interface ItemAudioUrl
  */
-export interface InlineObject {
+export interface ItemAudioUrl {
     /**
      * 
      * @type {string}
-     * @memberof InlineObject
+     * @memberof ItemAudioUrl
      */
-    username: string;
+    readonly mp3?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAudioUrl
+     */
+    readonly ogg?: string;
 }
 
-export function InlineObjectFromJSON(json: any): InlineObject {
-    return InlineObjectFromJSONTyped(json, false);
+export function ItemAudioUrlFromJSON(json: any): ItemAudioUrl {
+    return ItemAudioUrlFromJSONTyped(json, false);
 }
 
-export function InlineObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineObject {
+export function ItemAudioUrlFromJSONTyped(json: any, ignoreDiscriminator: boolean): ItemAudioUrl {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'username': json['username'],
+        'mp3': !exists(json, 'mp3') ? undefined : json['mp3'],
+        'ogg': !exists(json, 'ogg') ? undefined : json['ogg'],
     };
 }
 
-export function InlineObjectToJSON(value?: InlineObject | null): any {
+export function ItemAudioUrlToJSON(value?: ItemAudioUrl | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -50,7 +57,6 @@ export function InlineObjectToJSON(value?: InlineObject | null): any {
     }
     return {
         
-        'username': value.username,
     };
 }
 

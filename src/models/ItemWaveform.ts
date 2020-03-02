@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ItemWaveformWaveform,
+    ItemWaveformWaveformFromJSON,
+    ItemWaveformWaveformFromJSONTyped,
+    ItemWaveformWaveformToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -33,10 +40,10 @@ export interface ItemWaveform {
     title?: string;
     /**
      * 
-     * @type {string}
+     * @type {ItemWaveformWaveform}
      * @memberof ItemWaveform
      */
-    readonly waveform?: string;
+    waveform?: ItemWaveformWaveform;
     /**
      * 
      * @type {string}
@@ -63,7 +70,7 @@ export function ItemWaveformFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'itemUrl': !exists(json, 'item_url') ? undefined : json['item_url'],
         'title': !exists(json, 'title') ? undefined : json['title'],
-        'waveform': !exists(json, 'waveform') ? undefined : json['waveform'],
+        'waveform': !exists(json, 'waveform') ? undefined : ItemWaveformWaveformFromJSON(json['waveform']),
         'waveformImageUrl': !exists(json, 'waveform_image_url') ? undefined : json['waveform_image_url'],
         'waveformUrl': !exists(json, 'waveform_url') ? undefined : json['waveform_url'],
     };
@@ -79,6 +86,7 @@ export function ItemWaveformToJSON(value?: ItemWaveform | null): any {
     return {
         
         'title': value.title,
+        'waveform': ItemWaveformWaveformToJSON(value.waveform),
     };
 }
 

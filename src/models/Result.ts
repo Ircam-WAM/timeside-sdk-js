@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -20,37 +20,37 @@ import { exists, mapValues } from '../runtime';
  */
 export interface Result {
     /**
-     *          non numerical result (image, transcoded audio, etc.)         stored in a file         
+     * Non numerical result stored in a file (image, transcoded audio, etc.)
      * @type {Blob}
      * @memberof Result
      */
     file?: Blob;
     /**
-     * numerical result of the processing stored in an hdf5 file
+     * Numerical result of the processing stored in an hdf5 file.
      * @type {Blob}
      * @memberof Result
      */
     hdf5?: Blob;
     /**
-     * item on which a preset has been applied
+     * Item on which a preset has been applied.
      * @type {string}
      * @memberof Result
      */
     item?: string;
     /**
-     * preset applied on an item
+     * Preset applied on an item.
      * @type {string}
      * @memberof Result
      */
     preset?: string;
     /**
-     * duration of the result computing
+     * Duration of the result computing.
      * @type {string}
      * @memberof Result
      */
     runTime?: string;
     /**
-     *          status of the task giving the result:         failed: 0         draft: 1         pending: 2         running: 3         done: 4         
+     * Status of the task giving the result:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
      * @type {number}
      * @memberof Result
      */

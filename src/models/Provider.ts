@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -26,7 +26,7 @@ export interface Provider {
      */
     pid?: string;
     /**
-     * whether or not the audio is             freely available from the provider
+     * Whether or not the audio is freely available from the provider.
      * @type {boolean}
      * @memberof Provider
      */

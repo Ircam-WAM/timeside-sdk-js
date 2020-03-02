@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -26,25 +26,25 @@ export interface Task {
      */
     author?: string;
     /**
-     * experience prossessed in the task
+     * Experience prossessed in the task.
      * @type {string}
      * @memberof Task
      */
     experience?: string;
     /**
-     * single item prossessed in the task
+     * Single item prossessed in the task.
      * @type {string}
      * @memberof Task
      */
     item?: string;
     /**
-     * selection prossessed in the task
+     * Selection prossessed in the task.
      * @type {string}
      * @memberof Task
      */
     selection?: string;
     /**
-     *          Task\'s status:         failed: {_FAILED}         draft: {_DRAFT}         pending: {_PENDING}         running: {_RUNNING}         done: {_DONE}         
+     * Task\'s status:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
      * @type {number}
      * @memberof Task
      */

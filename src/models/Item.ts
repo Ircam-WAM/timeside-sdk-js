@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * TimeSide API
- * RESTful API of TimeSide,                 a scalable audio processing framework
+ * RESTful API of TimeSide, a scalable audio processing framework.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ItemAudioUrl,
+    ItemAudioUrlFromJSON,
+    ItemAudioUrlFromJSONTyped,
+    ItemAudioUrlToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -32,17 +39,17 @@ export interface Item {
      */
     readonly annotationTracks?: Array<string>;
     /**
-     * Duration of audio track
+     * Duration of audio track.
      * @type {number}
      * @memberof Item
      */
     readonly audioDuration?: number;
     /**
      * 
-     * @type {string}
+     * @type {ItemAudioUrl}
      * @memberof Item
      */
-    readonly audioUrl?: string;
+    audioUrl?: ItemAudioUrl;
     /**
      * 
      * @type {string}
@@ -50,13 +57,13 @@ export interface Item {
      */
     description?: string;
     /**
-     *          Provider\'s id of the audio source.         e.g. for Deezer preview: 4763165         e.g. for YouTube: oRdxUFDoQe0         
+     * Provider\'s id of the audio source.  e.g. for Deezer preview: 4763165  e.g. for YouTube: oRdxUFDoQe0
      * @type {string}
      * @memberof Item
      */
     externalId?: string;
     /**
-     *          Provider\'s URI of the audio source.         e.g. for Deezer preview: http://www.deezer.com/track/4763165         e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0         
+     * Provider\'s URI of the audio source.  e.g. for Deezer preview: http://www.deezer.com/track/4763165  e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
      * @type {string}
      * @memberof Item
      */
@@ -80,13 +87,13 @@ export interface Item {
      */
     provider?: string;
     /**
-     * Audio file to process
+     * Audio file to process.
      * @type {Blob}
      * @memberof Item
      */
     sourceFile?: Blob;
     /**
-     * URL of a streamable audio source to process
+     * URL of a streamable audio source to process.
      * @type {string}
      * @memberof Item
      */
@@ -130,7 +137,7 @@ export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item
         'analysisTracks': !exists(json, 'analysis_tracks') ? undefined : json['analysis_tracks'],
         'annotationTracks': !exists(json, 'annotation_tracks') ? undefined : json['annotation_tracks'],
         'audioDuration': !exists(json, 'audio_duration') ? undefined : json['audio_duration'],
-        'audioUrl': !exists(json, 'audio_url') ? undefined : json['audio_url'],
+        'audioUrl': !exists(json, 'audio_url') ? undefined : ItemAudioUrlFromJSON(json['audio_url']),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'externalId': !exists(json, 'external_id') ? undefined : json['external_id'],
         'externalUri': !exists(json, 'external_uri') ? undefined : json['external_uri'],
@@ -155,6 +162,7 @@ export function ItemToJSON(value?: Item | null): any {
     }
     return {
         
+        'audio_url': ItemAudioUrlToJSON(value.audioUrl),
         'description': value.description,
         'external_id': value.externalId,
         'external_uri': value.externalUri,
