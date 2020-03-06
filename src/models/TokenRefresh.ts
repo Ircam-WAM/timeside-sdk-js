@@ -16,32 +16,32 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineObject2
+ * @interface TokenRefresh
  */
-export interface InlineObject2 {
+export interface TokenRefresh {
     /**
      * 
      * @type {string}
-     * @memberof InlineObject2
+     * @memberof TokenRefresh
      */
-    token: string;
+    refresh: string;
 }
 
-export function InlineObject2FromJSON(json: any): InlineObject2 {
-    return InlineObject2FromJSONTyped(json, false);
+export function TokenRefreshFromJSON(json: any): TokenRefresh {
+    return TokenRefreshFromJSONTyped(json, false);
 }
 
-export function InlineObject2FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineObject2 {
+export function TokenRefreshFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokenRefresh {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'token': json['token'],
+        'refresh': json['refresh'],
     };
 }
 
-export function InlineObject2ToJSON(value?: InlineObject2 | null): any {
+export function TokenRefreshToJSON(value?: TokenRefresh | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -50,7 +50,7 @@ export function InlineObject2ToJSON(value?: InlineObject2 | null): any {
     }
     return {
         
-        'token': value.token,
+        'refresh': value.refresh,
     };
 }
 

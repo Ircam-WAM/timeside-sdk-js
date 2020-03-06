@@ -37,7 +37,7 @@ export interface AnnotationTrack {
      * @type {string}
      * @memberof AnnotationTrack
      */
-    author?: string;
+    author?: string | null;
     /**
      * 
      * @type {string}

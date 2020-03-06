@@ -36,19 +36,19 @@ export interface Result {
      * @type {string}
      * @memberof Result
      */
-    item?: string;
+    item?: string | null;
     /**
      * Preset applied on an item.
      * @type {string}
      * @memberof Result
      */
-    preset?: string;
+    preset?: string | null;
     /**
      * Duration of the result computing.
      * @type {string}
      * @memberof Result
      */
-    runTime?: string;
+    runTime?: string | null;
     /**
      * Status of the task giving the result:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
      * @type {number}

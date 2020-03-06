@@ -24,6 +24,7 @@ definitions:
       - preset
       - sub_processor
       - parameters_schema
+    type: object
   AnalysisTrack:
     properties:
       analysis:
@@ -57,6 +58,7 @@ definitions:
     required:
       - analysis
       - item
+    type: object
   Annotation:
     properties:
       description:
@@ -80,6 +82,7 @@ definitions:
     required:
       - track
       - stop_time
+    type: object
   AnnotationTrack:
     properties:
       annotations:
@@ -103,11 +106,12 @@ definitions:
               type: string
           required:
             - stop_time
+          type: object
         readOnly: true
         type: array
       author:
-        nullable: true
         type: string
+        x-nullable: true
       description:
         type: string
       is_public:
@@ -128,11 +132,27 @@ definitions:
         type: string
     required:
       - item
+    type: object
+  AuthToken:
+    properties:
+      password:
+        type: string
+        writeOnly: true
+      token:
+        readOnly: true
+        type: string
+      username:
+        type: string
+        writeOnly: true
+    required:
+      - username
+      - password
+    type: object
   Experience:
     properties:
       author:
-        nullable: true
         type: string
+        x-nullable: true
       is_public:
         type: boolean
       presets:
@@ -149,6 +169,7 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
   Item:
     properties:
       analysis_tracks:
@@ -207,8 +228,8 @@ definitions:
         type: string
       provider:
         description: 'Audio provider (e.g. Deezer, Youtube, etc.)'
-        nullable: true
         type: string
+        x-nullable: true
       source_file:
         description: Audio file to process.
         format: binary
@@ -232,6 +253,7 @@ definitions:
       waveform_url:
         readOnly: true
         type: string
+    type: object
   ItemList:
     properties:
       description:
@@ -262,6 +284,7 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
   ItemWaveform:
     properties:
       item_url:
@@ -284,6 +307,7 @@ definitions:
             minimum: 0
             type: integer
           start:
+            default: 0
             type: integer
           stop:
             default: -1
@@ -305,13 +329,14 @@ definitions:
       waveform_url:
         readOnly: true
         type: string
+    type: object
   Preset:
     properties:
       parameters:
         type: string
       processor:
-        nullable: true
         type: string
+        x-nullable: true
       url:
         readOnly: true
         type: string
@@ -319,6 +344,7 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
   Processor:
     properties:
       name:
@@ -374,6 +400,7 @@ definitions:
           - waveform_contour_black
           - waveform_contour_white
           - waveform_transparent
+        type: string
       url:
         readOnly: true
         type: string
@@ -382,6 +409,7 @@ definitions:
         type: string
     required:
       - pid
+    type: object
   ProcessorList:
     properties:
       name:
@@ -434,6 +462,7 @@ definitions:
           - waveform_contour_black
           - waveform_contour_white
           - waveform_transparent
+        type: string
       url:
         readOnly: true
         type: string
@@ -442,6 +471,7 @@ definitions:
         type: string
     required:
       - pid
+    type: object
   Provider:
     properties:
       pid:
@@ -454,6 +484,7 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
   Result:
     properties:
       file:
@@ -468,16 +499,16 @@ definitions:
         type: string
       item:
         description: Item on which a preset has been applied.
-        nullable: true
         type: string
+        x-nullable: true
       preset:
         description: Preset applied on an item.
-        nullable: true
         type: string
+        x-nullable: true
       run_time:
         description: Duration of the result computing.
-        nullable: true
         type: string
+        x-nullable: true
       status:
         description: |-
           Status of the task giving the result:
@@ -499,6 +530,7 @@ definitions:
           - 4
         maximum: 2147483647
         minimum: -2147483648
+        type: integer
       url:
         readOnly: true
         type: string
@@ -506,11 +538,12 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
   Selection:
     properties:
       author:
-        nullable: true
         type: string
+        x-nullable: true
       items:
         items:
           type: string
@@ -530,23 +563,24 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
   Task:
     properties:
       author:
-        nullable: true
         type: string
+        x-nullable: true
       experience:
         description: Experience prossessed in the task.
-        nullable: true
         type: string
+        x-nullable: true
       item:
         description: Single item prossessed in the task.
-        nullable: true
         type: string
+        x-nullable: true
       selection:
         description: Selection prossessed in the task.
-        nullable: true
         type: string
+        x-nullable: true
       status:
         description: |-
           Task's status:
@@ -568,6 +602,7 @@ definitions:
           - 4
         maximum: 2147483647
         minimum: -2147483648
+        type: integer
       url:
         readOnly: true
         type: string
@@ -575,6 +610,32 @@ definitions:
         format: uuid
         readOnly: true
         type: string
+    type: object
+  TokenObtainPair:
+    properties:
+      password:
+        type: string
+        writeOnly: true
+      username:
+        type: string
+    required:
+      - username
+      - password
+    type: object
+  TokenRefresh:
+    properties:
+      refresh:
+        type: string
+    required:
+      - refresh
+    type: object
+  TokenVerify:
+    properties:
+      token:
+        type: string
+    required:
+      - token
+    type: object
   User:
     properties:
       first_name:
@@ -593,12 +654,37 @@ definitions:
         type: string
     required:
       - username
+    type: object
 host: wasabi.telemeta.org
 info:
   description: 'RESTful API of TimeSide, a scalable audio processing framework.'
   title: TimeSide API
   version: 1.0.0
 paths:
+  /timeside/api-token-auth/:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+        - multipart/form-data
+        - application/json
+      description: ''
+      operationId: createAuthToken
+      parameters:
+        - in: formData
+          name: username
+          type: string
+        - in: formData
+          name: password
+          type: string
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/AuthToken'
+      tags:
+        - timeside
   /timeside/api/analysis/:
     get:
       description: ''
@@ -613,6 +699,8 @@ paths:
             items:
               $ref: '#/definitions/Analysis'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -628,10 +716,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Analysis'
+      tags:
+        - timeside
   '/timeside/api/analysis/{uuid}/':
     delete:
       description: ''
@@ -645,6 +735,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: ''
       operationId: retrieveAnalysis
@@ -661,13 +753,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Analysis'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: ''
-      operationId: partial_updateAnalysis
+      operationId: partialUpdateAnalysis
       parameters:
         - description: A UUID string identifying this Analysis.
           in: path
@@ -685,6 +779,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Analysis'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -709,6 +805,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Analysis'
+      tags:
+        - timeside
   /timeside/api/analysis_tracks/:
     get:
       description: ''
@@ -723,6 +821,8 @@ paths:
             items:
               $ref: '#/definitions/AnalysisTrack'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -738,10 +838,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/AnalysisTrack'
+      tags:
+        - timeside
   '/timeside/api/analysis_tracks/{uuid}/':
     delete:
       description: ''
@@ -755,6 +857,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: ''
       operationId: retrieveAnalysisTrack
@@ -771,13 +875,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnalysisTrack'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: ''
-      operationId: partial_updateAnalysisTrack
+      operationId: partialUpdateAnalysisTrack
       parameters:
         - description: ''
           in: path
@@ -795,6 +901,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnalysisTrack'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -819,10 +927,12 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnalysisTrack'
+      tags:
+        - timeside
   '/timeside/api/analysis_tracks/{uuid}/parameters_default/':
     get:
       description: ''
-      operationId: parameters_defaultAnalysisTrack
+      operationId: parametersDefaultAnalysisTrack
       parameters:
         - description: ''
           in: path
@@ -836,6 +946,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnalysisTrack'
+      tags:
+        - timeside
   '/timeside/api/analysis_tracks/{uuid}/set_parameters/':
     post:
       consumes:
@@ -843,7 +955,7 @@ paths:
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: ''
-      operationId: set_parametersAnalysisTrack
+      operationId: setParametersAnalysisTrack
       parameters:
         - description: ''
           in: path
@@ -857,10 +969,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/AnalysisTrack'
+      tags:
+        - timeside
   /timeside/api/annotation_tracks/:
     get:
       description: ''
@@ -875,6 +989,8 @@ paths:
             items:
               $ref: '#/definitions/AnnotationTrack'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -890,10 +1006,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/AnnotationTrack'
+      tags:
+        - timeside
   '/timeside/api/annotation_tracks/{uuid}/':
     delete:
       description: ''
@@ -907,6 +1025,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: ''
       operationId: retrieveAnnotationTrack
@@ -923,13 +1043,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnnotationTrack'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: ''
-      operationId: partial_updateAnnotationTrack
+      operationId: partialUpdateAnnotationTrack
       parameters:
         - description: A UUID string identifying this Annotation Track.
           in: path
@@ -947,6 +1069,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnnotationTrack'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -971,6 +1095,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/AnnotationTrack'
+      tags:
+        - timeside
   /timeside/api/annotations/:
     get:
       description: ''
@@ -985,6 +1111,8 @@ paths:
             items:
               $ref: '#/definitions/Annotation'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -1000,10 +1128,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Annotation'
+      tags:
+        - timeside
   '/timeside/api/annotations/{uuid}/':
     delete:
       description: ''
@@ -1017,6 +1147,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: ''
       operationId: retrieveAnnotation
@@ -1033,13 +1165,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Annotation'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: ''
-      operationId: partial_updateAnnotation
+      operationId: partialUpdateAnnotation
       parameters:
         - description: A UUID string identifying this annotation.
           in: path
@@ -1057,6 +1191,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Annotation'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -1081,6 +1217,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Annotation'
+      tags:
+        - timeside
   /timeside/api/experiences/:
     get:
       description: Set of presets and other experiences.
@@ -1095,6 +1233,8 @@ paths:
             items:
               $ref: '#/definitions/Experience'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -1110,10 +1250,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Experience'
+      tags:
+        - timeside
   '/timeside/api/experiences/{uuid}/':
     delete:
       description: Set of presets and other experiences.
@@ -1127,6 +1269,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: Set of presets and other experiences.
       operationId: retrieveExperience
@@ -1143,13 +1287,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Experience'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: Set of presets and other experiences.
-      operationId: partial_updateExperience
+      operationId: partialUpdateExperience
       parameters:
         - description: A UUID string identifying this Experience.
           in: path
@@ -1167,6 +1313,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Experience'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -1191,6 +1339,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Experience'
+      tags:
+        - timeside
   /timeside/api/items/:
     get:
       description: ''
@@ -1210,6 +1360,8 @@ paths:
             items:
               $ref: '#/definitions/ItemList'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -1225,10 +1377,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Item'
+      tags:
+        - timeside
   '/timeside/api/items/{uuid}/':
     delete:
       description: ''
@@ -1247,6 +1401,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: ''
       operationId: retrieveItem
@@ -1268,13 +1424,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Item'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: ''
-      operationId: partial_updateItem
+      operationId: partialUpdateItem
       parameters:
         - description: A UUID string identifying this item.
           in: path
@@ -1297,6 +1455,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Item'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -1326,10 +1486,12 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Item'
+      tags:
+        - timeside
   '/timeside/api/items/{uuid}/waveform/':
     get:
       description: Gives audio waveform of an item.
-      operationId: RetrieveItem
+      operationId: retrieveItemWaveform
       parameters:
         - description: A UUID string identifying this item.
           in: path
@@ -1343,6 +1505,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/ItemWaveform'
+      tags:
+        - timeside
   /timeside/api/presets/:
     get:
       description: Processor with its potential parameters.
@@ -1357,6 +1521,8 @@ paths:
             items:
               $ref: '#/definitions/Preset'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -1372,10 +1538,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Preset'
+      tags:
+        - timeside
   '/timeside/api/presets/{uuid}/':
     delete:
       description: Processor with its potential parameters.
@@ -1389,6 +1557,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: Processor with its potential parameters.
       operationId: retrievePreset
@@ -1405,13 +1575,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Preset'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: Processor with its potential parameters.
-      operationId: partial_updatePreset
+      operationId: partialUpdatePreset
       parameters:
         - description: A UUID string identifying this Preset.
           in: path
@@ -1429,6 +1601,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Preset'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -1453,6 +1627,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Preset'
+      tags:
+        - timeside
   /timeside/api/processors/:
     get:
       description: Audio process to compute on items given potential parameters
@@ -1467,6 +1643,8 @@ paths:
             items:
               $ref: '#/definitions/ProcessorList'
             type: array
+      tags:
+        - timeside
   '/timeside/api/processors/{pid}/':
     get:
       description: Audio process to compute on items given potential parameters
@@ -1484,10 +1662,12 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Processor'
+      tags:
+        - timeside
   '/timeside/api/processors/{pid}/parameters_default/':
     get:
       description: Audio process to compute on items given potential parameters
-      operationId: parameters_defaultProcessor
+      operationId: parametersDefaultProcessor
       parameters:
         - description: ''
           in: path
@@ -1501,10 +1681,12 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Processor'
+      tags:
+        - timeside
   '/timeside/api/processors/{pid}/parameters_schema/':
     get:
       description: Audio process to compute on items given potential parameters
-      operationId: parameters_schemaProcessor
+      operationId: parametersSchemaProcessor
       parameters:
         - description: ''
           in: path
@@ -1518,6 +1700,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Processor'
+      tags:
+        - timeside
   /timeside/api/providers/:
     get:
       description: Audio providers available in the API.
@@ -1532,6 +1716,8 @@ paths:
             items:
               $ref: '#/definitions/Provider'
             type: array
+      tags:
+        - timeside
   '/timeside/api/providers/{uuid}/':
     get:
       description: Audio providers available in the API.
@@ -1549,6 +1735,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Provider'
+      tags:
+        - timeside
   /timeside/api/results/:
     get:
       description: Result of processing on items.
@@ -1568,6 +1756,8 @@ paths:
             items:
               $ref: '#/definitions/Result'
             type: array
+      tags:
+        - timeside
   '/timeside/api/results/{uuid}/':
     get:
       description: Result of processing on items.
@@ -1590,10 +1780,12 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Result'
+      tags:
+        - timeside
   '/timeside/api/results/{uuid}/visual/':
     get:
       description: 'PNG rendering of 2D numerical data (example: a spectrogram).'
-      operationId: RetrieveResult
+      operationId: retrieveResultVisualization
       parameters:
         - description: A UUID string identifying this Result.
           in: path
@@ -1606,6 +1798,8 @@ paths:
         '200':
           description: ''
           schema: {}
+      tags:
+        - timeside
   /timeside/api/selections/:
     get:
       description: Set of items and other selections.
@@ -1620,6 +1814,8 @@ paths:
             items:
               $ref: '#/definitions/Selection'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -1635,10 +1831,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Selection'
+      tags:
+        - timeside
   '/timeside/api/selections/{uuid}/':
     delete:
       description: Set of items and other selections.
@@ -1652,6 +1850,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: Set of items and other selections.
       operationId: retrieveSelection
@@ -1668,13 +1868,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Selection'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: Set of items and other selections.
-      operationId: partial_updateSelection
+      operationId: partialUpdateSelection
       parameters:
         - description: A UUID string identifying this selection.
           in: path
@@ -1692,6 +1894,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Selection'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -1716,6 +1920,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Selection'
+      tags:
+        - timeside
   /timeside/api/tasks/:
     get:
       description: Experience applied to a selection or a single item.
@@ -1730,6 +1936,8 @@ paths:
             items:
               $ref: '#/definitions/Task'
             type: array
+      tags:
+        - timeside
     post:
       consumes:
         - application/json
@@ -1745,10 +1953,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
             $ref: '#/definitions/Task'
+      tags:
+        - timeside
   '/timeside/api/tasks/{uuid}/':
     delete:
       description: Experience applied to a selection or a single item.
@@ -1762,6 +1972,8 @@ paths:
       responses:
         '204':
           description: ''
+      tags:
+        - timeside
     get:
       description: Experience applied to a selection or a single item.
       operationId: retrieveTask
@@ -1778,13 +1990,15 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Task'
+      tags:
+        - timeside
     patch:
       consumes:
         - application/json
         - application/x-www-form-urlencoded
         - multipart/form-data
       description: Experience applied to a selection or a single item.
-      operationId: partial_updateTask
+      operationId: partialUpdateTask
       parameters:
         - description: A UUID string identifying this Task.
           in: path
@@ -1802,6 +2016,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Task'
+      tags:
+        - timeside
     put:
       consumes:
         - application/json
@@ -1826,10 +2042,12 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/Task'
+      tags:
+        - timeside
   /timeside/api/token-csrf/:
     get:
       description: ''
-      operationId: listCsrf_Tokens
+      operationId: listCsrfTokens
       parameters: []
       produces:
         - application/json
@@ -1839,6 +2057,8 @@ paths:
           schema:
             items: {}
             type: array
+      tags:
+        - timeside
   /timeside/api/token/:
     post:
       consumes:
@@ -1850,27 +2070,21 @@ paths:
         web
 
         token pair to prove the authentication of those credentials.
-      operationId: CreateTokenObtainPair
+      operationId: createTokenObtainPair
       parameters:
         - in: body
           name: body
           schema:
-            properties:
-              username:
-                type: string
-            required:
-              - username
+            $ref: '#/definitions/TokenObtainPair'
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
-            properties:
-              username:
-                type: string
-            required:
-              - username
+            $ref: '#/definitions/TokenObtainPair'
+      tags:
+        - timeside
   /timeside/api/token/refresh/:
     post:
       consumes:
@@ -1880,27 +2094,21 @@ paths:
       description: |-
         Takes a refresh type JSON web token and returns an access type JSON web
         token if the refresh token is valid.
-      operationId: CreateTokenRefresh
+      operationId: createTokenRefresh
       parameters:
         - in: body
           name: body
           schema:
-            properties:
-              refresh:
-                type: string
-            required:
-              - refresh
+            $ref: '#/definitions/TokenRefresh'
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
-            properties:
-              refresh:
-                type: string
-            required:
-              - refresh
+            $ref: '#/definitions/TokenRefresh'
+      tags:
+        - timeside
   /timeside/api/token/verify/:
     post:
       consumes:
@@ -1910,27 +2118,21 @@ paths:
       description: |-
         Takes a token and indicates if it is valid.  This view provides no
         information about a token's fitness for a particular use.
-      operationId: CreateTokenVerify
+      operationId: createTokenVerify
       parameters:
         - in: body
           name: body
           schema:
-            properties:
-              token:
-                type: string
-            required:
-              - token
+            $ref: '#/definitions/TokenVerify'
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: ''
           schema:
-            properties:
-              token:
-                type: string
-            required:
-              - token
+            $ref: '#/definitions/TokenVerify'
+      tags:
+        - timeside
   /timeside/api/users/:
     get:
       description: Users of the API able to share data.
@@ -1945,6 +2147,8 @@ paths:
             items:
               $ref: '#/definitions/User'
             type: array
+      tags:
+        - timeside
   '/timeside/api/users/{username}/':
     get:
       description: Users of the API able to share data.
@@ -1964,6 +2168,8 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/User'
+      tags:
+        - timeside
 schemes:
   - https
 swagger: '2.0'

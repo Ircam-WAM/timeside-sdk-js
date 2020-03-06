@@ -16,32 +16,32 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineObject
+ * @interface TokenVerify
  */
-export interface InlineObject {
+export interface TokenVerify {
     /**
      * 
      * @type {string}
-     * @memberof InlineObject
+     * @memberof TokenVerify
      */
-    username: string;
+    token: string;
 }
 
-export function InlineObjectFromJSON(json: any): InlineObject {
-    return InlineObjectFromJSONTyped(json, false);
+export function TokenVerifyFromJSON(json: any): TokenVerify {
+    return TokenVerifyFromJSONTyped(json, false);
 }
 
-export function InlineObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineObject {
+export function TokenVerifyFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokenVerify {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'username': json['username'],
+        'token': json['token'],
     };
 }
 
-export function InlineObjectToJSON(value?: InlineObject | null): any {
+export function TokenVerifyToJSON(value?: TokenVerify | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -50,7 +50,7 @@ export function InlineObjectToJSON(value?: InlineObject | null): any {
     }
     return {
         
-        'username': value.username,
+        'token': value.token,
     };
 }
 

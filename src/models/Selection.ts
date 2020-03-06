@@ -24,7 +24,7 @@ export interface Selection {
      * @type {string}
      * @memberof Selection
      */
-    author?: string;
+    author?: string | null;
     /**
      * 
      * @type {Array<string>}

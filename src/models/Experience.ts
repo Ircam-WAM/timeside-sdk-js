@@ -24,7 +24,7 @@ export interface Experience {
      * @type {string}
      * @memberof Experience
      */
-    author?: string;
+    author?: string | null;
     /**
      * 
      * @type {boolean}

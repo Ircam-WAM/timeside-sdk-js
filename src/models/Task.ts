@@ -24,25 +24,25 @@ export interface Task {
      * @type {string}
      * @memberof Task
      */
-    author?: string;
+    author?: string | null;
     /**
      * Experience prossessed in the task.
      * @type {string}
      * @memberof Task
      */
-    experience?: string;
+    experience?: string | null;
     /**
      * Single item prossessed in the task.
      * @type {string}
      * @memberof Task
      */
-    item?: string;
+    item?: string | null;
     /**
      * Selection prossessed in the task.
      * @type {string}
      * @memberof Task
      */
-    selection?: string;
+    selection?: string | null;
     /**
      * Task\'s status:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
      * @type {number}

@@ -30,7 +30,7 @@ export interface Preset {
      * @type {string}
      * @memberof Preset
      */
-    processor?: string;
+    processor?: string | null;
     /**
      * 
      * @type {string}

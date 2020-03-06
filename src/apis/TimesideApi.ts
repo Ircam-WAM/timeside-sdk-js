@@ -27,18 +27,12 @@ import {
     AnnotationTrack,
     AnnotationTrackFromJSON,
     AnnotationTrackToJSON,
+    AuthToken,
+    AuthTokenFromJSON,
+    AuthTokenToJSON,
     Experience,
     ExperienceFromJSON,
     ExperienceToJSON,
-    InlineObject,
-    InlineObjectFromJSON,
-    InlineObjectToJSON,
-    InlineObject1,
-    InlineObject1FromJSON,
-    InlineObject1ToJSON,
-    InlineObject2,
-    InlineObject2FromJSON,
-    InlineObject2ToJSON,
     Item,
     ItemFromJSON,
     ItemToJSON,
@@ -69,6 +63,15 @@ import {
     Task,
     TaskFromJSON,
     TaskToJSON,
+    TokenObtainPair,
+    TokenObtainPairFromJSON,
+    TokenObtainPairToJSON,
+    TokenRefresh,
+    TokenRefreshFromJSON,
+    TokenRefreshToJSON,
+    TokenVerify,
+    TokenVerifyFromJSON,
+    TokenVerifyToJSON,
     User,
     UserFromJSON,
     UserToJSON,
@@ -88,6 +91,11 @@ export interface CreateAnnotationRequest {
 
 export interface CreateAnnotationTrackRequest {
     body?: AnnotationTrack;
+}
+
+export interface CreateAuthTokenRequest {
+    username?: string;
+    password?: string;
 }
 
 export interface CreateExperienceRequest {
@@ -111,15 +119,15 @@ export interface CreateTaskRequest {
 }
 
 export interface CreateTokenObtainPairRequest {
-    body?: InlineObject;
+    body?: TokenObtainPair;
 }
 
 export interface CreateTokenRefreshRequest {
-    body?: InlineObject1;
+    body?: TokenRefresh;
 }
 
 export interface CreateTokenVerifyRequest {
-    body?: InlineObject2;
+    body?: TokenVerify;
 }
 
 export interface DestroyAnalysisRequest {
@@ -250,7 +258,7 @@ export interface RetrieveItemRequest {
     search?: string;
 }
 
-export interface RetrieveItem0Request {
+export interface RetrieveItemWaveformRequest {
     uuid: string;
 }
 
@@ -271,7 +279,7 @@ export interface RetrieveResultRequest {
     search?: string;
 }
 
-export interface RetrieveResult0Request {
+export interface RetrieveResultVisualizationRequest {
     uuid: string;
 }
 
@@ -341,7 +349,7 @@ export interface UpdateTaskRequest {
 /**
  * no description
  */
-export class DefaultApi extends runtime.BaseAPI {
+export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
@@ -448,6 +456,55 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async createAnnotationTrack(requestParameters: CreateAnnotationTrackRequest): Promise<AnnotationTrack> {
         const response = await this.createAnnotationTrackRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createAuthTokenRaw(requestParameters: CreateAuthTokenRequest): Promise<runtime.ApiResponse<AuthToken>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const consumes: runtime.Consume[] = [
+            { contentType: 'application/x-www-form-urlencoded' },
+            { contentType: 'multipart/form-data' },
+            { contentType: 'application/json' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters.username !== undefined) {
+            formParams.append('username', requestParameters.username as any);
+        }
+
+        if (requestParameters.password !== undefined) {
+            formParams.append('password', requestParameters.password as any);
+        }
+
+        const response = await this.request({
+            path: `/timeside/api-token-auth/`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: formParams,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthTokenFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createAuthToken(requestParameters: CreateAuthTokenRequest): Promise<AuthToken> {
+        const response = await this.createAuthTokenRaw(requestParameters);
         return await response.value();
     }
 
@@ -597,7 +654,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
      */
-    async createTokenObtainPairRaw(requestParameters: CreateTokenObtainPairRequest): Promise<runtime.ApiResponse<object>> {
+    async createTokenObtainPairRaw(requestParameters: CreateTokenObtainPairRequest): Promise<runtime.ApiResponse<TokenObtainPair>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -609,16 +666,16 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: InlineObjectToJSON(requestParameters.body),
+            body: TokenObtainPairToJSON(requestParameters.body),
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokenObtainPairFromJSON(jsonValue));
     }
 
     /**
      * Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
      */
-    async createTokenObtainPair(requestParameters: CreateTokenObtainPairRequest): Promise<object> {
+    async createTokenObtainPair(requestParameters: CreateTokenObtainPairRequest): Promise<TokenObtainPair> {
         const response = await this.createTokenObtainPairRaw(requestParameters);
         return await response.value();
     }
@@ -626,7 +683,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
      */
-    async createTokenRefreshRaw(requestParameters: CreateTokenRefreshRequest): Promise<runtime.ApiResponse<object>> {
+    async createTokenRefreshRaw(requestParameters: CreateTokenRefreshRequest): Promise<runtime.ApiResponse<TokenRefresh>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -638,16 +695,16 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: InlineObject1ToJSON(requestParameters.body),
+            body: TokenRefreshToJSON(requestParameters.body),
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokenRefreshFromJSON(jsonValue));
     }
 
     /**
      * Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
      */
-    async createTokenRefresh(requestParameters: CreateTokenRefreshRequest): Promise<object> {
+    async createTokenRefresh(requestParameters: CreateTokenRefreshRequest): Promise<TokenRefresh> {
         const response = await this.createTokenRefreshRaw(requestParameters);
         return await response.value();
     }
@@ -655,7 +712,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Takes a token and indicates if it is valid.  This view provides no information about a token\'s fitness for a particular use.
      */
-    async createTokenVerifyRaw(requestParameters: CreateTokenVerifyRequest): Promise<runtime.ApiResponse<object>> {
+    async createTokenVerifyRaw(requestParameters: CreateTokenVerifyRequest): Promise<runtime.ApiResponse<TokenVerify>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -667,16 +724,16 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: InlineObject2ToJSON(requestParameters.body),
+            body: TokenVerifyToJSON(requestParameters.body),
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokenVerifyFromJSON(jsonValue));
     }
 
     /**
      * Takes a token and indicates if it is valid.  This view provides no information about a token\'s fitness for a particular use.
      */
-    async createTokenVerify(requestParameters: CreateTokenVerifyRequest): Promise<object> {
+    async createTokenVerify(requestParameters: CreateTokenVerifyRequest): Promise<TokenVerify> {
         const response = await this.createTokenVerifyRaw(requestParameters);
         return await response.value();
     }
@@ -1852,9 +1909,9 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Gives audio waveform of an item.
      */
-    async retrieveItem_1Raw(requestParameters: RetrieveItem0Request): Promise<runtime.ApiResponse<ItemWaveform>> {
+    async retrieveItemWaveformRaw(requestParameters: RetrieveItemWaveformRequest): Promise<runtime.ApiResponse<ItemWaveform>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
-            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveItem_1.');
+            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveItemWaveform.');
         }
 
         const queryParameters: runtime.HTTPQuery = {};
@@ -1874,8 +1931,8 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Gives audio waveform of an item.
      */
-    async retrieveItem_1(requestParameters: RetrieveItem0Request): Promise<ItemWaveform> {
-        const response = await this.retrieveItem_1Raw(requestParameters);
+    async retrieveItemWaveform(requestParameters: RetrieveItemWaveformRequest): Promise<ItemWaveform> {
+        const response = await this.retrieveItemWaveformRaw(requestParameters);
         return await response.value();
     }
 
@@ -2006,9 +2063,9 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResult_2Raw(requestParameters: RetrieveResult0Request): Promise<runtime.ApiResponse<object>> {
+    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
-            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveResult_2.');
+            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveResultVisualization.');
         }
 
         const queryParameters: runtime.HTTPQuery = {};
@@ -2028,8 +2085,8 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResult_2(requestParameters: RetrieveResult0Request): Promise<object> {
-        const response = await this.retrieveResult_2Raw(requestParameters);
+    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<object> {
+        const response = await this.retrieveResultVisualizationRaw(requestParameters);
         return await response.value();
     }
 

@@ -16,32 +16,39 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineObject1
+ * @interface TokenObtainPair
  */
-export interface InlineObject1 {
+export interface TokenObtainPair {
     /**
      * 
      * @type {string}
-     * @memberof InlineObject1
+     * @memberof TokenObtainPair
      */
-    refresh: string;
+    password: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenObtainPair
+     */
+    username: string;
 }
 
-export function InlineObject1FromJSON(json: any): InlineObject1 {
-    return InlineObject1FromJSONTyped(json, false);
+export function TokenObtainPairFromJSON(json: any): TokenObtainPair {
+    return TokenObtainPairFromJSONTyped(json, false);
 }
 
-export function InlineObject1FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineObject1 {
+export function TokenObtainPairFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokenObtainPair {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'refresh': json['refresh'],
+        'password': json['password'],
+        'username': json['username'],
     };
 }
 
-export function InlineObject1ToJSON(value?: InlineObject1 | null): any {
+export function TokenObtainPairToJSON(value?: TokenObtainPair | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -50,7 +57,8 @@ export function InlineObject1ToJSON(value?: InlineObject1 | null): any {
     }
     return {
         
-        'refresh': value.refresh,
+        'password': value.password,
+        'username': value.username,
     };
 }
 

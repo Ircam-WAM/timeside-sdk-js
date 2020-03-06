@@ -85,7 +85,7 @@ export interface Item {
      * @type {string}
      * @memberof Item
      */
-    provider?: string;
+    provider?: string | null;
     /**
      * Audio file to process.
      * @type {Blob}
