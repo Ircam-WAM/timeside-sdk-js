@@ -36,7 +36,7 @@ api: $(spec-openapi-v2)
 	docker run --rm \
          -v ${PWD}:/local \
          --user "$$(id -u):$$(id -g)" \
-         openapitools/openapi-generator-cli:v4.2.3 generate \
+         openapitools/openapi-generator-cli:v4.3.0 generate \
          -i /local/$(spec-openapi-v2) \
          -g typescript-fetch \
          -c /local/$(generator-config) \
