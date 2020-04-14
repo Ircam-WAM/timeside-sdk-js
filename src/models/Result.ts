@@ -38,6 +38,12 @@ export interface Result {
      */
     item?: string | null;
     /**
+     * 
+     * @type {string}
+     * @memberof Result
+     */
+    mimeType?: string;
+    /**
      * Preset applied on an item.
      * @type {string}
      * @memberof Result
@@ -82,6 +88,7 @@ export function ResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'file': !exists(json, 'file') ? undefined : json['file'],
         'hdf5': !exists(json, 'hdf5') ? undefined : json['hdf5'],
         'item': !exists(json, 'item') ? undefined : json['item'],
+        'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'preset': !exists(json, 'preset') ? undefined : json['preset'],
         'runTime': !exists(json, 'run_time') ? undefined : json['run_time'],
         'status': !exists(json, 'status') ? undefined : json['status'],
@@ -102,6 +109,7 @@ export function ResultToJSON(value?: Result | null): any {
         'file': value.file,
         'hdf5': value.hdf5,
         'item': value.item,
+        'mime_type': value.mimeType,
         'preset': value.preset,
         'run_time': value.runTime,
         'status': value.status,

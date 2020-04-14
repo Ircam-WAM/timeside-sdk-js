@@ -94,8 +94,8 @@ export interface CreateAnnotationTrackRequest {
 }
 
 export interface CreateAuthTokenRequest {
-    username?: string;
-    password?: string;
+    username: string;
+    password: string;
 }
 
 export interface CreateExperienceRequest {
@@ -260,6 +260,9 @@ export interface RetrieveItemRequest {
 
 export interface RetrieveItemWaveformRequest {
     uuid: string;
+    start?: number;
+    stop?: number;
+    nbPixels?: number;
 }
 
 export interface RetrievePresetRequest {
@@ -462,6 +465,14 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      */
     async createAuthTokenRaw(requestParameters: CreateAuthTokenRequest): Promise<runtime.ApiResponse<AuthToken>> {
+        if (requestParameters.username === null || requestParameters.username === undefined) {
+            throw new runtime.RequiredError('username','Required parameter requestParameters.username was null or undefined when calling createAuthToken.');
+        }
+
+        if (requestParameters.password === null || requestParameters.password === undefined) {
+            throw new runtime.RequiredError('password','Required parameter requestParameters.password was null or undefined when calling createAuthToken.');
+        }
+
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1915,6 +1926,18 @@ export class TimesideApi extends runtime.BaseAPI {
         }
 
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.start !== undefined) {
+            queryParameters['start'] = requestParameters.start;
+        }
+
+        if (requestParameters.stop !== undefined) {
+            queryParameters['stop'] = requestParameters.stop;
+        }
+
+        if (requestParameters.nbPixels !== undefined) {
+            queryParameters['nb_pixels'] = requestParameters.nbPixels;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

@@ -1492,6 +1492,24 @@ paths:
         description: A UUID string identifying this item.
         schema:
           type: string
+      - name: start
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+      - name: stop
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+      - name: nb_pixels
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
       responses:
         '200':
           content:
@@ -2249,6 +2267,9 @@ components:
             done: 4'
           minimum: -2147483648
           maximum: 2147483647
+        mime_type:
+          type: string
+          maxLength: 256
         hdf5:
           type: string
           format: binary

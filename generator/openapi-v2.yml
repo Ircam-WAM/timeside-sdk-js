@@ -137,13 +137,11 @@ definitions:
     properties:
       password:
         type: string
-        writeOnly: true
       token:
         readOnly: true
         type: string
       username:
         type: string
-        writeOnly: true
     required:
       - username
       - password
@@ -501,6 +499,9 @@ definitions:
         description: Item on which a preset has been applied.
         type: string
         x-nullable: true
+      mime_type:
+        maxLength: 256
+        type: string
       preset:
         description: Preset applied on an item.
         type: string
@@ -615,7 +616,6 @@ definitions:
     properties:
       password:
         type: string
-        writeOnly: true
       username:
         type: string
     required:
@@ -672,9 +672,11 @@ paths:
       parameters:
         - in: formData
           name: username
+          required: true
           type: string
         - in: formData
           name: password
+          required: true
           type: string
       produces:
         - application/json
@@ -1498,6 +1500,21 @@ paths:
           name: uuid
           required: true
           type: string
+        - description: ''
+          in: query
+          name: start
+          required: false
+          type: number
+        - description: ''
+          in: query
+          name: stop
+          required: false
+          type: number
+        - description: ''
+          in: query
+          name: nb_pixels
+          required: false
+          type: number
       produces:
         - application/json
       responses:
