@@ -44,17 +44,7 @@ export interface Task {
      */
     selection?: string | null;
     /**
-     * Task's status:
-     * 
-     * failed: 0
-     * 
-     * draft: 1
-     * 
-     * pending: 2
-     * 
-     * running: 3
-     * 
-     * done: 4
+     * Task\'s status:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
      * @type {number}
      * @memberof Task
      */

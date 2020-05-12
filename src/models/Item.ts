@@ -87,21 +87,13 @@ export interface Item {
      */
     readonly audioDuration?: number;
     /**
-     * Provider's URI of the audio source.
-     * 
-     * e.g. for Deezer preview: http://www.deezer.com/track/4763165
-     * 
-     * e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
+     * Provider\'s URI of the audio source.  e.g. for Deezer preview: http://www.deezer.com/track/4763165  e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
      * @type {string}
      * @memberof Item
      */
     externalUri?: string;
     /**
-     * Provider's id of the audio source.
-     * 
-     * e.g. for Deezer preview: 4763165
-     * 
-     * e.g. for YouTube: oRdxUFDoQe0
+     * Provider\'s id of the audio source.  e.g. for Deezer preview: 4763165  e.g. for YouTube: oRdxUFDoQe0
      * @type {string}
      * @memberof Item
      */

@@ -27,9 +27,6 @@ import {
     AnnotationTrack,
     AnnotationTrackFromJSON,
     AnnotationTrackToJSON,
-    AnyType,
-    AnyTypeFromJSON,
-    AnyTypeToJSON,
     AuthToken,
     AuthTokenFromJSON,
     AuthTokenToJSON,
@@ -361,7 +358,7 @@ export interface UpdateTaskRequest {
 }
 
 /**
- * 
+ * no description
  */
 export class TimesideApi extends runtime.BaseAPI {
 
@@ -1117,7 +1114,7 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listCsrfTokensRaw(): Promise<runtime.ApiResponse<Array<AnyType>>> {
+    async listCsrfTokensRaw(): Promise<runtime.ApiResponse<Array<object>>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1129,12 +1126,12 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AnyTypeFromJSON));
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      */
-    async listCsrfTokens(): Promise<Array<AnyType>> {
+    async listCsrfTokens(): Promise<Array<object>> {
         const response = await this.listCsrfTokensRaw();
         return await response.value();
     }
@@ -2127,7 +2124,7 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<AnyType>> {
+    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveResultVisualization.');
         }
@@ -2143,13 +2140,13 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnyTypeFromJSON(jsonValue));
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<AnyType> {
+    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<object> {
         const response = await this.retrieveResultVisualizationRaw(requestParameters);
         return await response.value();
     }

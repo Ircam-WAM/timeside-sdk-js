@@ -44,17 +44,7 @@ export interface Result {
      */
     preset?: string | null;
     /**
-     * Status of the task giving the result:
-     * 
-     * failed: 0
-     * 
-     * draft: 1
-     * 
-     * pending: 2
-     * 
-     * running: 3
-     * 
-     * done: 4
+     * Status of the task giving the result:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
      * @type {number}
      * @memberof Result
      */
@@ -72,8 +62,7 @@ export interface Result {
      */
     hdf5?: Blob;
     /**
-     * Non numerical result stored in a file
-     * (image, transcoded audio, etc.)
+     * Non numerical result stored in a file (image, transcoded audio, etc.)
      * @type {Blob}
      * @memberof Result
      */
