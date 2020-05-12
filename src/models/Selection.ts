@@ -24,7 +24,19 @@ export interface Selection {
      * @type {string}
      * @memberof Selection
      */
-    author?: string | null;
+    readonly title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Selection
+     */
+    readonly uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Selection
+     */
+    readonly url?: string;
     /**
      * 
      * @type {Array<string>}
@@ -42,19 +54,7 @@ export interface Selection {
      * @type {string}
      * @memberof Selection
      */
-    readonly title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Selection
-     */
-    readonly url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Selection
-     */
-    readonly uuid?: string;
+    author?: string | null;
 }
 
 export function SelectionFromJSON(json: any): Selection {
@@ -67,12 +67,12 @@ export function SelectionFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'author': !exists(json, 'author') ? undefined : json['author'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
+        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'selections': !exists(json, 'selections') ? undefined : json['selections'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'author': !exists(json, 'author') ? undefined : json['author'],
     };
 }
 
@@ -85,9 +85,9 @@ export function SelectionToJSON(value?: Selection | null): any {
     }
     return {
         
-        'author': value.author,
         'items': value.items,
         'selections': value.selections,
+        'author': value.author,
     };
 }
 

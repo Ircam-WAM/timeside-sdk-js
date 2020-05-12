@@ -30,12 +30,6 @@ export interface Processor {
      * @type {string}
      * @memberof Processor
      */
-    readonly parametersSchema?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Processor
-     */
     pid: ProcessorPidEnum;
     /**
      * 
@@ -49,6 +43,12 @@ export interface Processor {
      * @memberof Processor
      */
     version?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Processor
+     */
+    readonly parametersSchema?: string;
 }
 
 export function ProcessorFromJSON(json: any): Processor {
@@ -62,10 +62,10 @@ export function ProcessorFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'parametersSchema': !exists(json, 'parameters_schema') ? undefined : json['parameters_schema'],
         'pid': json['pid'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'version': !exists(json, 'version') ? undefined : json['version'],
+        'parametersSchema': !exists(json, 'parameters_schema') ? undefined : json['parameters_schema'],
     };
 }
 

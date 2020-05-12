@@ -453,6 +453,42 @@ paths:
           description: ''
       tags:
       - timeside
+  /timeside/api/subprocessors/:
+    get:
+      operationId: listSubProcessors
+      description: Link between a processor depending on another.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubProcessor'
+          description: ''
+      tags:
+      - timeside
+  /timeside/api/subprocessors/{sub_processor_id}/:
+    get:
+      operationId: retrieveSubProcessor
+      description: Link between a processor depending on another.
+      parameters:
+      - name: sub_processor_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubProcessor'
+          description: ''
+      tags:
+      - timeside
   /timeside/api/presets/:
     get:
       operationId: listPresets
@@ -1795,6 +1831,16 @@ components:
                 0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
                 -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\\
                 s]*)?\\Z"
+            flac:
+              type: string
+              format: uri
+              readOnly: true
+              pattern: "^(?:[a-z0-9\\.\\-\\+]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:25[0-5]|2[0-4]\\\
+                d|[0-1]?\\d?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}|\\[[0-9a-f:\\\
+                .]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF\
+                0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+                -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{2,5})?(?:[/?#][^\\\
+                s]*)?\\Z"
           readOnly: true
         audio_duration:
           type: number
@@ -2002,6 +2048,23 @@ components:
           readOnly: true
       required:
       - pid
+    SubProcessor:
+      type: object
+      properties:
+        url:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        processor:
+          type: string
+          nullable: true
+        sub_processor_id:
+          type: string
+          maxLength: 128
+      required:
+      - sub_processor_id
     Preset:
       type: object
       properties:

@@ -24,13 +24,25 @@ export interface Analysis {
      * @type {string}
      * @memberof Analysis
      */
-    description?: string;
+    readonly url?: string;
     /**
      * 
-     * @type {object}
+     * @type {string}
      * @memberof Analysis
      */
-    parametersSchema: object;
+    readonly uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Analysis
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Analysis
+     */
+    description?: string;
     /**
      * 
      * @type {string}
@@ -45,22 +57,10 @@ export interface Analysis {
     subProcessor: string;
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof Analysis
      */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Analysis
-     */
-    readonly url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Analysis
-     */
-    readonly uuid?: string;
+    parametersSchema: object;
 }
 
 export function AnalysisFromJSON(json: any): Analysis {
@@ -73,13 +73,13 @@ export function AnalysisFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'parametersSchema': json['parameters_schema'],
-        'preset': json['preset'],
-        'subProcessor': json['sub_processor'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'preset': json['preset'],
+        'subProcessor': json['sub_processor'],
+        'parametersSchema': json['parameters_schema'],
     };
 }
 
@@ -92,11 +92,11 @@ export function AnalysisToJSON(value?: Analysis | null): any {
     }
     return {
         
+        'title': value.title,
         'description': value.description,
-        'parameters_schema': value.parametersSchema,
         'preset': value.preset,
         'sub_processor': value.subProcessor,
-        'title': value.title,
+        'parameters_schema': value.parametersSchema,
     };
 }
 

@@ -24,13 +24,25 @@ export interface ItemList {
      * @type {string}
      * @memberof ItemList
      */
-    description?: string;
+    readonly uuid?: string;
     /**
      * 
      * @type {string}
      * @memberof ItemList
      */
-    mimeType?: string;
+    readonly url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemList
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemList
+     */
+    description?: string;
     /**
      * 
      * @type {string}
@@ -54,19 +66,7 @@ export interface ItemList {
      * @type {string}
      * @memberof ItemList
      */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemList
-     */
-    readonly url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemList
-     */
-    readonly uuid?: string;
+    mimeType?: string;
 }
 
 export function ItemListFromJSON(json: any): ItemList {
@@ -79,14 +79,14 @@ export function ItemListFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
+        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'playerUrl': !exists(json, 'player_url') ? undefined : json['player_url'],
         'sourceFile': !exists(json, 'source_file') ? undefined : json['source_file'],
         'sourceUrl': !exists(json, 'source_url') ? undefined : json['source_url'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
     };
 }
 
@@ -99,11 +99,11 @@ export function ItemListToJSON(value?: ItemList | null): any {
     }
     return {
         
+        'title': value.title,
         'description': value.description,
-        'mime_type': value.mimeType,
         'source_file': value.sourceFile,
         'source_url': value.sourceUrl,
-        'title': value.title,
+        'mime_type': value.mimeType,
     };
 }
 

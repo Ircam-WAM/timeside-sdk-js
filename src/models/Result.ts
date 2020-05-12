@@ -20,47 +20,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface Result {
     /**
-     * Non numerical result stored in a file (image, transcoded audio, etc.)
-     * @type {Blob}
-     * @memberof Result
-     */
-    file?: Blob;
-    /**
-     * Numerical result of the processing stored in an hdf5 file.
-     * @type {Blob}
-     * @memberof Result
-     */
-    hdf5?: Blob;
-    /**
-     * Item on which a preset has been applied.
-     * @type {string}
-     * @memberof Result
-     */
-    item?: string | null;
-    /**
      * 
      * @type {string}
      * @memberof Result
      */
-    mimeType?: string;
-    /**
-     * Preset applied on an item.
-     * @type {string}
-     * @memberof Result
-     */
-    preset?: string | null;
-    /**
-     * Duration of the result computing.
-     * @type {string}
-     * @memberof Result
-     */
-    runTime?: string | null;
-    /**
-     * Status of the task giving the result:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
-     * @type {number}
-     * @memberof Result
-     */
-    status?: number;
+    readonly uuid?: string;
     /**
      * 
      * @type {string}
@@ -68,11 +32,58 @@ export interface Result {
      */
     readonly url?: string;
     /**
+     * Item on which a preset has been applied.
+     * @type {string}
+     * @memberof Result
+     */
+    item?: string | null;
+    /**
+     * Preset applied on an item.
+     * @type {string}
+     * @memberof Result
+     */
+    preset?: string | null;
+    /**
+     * Status of the task giving the result:
+     * 
+     * failed: 0
+     * 
+     * draft: 1
+     * 
+     * pending: 2
+     * 
+     * running: 3
+     * 
+     * done: 4
+     * @type {number}
+     * @memberof Result
+     */
+    status?: ResultStatusEnum;
+    /**
      * 
      * @type {string}
      * @memberof Result
      */
-    readonly uuid?: string;
+    mimeType?: string;
+    /**
+     * Numerical result of the processing stored in an hdf5 file.
+     * @type {Blob}
+     * @memberof Result
+     */
+    hdf5?: Blob;
+    /**
+     * Non numerical result stored in a file
+     * (image, transcoded audio, etc.)
+     * @type {Blob}
+     * @memberof Result
+     */
+    file?: Blob;
+    /**
+     * Duration of the result computing.
+     * @type {string}
+     * @memberof Result
+     */
+    runTime?: string | null;
 }
 
 export function ResultFromJSON(json: any): Result {
@@ -85,15 +96,15 @@ export function ResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     }
     return {
         
-        'file': !exists(json, 'file') ? undefined : json['file'],
-        'hdf5': !exists(json, 'hdf5') ? undefined : json['hdf5'],
-        'item': !exists(json, 'item') ? undefined : json['item'],
-        'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
-        'preset': !exists(json, 'preset') ? undefined : json['preset'],
-        'runTime': !exists(json, 'run_time') ? undefined : json['run_time'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
+        'item': !exists(json, 'item') ? undefined : json['item'],
+        'preset': !exists(json, 'preset') ? undefined : json['preset'],
+        'status': !exists(json, 'status') ? undefined : json['status'],
+        'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
+        'hdf5': !exists(json, 'hdf5') ? undefined : json['hdf5'],
+        'file': !exists(json, 'file') ? undefined : json['file'],
+        'runTime': !exists(json, 'run_time') ? undefined : json['run_time'],
     };
 }
 
@@ -106,14 +117,26 @@ export function ResultToJSON(value?: Result | null): any {
     }
     return {
         
-        'file': value.file,
-        'hdf5': value.hdf5,
         'item': value.item,
-        'mime_type': value.mimeType,
         'preset': value.preset,
-        'run_time': value.runTime,
         'status': value.status,
+        'mime_type': value.mimeType,
+        'hdf5': value.hdf5,
+        'file': value.file,
+        'run_time': value.runTime,
     };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum ResultStatusEnum {
+    NUMBER_0 = 0,
+    NUMBER_1 = 1,
+    NUMBER_2 = 2,
+    NUMBER_3 = 3,
+    NUMBER_4 = 4
 }
 
 

@@ -28,40 +28,22 @@ import {
 export interface AnnotationTrack {
     /**
      * 
-     * @type {Array<AnnotationTrackAnnotations>}
+     * @type {string}
      * @memberof AnnotationTrack
      */
-    readonly annotations?: Array<AnnotationTrackAnnotations>;
+    readonly url?: string;
     /**
      * 
      * @type {string}
      * @memberof AnnotationTrack
      */
-    author?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnnotationTrack
-     */
-    description?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AnnotationTrack
-     */
-    isPublic?: boolean;
+    readonly uuid?: string;
     /**
      * 
      * @type {string}
      * @memberof AnnotationTrack
      */
     item: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AnnotationTrack
-     */
-    overlapping?: boolean;
     /**
      * 
      * @type {string}
@@ -73,13 +55,31 @@ export interface AnnotationTrack {
      * @type {string}
      * @memberof AnnotationTrack
      */
-    readonly url?: string;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof AnnotationTrack
      */
-    readonly uuid?: string;
+    author?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AnnotationTrack
+     */
+    isPublic?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AnnotationTrack
+     */
+    overlapping?: boolean;
+    /**
+     * 
+     * @type {Array<AnnotationTrackAnnotations>}
+     * @memberof AnnotationTrack
+     */
+    readonly annotations?: Array<AnnotationTrackAnnotations>;
 }
 
 export function AnnotationTrackFromJSON(json: any): AnnotationTrack {
@@ -92,15 +92,15 @@ export function AnnotationTrackFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'annotations': !exists(json, 'annotations') ? undefined : ((json['annotations'] as Array<any>).map(AnnotationTrackAnnotationsFromJSON)),
-        'author': !exists(json, 'author') ? undefined : json['author'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'isPublic': !exists(json, 'is_public') ? undefined : json['is_public'],
-        'item': json['item'],
-        'overlapping': !exists(json, 'overlapping') ? undefined : json['overlapping'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'item': json['item'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'author': !exists(json, 'author') ? undefined : json['author'],
+        'isPublic': !exists(json, 'is_public') ? undefined : json['is_public'],
+        'overlapping': !exists(json, 'overlapping') ? undefined : json['overlapping'],
+        'annotations': !exists(json, 'annotations') ? undefined : ((json['annotations'] as Array<any>).map(AnnotationTrackAnnotationsFromJSON)),
     };
 }
 
@@ -113,12 +113,12 @@ export function AnnotationTrackToJSON(value?: AnnotationTrack | null): any {
     }
     return {
         
-        'author': value.author,
-        'description': value.description,
-        'is_public': value.isPublic,
         'item': value.item,
-        'overlapping': value.overlapping,
         'title': value.title,
+        'description': value.description,
+        'author': value.author,
+        'is_public': value.isPublic,
+        'overlapping': value.overlapping,
     };
 }
 

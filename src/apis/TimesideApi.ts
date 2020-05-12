@@ -27,6 +27,9 @@ import {
     AnnotationTrack,
     AnnotationTrackFromJSON,
     AnnotationTrackToJSON,
+    AnyType,
+    AnyTypeFromJSON,
+    AnyTypeToJSON,
     AuthToken,
     AuthTokenFromJSON,
     AuthTokenToJSON,
@@ -60,6 +63,9 @@ import {
     Selection,
     SelectionFromJSON,
     SelectionToJSON,
+    SubProcessor,
+    SubProcessorFromJSON,
+    SubProcessorToJSON,
     Task,
     TaskFromJSON,
     TaskToJSON,
@@ -78,56 +84,57 @@ import {
 } from '../models';
 
 export interface CreateAnalysisRequest {
-    body?: Analysis;
+    analysis?: Analysis;
 }
 
 export interface CreateAnalysisTrackRequest {
-    body?: AnalysisTrack;
+    analysisTrack?: AnalysisTrack;
 }
 
 export interface CreateAnnotationRequest {
-    body?: Annotation;
+    annotation?: Annotation;
 }
 
 export interface CreateAnnotationTrackRequest {
-    body?: AnnotationTrack;
+    annotationTrack?: AnnotationTrack;
 }
 
 export interface CreateAuthTokenRequest {
     username: string;
     password: string;
+    token?: string;
 }
 
 export interface CreateExperienceRequest {
-    body?: Experience;
+    experience?: Experience;
 }
 
 export interface CreateItemRequest {
-    body?: Item;
+    item?: Item;
 }
 
 export interface CreatePresetRequest {
-    body?: Preset;
+    preset?: Preset;
 }
 
 export interface CreateSelectionRequest {
-    body?: Selection;
+    selection?: Selection;
 }
 
 export interface CreateTaskRequest {
-    body?: Task;
+    task?: Task;
 }
 
 export interface CreateTokenObtainPairRequest {
-    body?: TokenObtainPair;
+    tokenObtainPair?: TokenObtainPair;
 }
 
 export interface CreateTokenRefreshRequest {
-    body?: TokenRefresh;
+    tokenRefresh?: TokenRefresh;
 }
 
 export interface CreateTokenVerifyRequest {
-    body?: TokenVerify;
+    tokenVerify?: TokenVerify;
 }
 
 export interface DestroyAnalysisRequest {
@@ -189,48 +196,48 @@ export interface ParametersSchemaProcessorRequest {
 
 export interface PartialUpdateAnalysisRequest {
     uuid: string;
-    body?: Analysis;
+    analysis?: Analysis;
 }
 
 export interface PartialUpdateAnalysisTrackRequest {
     uuid: string;
-    body?: AnalysisTrack;
+    analysisTrack?: AnalysisTrack;
 }
 
 export interface PartialUpdateAnnotationRequest {
     uuid: string;
-    body?: Annotation;
+    annotation?: Annotation;
 }
 
 export interface PartialUpdateAnnotationTrackRequest {
     uuid: string;
-    body?: AnnotationTrack;
+    annotationTrack?: AnnotationTrack;
 }
 
 export interface PartialUpdateExperienceRequest {
     uuid: string;
-    body?: Experience;
+    experience?: Experience;
 }
 
 export interface PartialUpdateItemRequest {
     uuid: string;
     search?: string;
-    body?: Item;
+    item?: Item;
 }
 
 export interface PartialUpdatePresetRequest {
     uuid: string;
-    body?: Preset;
+    preset?: Preset;
 }
 
 export interface PartialUpdateSelectionRequest {
     uuid: string;
-    body?: Selection;
+    selection?: Selection;
 }
 
 export interface PartialUpdateTaskRequest {
     uuid: string;
-    body?: Task;
+    task?: Task;
 }
 
 export interface RetrieveAnalysisRequest {
@@ -290,6 +297,10 @@ export interface RetrieveSelectionRequest {
     uuid: string;
 }
 
+export interface RetrieveSubProcessorRequest {
+    subProcessorId: string;
+}
+
 export interface RetrieveTaskRequest {
     uuid: string;
 }
@@ -300,57 +311,57 @@ export interface RetrieveUserRequest {
 
 export interface SetParametersAnalysisTrackRequest {
     uuid: string;
-    body?: AnalysisTrack;
+    analysisTrack?: AnalysisTrack;
 }
 
 export interface UpdateAnalysisRequest {
     uuid: string;
-    body?: Analysis;
+    analysis?: Analysis;
 }
 
 export interface UpdateAnalysisTrackRequest {
     uuid: string;
-    body?: AnalysisTrack;
+    analysisTrack?: AnalysisTrack;
 }
 
 export interface UpdateAnnotationRequest {
     uuid: string;
-    body?: Annotation;
+    annotation?: Annotation;
 }
 
 export interface UpdateAnnotationTrackRequest {
     uuid: string;
-    body?: AnnotationTrack;
+    annotationTrack?: AnnotationTrack;
 }
 
 export interface UpdateExperienceRequest {
     uuid: string;
-    body?: Experience;
+    experience?: Experience;
 }
 
 export interface UpdateItemRequest {
     uuid: string;
     search?: string;
-    body?: Item;
+    item?: Item;
 }
 
 export interface UpdatePresetRequest {
     uuid: string;
-    body?: Preset;
+    preset?: Preset;
 }
 
 export interface UpdateSelectionRequest {
     uuid: string;
-    body?: Selection;
+    selection?: Selection;
 }
 
 export interface UpdateTaskRequest {
     uuid: string;
-    body?: Task;
+    task?: Task;
 }
 
 /**
- * no description
+ * 
  */
 export class TimesideApi extends runtime.BaseAPI {
 
@@ -368,7 +379,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisToJSON(requestParameters.body),
+            body: AnalysisToJSON(requestParameters.analysis),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisFromJSON(jsonValue));
@@ -395,7 +406,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisTrackToJSON(requestParameters.body),
+            body: AnalysisTrackToJSON(requestParameters.analysisTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisTrackFromJSON(jsonValue));
@@ -422,7 +433,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AnnotationToJSON(requestParameters.body),
+            body: AnnotationToJSON(requestParameters.annotation),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationFromJSON(jsonValue));
@@ -449,7 +460,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AnnotationTrackToJSON(requestParameters.body),
+            body: AnnotationTrackToJSON(requestParameters.annotationTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationTrackFromJSON(jsonValue));
@@ -501,6 +512,10 @@ export class TimesideApi extends runtime.BaseAPI {
             formParams.append('password', requestParameters.password as any);
         }
 
+        if (requestParameters.token !== undefined) {
+            formParams.append('token', requestParameters.token as any);
+        }
+
         const response = await this.request({
             path: `/timeside/api-token-auth/`,
             method: 'POST',
@@ -534,7 +549,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ExperienceToJSON(requestParameters.body),
+            body: ExperienceToJSON(requestParameters.experience),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ExperienceFromJSON(jsonValue));
@@ -562,7 +577,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ItemToJSON(requestParameters.body),
+            body: ItemToJSON(requestParameters.item),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ItemFromJSON(jsonValue));
@@ -590,7 +605,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PresetToJSON(requestParameters.body),
+            body: PresetToJSON(requestParameters.preset),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PresetFromJSON(jsonValue));
@@ -619,7 +634,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SelectionToJSON(requestParameters.body),
+            body: SelectionToJSON(requestParameters.selection),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SelectionFromJSON(jsonValue));
@@ -648,7 +663,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TaskToJSON(requestParameters.body),
+            body: TaskToJSON(requestParameters.task),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TaskFromJSON(jsonValue));
@@ -677,7 +692,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TokenObtainPairToJSON(requestParameters.body),
+            body: TokenObtainPairToJSON(requestParameters.tokenObtainPair),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenObtainPairFromJSON(jsonValue));
@@ -706,7 +721,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TokenRefreshToJSON(requestParameters.body),
+            body: TokenRefreshToJSON(requestParameters.tokenRefresh),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenRefreshFromJSON(jsonValue));
@@ -735,7 +750,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TokenVerifyToJSON(requestParameters.body),
+            body: TokenVerifyToJSON(requestParameters.tokenVerify),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenVerifyFromJSON(jsonValue));
@@ -1102,7 +1117,7 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listCsrfTokensRaw(): Promise<runtime.ApiResponse<Array<object>>> {
+    async listCsrfTokensRaw(): Promise<runtime.ApiResponse<Array<AnyType>>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1114,12 +1129,12 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AnyTypeFromJSON));
     }
 
     /**
      */
-    async listCsrfTokens(): Promise<Array<object>> {
+    async listCsrfTokens(): Promise<Array<AnyType>> {
         const response = await this.listCsrfTokensRaw();
         return await response.value();
     }
@@ -1313,6 +1328,32 @@ export class TimesideApi extends runtime.BaseAPI {
     }
 
     /**
+     * Link between a processor depending on another.
+     */
+    async listSubProcessorsRaw(): Promise<runtime.ApiResponse<Array<SubProcessor>>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/timeside/api/subprocessors/`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SubProcessorFromJSON));
+    }
+
+    /**
+     * Link between a processor depending on another.
+     */
+    async listSubProcessors(): Promise<Array<SubProcessor>> {
+        const response = await this.listSubProcessorsRaw();
+        return await response.value();
+    }
+
+    /**
      * Experience applied to a selection or a single item.
      */
     async listTasksRaw(): Promise<runtime.ApiResponse<Array<Task>>> {
@@ -1470,7 +1511,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisToJSON(requestParameters.body),
+            body: AnalysisToJSON(requestParameters.analysis),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisFromJSON(jsonValue));
@@ -1501,7 +1542,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisTrackToJSON(requestParameters.body),
+            body: AnalysisTrackToJSON(requestParameters.analysisTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisTrackFromJSON(jsonValue));
@@ -1532,7 +1573,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: AnnotationToJSON(requestParameters.body),
+            body: AnnotationToJSON(requestParameters.annotation),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationFromJSON(jsonValue));
@@ -1563,7 +1604,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: AnnotationTrackToJSON(requestParameters.body),
+            body: AnnotationTrackToJSON(requestParameters.annotationTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationTrackFromJSON(jsonValue));
@@ -1595,7 +1636,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: ExperienceToJSON(requestParameters.body),
+            body: ExperienceToJSON(requestParameters.experience),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ExperienceFromJSON(jsonValue));
@@ -1631,7 +1672,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: ItemToJSON(requestParameters.body),
+            body: ItemToJSON(requestParameters.item),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ItemFromJSON(jsonValue));
@@ -1663,7 +1704,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: PresetToJSON(requestParameters.body),
+            body: PresetToJSON(requestParameters.preset),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PresetFromJSON(jsonValue));
@@ -1696,7 +1737,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: SelectionToJSON(requestParameters.body),
+            body: SelectionToJSON(requestParameters.selection),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SelectionFromJSON(jsonValue));
@@ -1729,7 +1770,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: TaskToJSON(requestParameters.body),
+            body: TaskToJSON(requestParameters.task),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TaskFromJSON(jsonValue));
@@ -2086,7 +2127,7 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<object>> {
+    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<AnyType>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveResultVisualization.');
         }
@@ -2102,13 +2143,13 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AnyTypeFromJSON(jsonValue));
     }
 
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<object> {
+    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<AnyType> {
         const response = await this.retrieveResultVisualizationRaw(requestParameters);
         return await response.value();
     }
@@ -2140,6 +2181,36 @@ export class TimesideApi extends runtime.BaseAPI {
      */
     async retrieveSelection(requestParameters: RetrieveSelectionRequest): Promise<Selection> {
         const response = await this.retrieveSelectionRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Link between a processor depending on another.
+     */
+    async retrieveSubProcessorRaw(requestParameters: RetrieveSubProcessorRequest): Promise<runtime.ApiResponse<SubProcessor>> {
+        if (requestParameters.subProcessorId === null || requestParameters.subProcessorId === undefined) {
+            throw new runtime.RequiredError('subProcessorId','Required parameter requestParameters.subProcessorId was null or undefined when calling retrieveSubProcessor.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/timeside/api/subprocessors/{sub_processor_id}/`.replace(`{${"sub_processor_id"}}`, encodeURIComponent(String(requestParameters.subProcessorId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SubProcessorFromJSON(jsonValue));
+    }
+
+    /**
+     * Link between a processor depending on another.
+     */
+    async retrieveSubProcessor(requestParameters: RetrieveSubProcessorRequest): Promise<SubProcessor> {
+        const response = await this.retrieveSubProcessorRaw(requestParameters);
         return await response.value();
     }
 
@@ -2221,7 +2292,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisTrackToJSON(requestParameters.body),
+            body: AnalysisTrackToJSON(requestParameters.analysisTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisTrackFromJSON(jsonValue));
@@ -2252,7 +2323,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisToJSON(requestParameters.body),
+            body: AnalysisToJSON(requestParameters.analysis),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisFromJSON(jsonValue));
@@ -2283,7 +2354,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: AnalysisTrackToJSON(requestParameters.body),
+            body: AnalysisTrackToJSON(requestParameters.analysisTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnalysisTrackFromJSON(jsonValue));
@@ -2314,7 +2385,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: AnnotationToJSON(requestParameters.body),
+            body: AnnotationToJSON(requestParameters.annotation),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationFromJSON(jsonValue));
@@ -2345,7 +2416,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: AnnotationTrackToJSON(requestParameters.body),
+            body: AnnotationTrackToJSON(requestParameters.annotationTrack),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationTrackFromJSON(jsonValue));
@@ -2377,7 +2448,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ExperienceToJSON(requestParameters.body),
+            body: ExperienceToJSON(requestParameters.experience),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ExperienceFromJSON(jsonValue));
@@ -2413,7 +2484,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ItemToJSON(requestParameters.body),
+            body: ItemToJSON(requestParameters.item),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ItemFromJSON(jsonValue));
@@ -2445,7 +2516,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: PresetToJSON(requestParameters.body),
+            body: PresetToJSON(requestParameters.preset),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PresetFromJSON(jsonValue));
@@ -2478,7 +2549,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: SelectionToJSON(requestParameters.body),
+            body: SelectionToJSON(requestParameters.selection),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SelectionFromJSON(jsonValue));
@@ -2511,7 +2582,7 @@ export class TimesideApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: TaskToJSON(requestParameters.body),
+            body: TaskToJSON(requestParameters.task),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TaskFromJSON(jsonValue));

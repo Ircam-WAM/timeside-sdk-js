@@ -31,6 +31,12 @@ export interface ItemAudioUrl {
      * @memberof ItemAudioUrl
      */
     readonly ogg?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAudioUrl
+     */
+    readonly flac?: string;
 }
 
 export function ItemAudioUrlFromJSON(json: any): ItemAudioUrl {
@@ -45,6 +51,7 @@ export function ItemAudioUrlFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'mp3': !exists(json, 'mp3') ? undefined : json['mp3'],
         'ogg': !exists(json, 'ogg') ? undefined : json['ogg'],
+        'flac': !exists(json, 'flac') ? undefined : json['flac'],
     };
 }
 

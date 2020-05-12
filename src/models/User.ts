@@ -24,18 +24,6 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    firstName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
-    lastName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     readonly url?: string;
     /**
      * Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
@@ -43,6 +31,18 @@ export interface User {
      * @memberof User
      */
     username: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    firstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    lastName?: string;
 }
 
 export function UserFromJSON(json: any): User {
@@ -55,10 +55,10 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     }
     return {
         
-        'firstName': !exists(json, 'first_name') ? undefined : json['first_name'],
-        'lastName': !exists(json, 'last_name') ? undefined : json['last_name'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'username': json['username'],
+        'firstName': !exists(json, 'first_name') ? undefined : json['first_name'],
+        'lastName': !exists(json, 'last_name') ? undefined : json['last_name'],
     };
 }
 
@@ -71,9 +71,9 @@ export function UserToJSON(value?: User | null): any {
     }
     return {
         
+        'username': value.username,
         'first_name': value.firstName,
         'last_name': value.lastName,
-        'username': value.username,
     };
 }
 

@@ -16,6 +16,7 @@ export * from './ProcessorList';
 export * from './Provider';
 export * from './Result';
 export * from './Selection';
+export * from './SubProcessor';
 export * from './Task';
 export * from './TokenObtainPair';
 export * from './TokenRefresh';

@@ -24,13 +24,13 @@ export interface TokenObtainPair {
      * @type {string}
      * @memberof TokenObtainPair
      */
-    password: string;
+    username: string;
     /**
      * 
      * @type {string}
      * @memberof TokenObtainPair
      */
-    username: string;
+    password: string;
 }
 
 export function TokenObtainPairFromJSON(json: any): TokenObtainPair {
@@ -43,8 +43,8 @@ export function TokenObtainPairFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'password': json['password'],
         'username': json['username'],
+        'password': json['password'],
     };
 }
 
@@ -57,8 +57,8 @@ export function TokenObtainPairToJSON(value?: TokenObtainPair | null): any {
     }
     return {
         
-        'password': value.password,
         'username': value.username,
+        'password': value.password,
     };
 }
 

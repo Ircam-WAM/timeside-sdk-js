@@ -16,53 +16,53 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Preset
+ * @interface SubProcessor
  */
-export interface Preset {
+export interface SubProcessor {
     /**
      * 
      * @type {string}
-     * @memberof Preset
+     * @memberof SubProcessor
      */
     readonly url?: string;
     /**
      * 
      * @type {string}
-     * @memberof Preset
+     * @memberof SubProcessor
      */
-    readonly uuid?: string;
+    name?: string;
     /**
      * 
      * @type {string}
-     * @memberof Preset
+     * @memberof SubProcessor
      */
     processor?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof Preset
+     * @memberof SubProcessor
      */
-    parameters?: string;
+    subProcessorId: string;
 }
 
-export function PresetFromJSON(json: any): Preset {
-    return PresetFromJSONTyped(json, false);
+export function SubProcessorFromJSON(json: any): SubProcessor {
+    return SubProcessorFromJSONTyped(json, false);
 }
 
-export function PresetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Preset {
+export function SubProcessorFromJSONTyped(json: any, ignoreDiscriminator: boolean): SubProcessor {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'url': !exists(json, 'url') ? undefined : json['url'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'processor': !exists(json, 'processor') ? undefined : json['processor'],
-        'parameters': !exists(json, 'parameters') ? undefined : json['parameters'],
+        'subProcessorId': json['sub_processor_id'],
     };
 }
 
-export function PresetToJSON(value?: Preset | null): any {
+export function SubProcessorToJSON(value?: SubProcessor | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -71,8 +71,9 @@ export function PresetToJSON(value?: Preset | null): any {
     }
     return {
         
+        'name': value.name,
         'processor': value.processor,
-        'parameters': value.parameters,
+        'sub_processor_id': value.subProcessorId,
     };
 }
 

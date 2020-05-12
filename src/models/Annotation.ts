@@ -24,6 +24,30 @@ export interface Annotation {
      * @type {string}
      * @memberof Annotation
      */
+    readonly url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Annotation
+     */
+    readonly uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Annotation
+     */
+    track: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Annotation
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Annotation
+     */
     description?: string;
     /**
      * 
@@ -37,30 +61,6 @@ export interface Annotation {
      * @memberof Annotation
      */
     stopTime: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Annotation
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Annotation
-     */
-    track: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Annotation
-     */
-    readonly url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Annotation
-     */
-    readonly uuid?: string;
 }
 
 export function AnnotationFromJSON(json: any): Annotation {
@@ -73,13 +73,13 @@ export function AnnotationFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'url': !exists(json, 'url') ? undefined : json['url'],
+        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'track': json['track'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'startTime': !exists(json, 'start_time') ? undefined : json['start_time'],
         'stopTime': json['stop_time'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'track': json['track'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
     };
 }
 
@@ -92,11 +92,11 @@ export function AnnotationToJSON(value?: Annotation | null): any {
     }
     return {
         
+        'track': value.track,
+        'title': value.title,
         'description': value.description,
         'start_time': value.startTime,
         'stop_time': value.stopTime,
-        'title': value.title,
-        'track': value.track,
     };
 }
 

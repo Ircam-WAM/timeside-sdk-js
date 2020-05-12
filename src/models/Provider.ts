@@ -26,17 +26,17 @@ export interface Provider {
      */
     pid?: string;
     /**
-     * Whether or not the audio is freely available from the provider.
-     * @type {boolean}
-     * @memberof Provider
-     */
-    sourceAccess?: boolean;
-    /**
      * 
      * @type {string}
      * @memberof Provider
      */
     readonly uuid?: string;
+    /**
+     * Whether or not the audio is freely available from the provider.
+     * @type {boolean}
+     * @memberof Provider
+     */
+    sourceAccess?: boolean;
 }
 
 export function ProviderFromJSON(json: any): Provider {
@@ -50,8 +50,8 @@ export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'pid': !exists(json, 'pid') ? undefined : json['pid'],
-        'sourceAccess': !exists(json, 'source_access') ? undefined : json['source_access'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'sourceAccess': !exists(json, 'source_access') ? undefined : json['source_access'],
     };
 }
 

@@ -24,6 +24,12 @@ export interface AuthToken {
      * @type {string}
      * @memberof AuthToken
      */
+    username: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthToken
+     */
     password: string;
     /**
      * 
@@ -31,12 +37,6 @@ export interface AuthToken {
      * @memberof AuthToken
      */
     readonly token?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthToken
-     */
-    username: string;
 }
 
 export function AuthTokenFromJSON(json: any): AuthToken {
@@ -49,9 +49,9 @@ export function AuthTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
+        'username': json['username'],
         'password': json['password'],
         'token': !exists(json, 'token') ? undefined : json['token'],
-        'username': json['username'],
     };
 }
 
@@ -64,8 +64,8 @@ export function AuthTokenToJSON(value?: AuthToken | null): any {
     }
     return {
         
-        'password': value.password,
         'username': value.username,
+        'password': value.password,
     };
 }
 

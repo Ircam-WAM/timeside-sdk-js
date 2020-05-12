@@ -24,36 +24,6 @@ export interface Task {
      * @type {string}
      * @memberof Task
      */
-    author?: string | null;
-    /**
-     * Experience prossessed in the task.
-     * @type {string}
-     * @memberof Task
-     */
-    experience?: string | null;
-    /**
-     * Single item prossessed in the task.
-     * @type {string}
-     * @memberof Task
-     */
-    item?: string | null;
-    /**
-     * Selection prossessed in the task.
-     * @type {string}
-     * @memberof Task
-     */
-    selection?: string | null;
-    /**
-     * Task\'s status:  failed: 0  draft: 1  pending: 2  running: 3  done: 4
-     * @type {number}
-     * @memberof Task
-     */
-    status?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Task
-     */
     readonly url?: string;
     /**
      * 
@@ -61,6 +31,46 @@ export interface Task {
      * @memberof Task
      */
     readonly uuid?: string;
+    /**
+     * Experience prossessed in the task.
+     * @type {string}
+     * @memberof Task
+     */
+    experience?: string | null;
+    /**
+     * Selection prossessed in the task.
+     * @type {string}
+     * @memberof Task
+     */
+    selection?: string | null;
+    /**
+     * Task's status:
+     * 
+     * failed: 0
+     * 
+     * draft: 1
+     * 
+     * pending: 2
+     * 
+     * running: 3
+     * 
+     * done: 4
+     * @type {number}
+     * @memberof Task
+     */
+    status?: TaskStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    author?: string | null;
+    /**
+     * Single item prossessed in the task.
+     * @type {string}
+     * @memberof Task
+     */
+    item?: string | null;
 }
 
 export function TaskFromJSON(json: any): Task {
@@ -73,13 +83,13 @@ export function TaskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Task
     }
     return {
         
-        'author': !exists(json, 'author') ? undefined : json['author'],
-        'experience': !exists(json, 'experience') ? undefined : json['experience'],
-        'item': !exists(json, 'item') ? undefined : json['item'],
-        'selection': !exists(json, 'selection') ? undefined : json['selection'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'experience': !exists(json, 'experience') ? undefined : json['experience'],
+        'selection': !exists(json, 'selection') ? undefined : json['selection'],
+        'status': !exists(json, 'status') ? undefined : json['status'],
+        'author': !exists(json, 'author') ? undefined : json['author'],
+        'item': !exists(json, 'item') ? undefined : json['item'],
     };
 }
 
@@ -92,12 +102,24 @@ export function TaskToJSON(value?: Task | null): any {
     }
     return {
         
-        'author': value.author,
         'experience': value.experience,
-        'item': value.item,
         'selection': value.selection,
         'status': value.status,
+        'author': value.author,
+        'item': value.item,
     };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum TaskStatusEnum {
+    NUMBER_0 = 0,
+    NUMBER_1 = 1,
+    NUMBER_2 = 2,
+    NUMBER_3 = 3,
+    NUMBER_4 = 4
 }
 
 

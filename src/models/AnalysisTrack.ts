@@ -24,43 +24,13 @@ export interface AnalysisTrack {
      * @type {string}
      * @memberof AnalysisTrack
      */
-    analysis: string;
+    readonly url?: string;
     /**
      * 
      * @type {string}
      * @memberof AnalysisTrack
      */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnalysisTrack
-     */
-    item: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnalysisTrack
-     */
-    readonly parametersDefault?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnalysisTrack
-     */
-    readonly parametersSchema?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnalysisTrack
-     */
-    readonly parametrizable?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnalysisTrack
-     */
-    readonly resultUrl?: string;
+    readonly uuid?: string;
     /**
      * 
      * @type {string}
@@ -72,13 +42,43 @@ export interface AnalysisTrack {
      * @type {string}
      * @memberof AnalysisTrack
      */
-    readonly url?: string;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof AnalysisTrack
      */
-    readonly uuid?: string;
+    analysis: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalysisTrack
+     */
+    item: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalysisTrack
+     */
+    readonly resultUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalysisTrack
+     */
+    readonly parametersSchema?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalysisTrack
+     */
+    readonly parametersDefault?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnalysisTrack
+     */
+    readonly parametrizable?: string;
 }
 
 export function AnalysisTrackFromJSON(json: any): AnalysisTrack {
@@ -91,16 +91,16 @@ export function AnalysisTrackFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'analysis': json['analysis'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'item': json['item'],
-        'parametersDefault': !exists(json, 'parameters_default') ? undefined : json['parameters_default'],
-        'parametersSchema': !exists(json, 'parameters_schema') ? undefined : json['parameters_schema'],
-        'parametrizable': !exists(json, 'parametrizable') ? undefined : json['parametrizable'],
-        'resultUrl': !exists(json, 'result_url') ? undefined : json['result_url'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'analysis': json['analysis'],
+        'item': json['item'],
+        'resultUrl': !exists(json, 'result_url') ? undefined : json['result_url'],
+        'parametersSchema': !exists(json, 'parameters_schema') ? undefined : json['parameters_schema'],
+        'parametersDefault': !exists(json, 'parameters_default') ? undefined : json['parameters_default'],
+        'parametrizable': !exists(json, 'parametrizable') ? undefined : json['parametrizable'],
     };
 }
 
@@ -113,10 +113,10 @@ export function AnalysisTrackToJSON(value?: AnalysisTrack | null): any {
     }
     return {
         
-        'analysis': value.analysis,
-        'description': value.description,
-        'item': value.item,
         'title': value.title,
+        'description': value.description,
+        'analysis': value.analysis,
+        'item': value.item,
     };
 }
 

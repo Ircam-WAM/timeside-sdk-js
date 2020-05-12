@@ -24,6 +24,24 @@ export interface AnnotationTrackAnnotations {
      * @type {string}
      * @memberof AnnotationTrackAnnotations
      */
+    readonly url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnnotationTrackAnnotations
+     */
+    readonly uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnnotationTrackAnnotations
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnnotationTrackAnnotations
+     */
     description?: string;
     /**
      * 
@@ -37,24 +55,6 @@ export interface AnnotationTrackAnnotations {
      * @memberof AnnotationTrackAnnotations
      */
     stopTime: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnnotationTrackAnnotations
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnnotationTrackAnnotations
-     */
-    readonly url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnnotationTrackAnnotations
-     */
-    readonly uuid?: string;
 }
 
 export function AnnotationTrackAnnotationsFromJSON(json: any): AnnotationTrackAnnotations {
@@ -67,12 +67,12 @@ export function AnnotationTrackAnnotationsFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'url': !exists(json, 'url') ? undefined : json['url'],
+        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'startTime': !exists(json, 'start_time') ? undefined : json['start_time'],
         'stopTime': json['stop_time'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
     };
 }
 
@@ -85,10 +85,10 @@ export function AnnotationTrackAnnotationsToJSON(value?: AnnotationTrackAnnotati
     }
     return {
         
+        'title': value.title,
         'description': value.description,
         'start_time': value.startTime,
         'stop_time': value.stopTime,
-        'title': value.title,
     };
 }
 

@@ -24,25 +24,13 @@ export interface Experience {
      * @type {string}
      * @memberof Experience
      */
-    author?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Experience
-     */
-    isPublic?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Experience
-     */
-    presets?: Array<string>;
+    title?: string;
     /**
      * 
      * @type {string}
      * @memberof Experience
      */
-    title?: string;
+    readonly uuid?: string;
     /**
      * 
      * @type {string}
@@ -51,10 +39,22 @@ export interface Experience {
     readonly url?: string;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof Experience
+     */
+    presets?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Experience
+     */
+    isPublic?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof Experience
      */
-    readonly uuid?: string;
+    author?: string | null;
 }
 
 export function ExperienceFromJSON(json: any): Experience {
@@ -67,12 +67,12 @@ export function ExperienceFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'author': !exists(json, 'author') ? undefined : json['author'],
-        'isPublic': !exists(json, 'is_public') ? undefined : json['is_public'],
-        'presets': !exists(json, 'presets') ? undefined : json['presets'],
         'title': !exists(json, 'title') ? undefined : json['title'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
+        'presets': !exists(json, 'presets') ? undefined : json['presets'],
+        'isPublic': !exists(json, 'is_public') ? undefined : json['is_public'],
+        'author': !exists(json, 'author') ? undefined : json['author'],
     };
 }
 
@@ -85,10 +85,10 @@ export function ExperienceToJSON(value?: Experience | null): any {
     }
     return {
         
-        'author': value.author,
-        'is_public': value.isPublic,
-        'presets': value.presets,
         'title': value.title,
+        'presets': value.presets,
+        'is_public': value.isPublic,
+        'author': value.author,
     };
 }
 

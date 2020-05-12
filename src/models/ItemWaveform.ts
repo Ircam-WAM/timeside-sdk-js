@@ -40,6 +40,12 @@ export interface ItemWaveform {
     title?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ItemWaveform
+     */
+    readonly waveformUrl?: string;
+    /**
+     * 
      * @type {ItemWaveformWaveform}
      * @memberof ItemWaveform
      */
@@ -50,12 +56,6 @@ export interface ItemWaveform {
      * @memberof ItemWaveform
      */
     readonly waveformImageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemWaveform
-     */
-    readonly waveformUrl?: string;
 }
 
 export function ItemWaveformFromJSON(json: any): ItemWaveform {
@@ -70,9 +70,9 @@ export function ItemWaveformFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'itemUrl': !exists(json, 'item_url') ? undefined : json['item_url'],
         'title': !exists(json, 'title') ? undefined : json['title'],
+        'waveformUrl': !exists(json, 'waveform_url') ? undefined : json['waveform_url'],
         'waveform': !exists(json, 'waveform') ? undefined : ItemWaveformWaveformFromJSON(json['waveform']),
         'waveformImageUrl': !exists(json, 'waveform_image_url') ? undefined : json['waveform_image_url'],
-        'waveformUrl': !exists(json, 'waveform_url') ? undefined : json['waveform_url'],
     };
 }
 
