@@ -3,6 +3,8 @@ info:
   title: TimeSide API
   version: 1.0.0
   description: RESTful API of TimeSide, a scalable audio processing framework.
+security:
+  - bearerAuth: []
 paths:
   /timeside/api/users/:
     get:
@@ -1715,6 +1717,11 @@ paths:
       tags:
       - timeside
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     User:
       type: object
