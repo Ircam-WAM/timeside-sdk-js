@@ -25,6 +25,12 @@ export interface TokenRefresh {
      * @memberof TokenRefresh
      */
     refresh: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenRefresh
+     */
+    readonly access?: string;
 }
 
 export function TokenRefreshFromJSON(json: any): TokenRefresh {
@@ -38,6 +44,7 @@ export function TokenRefreshFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'refresh': json['refresh'],
+        'access': !exists(json, 'access') ? undefined : json['access'],
     };
 }
 

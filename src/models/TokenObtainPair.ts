@@ -31,6 +31,18 @@ export interface TokenObtainPair {
      * @memberof TokenObtainPair
      */
     password: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenObtainPair
+     */
+    readonly refresh?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenObtainPair
+     */
+    readonly access?: string;
 }
 
 export function TokenObtainPairFromJSON(json: any): TokenObtainPair {
@@ -45,6 +57,8 @@ export function TokenObtainPairFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'username': json['username'],
         'password': json['password'],
+        'refresh': !exists(json, 'refresh') ? undefined : json['refresh'],
+        'access': !exists(json, 'access') ? undefined : json['access'],
     };
 }
 

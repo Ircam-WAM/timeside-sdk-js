@@ -3,8 +3,6 @@ info:
   title: TimeSide API
   version: 1.0.0
   description: RESTful API of TimeSide, a scalable audio processing framework.
-security:
-  - bearerAuth: []
 paths:
   /timeside/api/users/:
     get:
@@ -1717,11 +1715,6 @@ paths:
       tags:
       - timeside
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
     User:
       type: object
@@ -2419,9 +2412,16 @@ components:
       properties:
         username:
           type: string
+          writeOnly: true
         password:
           type: string
           writeOnly: true
+        refresh:
+          type: string
+          readOnly: true
+        access:
+          type: string
+          readOnly: true
       required:
       - username
       - password
@@ -2430,6 +2430,10 @@ components:
       properties:
         refresh:
           type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
       required:
       - refresh
     TokenVerify:
@@ -2437,10 +2441,18 @@ components:
       properties:
         token:
           type: string
+          writeOnly: true
       required:
       - token
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 servers:
 - url: https://wasabi.telemeta.org/
   description: Production server
 - url: https://sandbox.wasabi.telemeta.org/
   description: Staging server
+security:
+- bearerAuth: []
