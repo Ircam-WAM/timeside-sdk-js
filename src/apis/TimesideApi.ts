@@ -148,6 +148,7 @@ export interface DestroyAnnotationRequest {
 
 export interface DestroyAnnotationTrackRequest {
     uuid: string;
+    itemUuid?: string;
 }
 
 export interface DestroyExperienceRequest {
@@ -156,7 +157,8 @@ export interface DestroyExperienceRequest {
 
 export interface DestroyItemRequest {
     uuid: string;
-    search?: string;
+    providerPid?: string;
+    externalId?: string;
 }
 
 export interface DestroyPresetRequest {
@@ -171,12 +173,18 @@ export interface DestroyTaskRequest {
     uuid: string;
 }
 
+export interface ListAnnotationTracksRequest {
+    itemUuid?: string;
+}
+
 export interface ListItemsRequest {
-    search?: string;
+    providerPid?: string;
+    externalId?: string;
 }
 
 export interface ListResultsRequest {
-    search?: string;
+    itemUuid?: string;
+    presetUuid?: string;
 }
 
 export interface ParametersDefaultAnalysisTrackRequest {
@@ -208,6 +216,7 @@ export interface PartialUpdateAnnotationRequest {
 
 export interface PartialUpdateAnnotationTrackRequest {
     uuid: string;
+    itemUuid?: string;
     annotationTrack?: AnnotationTrack;
 }
 
@@ -218,7 +227,8 @@ export interface PartialUpdateExperienceRequest {
 
 export interface PartialUpdateItemRequest {
     uuid: string;
-    search?: string;
+    providerPid?: string;
+    externalId?: string;
     item?: Item;
 }
 
@@ -251,6 +261,7 @@ export interface RetrieveAnnotationRequest {
 
 export interface RetrieveAnnotationTrackRequest {
     uuid: string;
+    itemUuid?: string;
 }
 
 export interface RetrieveExperienceRequest {
@@ -259,7 +270,8 @@ export interface RetrieveExperienceRequest {
 
 export interface RetrieveItemRequest {
     uuid: string;
-    search?: string;
+    providerPid?: string;
+    externalId?: string;
 }
 
 export interface RetrieveItemWaveformRequest {
@@ -283,7 +295,8 @@ export interface RetrieveProviderRequest {
 
 export interface RetrieveResultRequest {
     uuid: string;
-    search?: string;
+    itemUuid?: string;
+    presetUuid?: string;
 }
 
 export interface RetrieveResultVisualizationRequest {
@@ -328,6 +341,7 @@ export interface UpdateAnnotationRequest {
 
 export interface UpdateAnnotationTrackRequest {
     uuid: string;
+    itemUuid?: string;
     annotationTrack?: AnnotationTrack;
 }
 
@@ -338,7 +352,8 @@ export interface UpdateExperienceRequest {
 
 export interface UpdateItemRequest {
     uuid: string;
-    search?: string;
+    providerPid?: string;
+    externalId?: string;
     item?: Item;
 }
 
@@ -979,6 +994,10 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -1051,8 +1070,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.providerPid !== undefined) {
+            queryParameters['provider_pid'] = requestParameters.providerPid;
+        }
+
+        if (requestParameters.externalId !== undefined) {
+            queryParameters['external_id'] = requestParameters.externalId;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1258,8 +1281,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listAnnotationTracksRaw(): Promise<runtime.ApiResponse<Array<AnnotationTrack>>> {
+    async listAnnotationTracksRaw(requestParameters: ListAnnotationTracksRequest): Promise<runtime.ApiResponse<Array<AnnotationTrack>>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1283,8 +1310,8 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listAnnotationTracks(): Promise<Array<AnnotationTrack>> {
-        const response = await this.listAnnotationTracksRaw();
+    async listAnnotationTracks(requestParameters: ListAnnotationTracksRequest): Promise<Array<AnnotationTrack>> {
+        const response = await this.listAnnotationTracksRaw(requestParameters);
         return await response.value();
     }
 
@@ -1391,8 +1418,12 @@ export class TimesideApi extends runtime.BaseAPI {
     async listItemsRaw(requestParameters: ListItemsRequest): Promise<runtime.ApiResponse<Array<ItemList>>> {
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.providerPid !== undefined) {
+            queryParameters['provider_pid'] = requestParameters.providerPid;
+        }
+
+        if (requestParameters.externalId !== undefined) {
+            queryParameters['external_id'] = requestParameters.externalId;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1530,8 +1561,12 @@ export class TimesideApi extends runtime.BaseAPI {
     async listResultsRaw(requestParameters: ListResultsRequest): Promise<runtime.ApiResponse<Array<Result>>> {
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
+
+        if (requestParameters.presetUuid !== undefined) {
+            queryParameters['preset_uuid'] = requestParameters.presetUuid;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1597,7 +1632,7 @@ export class TimesideApi extends runtime.BaseAPI {
     }
 
     /**
-     * Link between a processor depending on another.
+     * Store a result id associated with a given Processor, i.e. the id of one of the different process it does.
      */
     async listSubProcessorsRaw(): Promise<runtime.ApiResponse<Array<SubProcessor>>> {
         const queryParameters: runtime.HTTPQuery = {};
@@ -1623,7 +1658,7 @@ export class TimesideApi extends runtime.BaseAPI {
     }
 
     /**
-     * Link between a processor depending on another.
+     * Store a result id associated with a given Processor, i.e. the id of one of the different process it does.
      */
     async listSubProcessors(): Promise<Array<SubProcessor>> {
         const response = await this.listSubProcessorsRaw();
@@ -1936,6 +1971,10 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
@@ -2016,8 +2055,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.providerPid !== undefined) {
+            queryParameters['provider_pid'] = requestParameters.providerPid;
+        }
+
+        if (requestParameters.externalId !== undefined) {
+            queryParameters['external_id'] = requestParameters.externalId;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2290,6 +2333,10 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -2364,8 +2411,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.providerPid !== undefined) {
+            queryParameters['provider_pid'] = requestParameters.providerPid;
+        }
+
+        if (requestParameters.externalId !== undefined) {
+            queryParameters['external_id'] = requestParameters.externalId;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2569,8 +2620,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
+
+        if (requestParameters.presetUuid !== undefined) {
+            queryParameters['preset_uuid'] = requestParameters.presetUuid;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2678,7 +2733,7 @@ export class TimesideApi extends runtime.BaseAPI {
     }
 
     /**
-     * Link between a processor depending on another.
+     * Store a result id associated with a given Processor, i.e. the id of one of the different process it does.
      */
     async retrieveSubProcessorRaw(requestParameters: RetrieveSubProcessorRequest): Promise<runtime.ApiResponse<SubProcessor>> {
         if (requestParameters.subProcessorId === null || requestParameters.subProcessorId === undefined) {
@@ -2708,7 +2763,7 @@ export class TimesideApi extends runtime.BaseAPI {
     }
 
     /**
-     * Link between a processor depending on another.
+     * Store a result id associated with a given Processor, i.e. the id of one of the different process it does.
      */
     async retrieveSubProcessor(requestParameters: RetrieveSubProcessorRequest): Promise<SubProcessor> {
         const response = await this.retrieveSubProcessorRaw(requestParameters);
@@ -2956,6 +3011,10 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
+        if (requestParameters.itemUuid !== undefined) {
+            queryParameters['item_uuid'] = requestParameters.itemUuid;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
@@ -3036,8 +3095,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
+        if (requestParameters.providerPid !== undefined) {
+            queryParameters['provider_pid'] = requestParameters.providerPid;
+        }
+
+        if (requestParameters.externalId !== undefined) {
+            queryParameters['external_id'] = requestParameters.externalId;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

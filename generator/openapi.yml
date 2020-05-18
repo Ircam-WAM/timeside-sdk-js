@@ -46,10 +46,16 @@ paths:
       operationId: listItems
       description: ''
       parameters:
-      - name: search
+      - name: provider_pid
         required: false
         in: query
-        description: A search term.
+        description: provider_pid
+        schema:
+          type: string
+      - name: external_id
+        required: false
+        in: query
+        description: external_id
         schema:
           type: string
       responses:
@@ -98,10 +104,16 @@ paths:
         description: A UUID string identifying this item.
         schema:
           type: string
-      - name: search
+      - name: provider_pid
         required: false
         in: query
-        description: A search term.
+        description: provider_pid
+        schema:
+          type: string
+      - name: external_id
+        required: false
+        in: query
+        description: external_id
         schema:
           type: string
       responses:
@@ -123,10 +135,16 @@ paths:
         description: A UUID string identifying this item.
         schema:
           type: string
-      - name: search
+      - name: provider_pid
         required: false
         in: query
-        description: A search term.
+        description: provider_pid
+        schema:
+          type: string
+      - name: external_id
+        required: false
+        in: query
+        description: external_id
         schema:
           type: string
       requestBody:
@@ -159,10 +177,16 @@ paths:
         description: A UUID string identifying this item.
         schema:
           type: string
-      - name: search
+      - name: provider_pid
         required: false
         in: query
-        description: A search term.
+        description: provider_pid
+        schema:
+          type: string
+      - name: external_id
+        required: false
+        in: query
+        description: external_id
         schema:
           type: string
       requestBody:
@@ -195,10 +219,16 @@ paths:
         description: A UUID string identifying this item.
         schema:
           type: string
-      - name: search
+      - name: provider_pid
         required: false
         in: query
-        description: A search term.
+        description: provider_pid
+        schema:
+          type: string
+      - name: external_id
+        required: false
+        in: query
+        description: external_id
         schema:
           type: string
       responses:
@@ -456,7 +486,9 @@ paths:
   /timeside/api/subprocessors/:
     get:
       operationId: listSubProcessors
-      description: Link between a processor depending on another.
+      description: 'Store a result id associated with a given Processor,
+
+        i.e. the id of one of the different process it does.'
       parameters: []
       responses:
         '200':
@@ -472,7 +504,9 @@ paths:
   /timeside/api/subprocessors/{sub_processor_id}/:
     get:
       operationId: retrieveSubProcessor
-      description: Link between a processor depending on another.
+      description: 'Store a result id associated with a given Processor,
+
+        i.e. the id of one of the different process it does.'
       parameters:
       - name: sub_processor_id
         in: path
@@ -1188,7 +1222,13 @@ paths:
     get:
       operationId: listAnnotationTracks
       description: ''
-      parameters: []
+      parameters:
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -1235,6 +1275,12 @@ paths:
         description: A UUID string identifying this Annotation Track.
         schema:
           type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -1252,6 +1298,12 @@ paths:
         in: path
         required: true
         description: A UUID string identifying this Annotation Track.
+        schema:
+          type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
         schema:
           type: string
       requestBody:
@@ -1284,6 +1336,12 @@ paths:
         description: A UUID string identifying this Annotation Track.
         schema:
           type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1312,6 +1370,12 @@ paths:
         in: path
         required: true
         description: A UUID string identifying this Annotation Track.
+        schema:
+          type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
         schema:
           type: string
       responses:
@@ -1459,10 +1523,16 @@ paths:
       operationId: listResults
       description: Result of processing on items.
       parameters:
-      - name: search
+      - name: item_uuid
         required: false
         in: query
-        description: A search term.
+        description: item_uuid
+        schema:
+          type: string
+      - name: preset_uuid
+        required: false
+        in: query
+        description: preset_uuid
         schema:
           type: string
       responses:
@@ -1487,10 +1557,16 @@ paths:
         description: A UUID string identifying this Result.
         schema:
           type: string
-      - name: search
+      - name: item_uuid
         required: false
         in: query
-        description: A search term.
+        description: item_uuid
+        schema:
+          type: string
+      - name: preset_uuid
+        required: false
+        in: query
+        description: preset_uuid
         schema:
           type: string
       responses:
