@@ -57,6 +57,9 @@ import {
     Result,
     ResultFromJSON,
     ResultToJSON,
+    ResultVisualization,
+    ResultVisualizationFromJSON,
+    ResultVisualizationToJSON,
     Selection,
     SelectionFromJSON,
     SelectionToJSON,
@@ -2659,7 +2662,7 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<object>> {
+    async retrieveResultVisualizationRaw(requestParameters: RetrieveResultVisualizationRequest): Promise<runtime.ApiResponse<ResultVisualization>> {
         if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling retrieveResultVisualization.');
         }
@@ -2683,13 +2686,13 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ResultVisualizationFromJSON(jsonValue));
     }
 
     /**
      * PNG rendering of 2D numerical data (example: a spectrogram).
      */
-    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<object> {
+    async retrieveResultVisualization(requestParameters: RetrieveResultVisualizationRequest): Promise<ResultVisualization> {
         const response = await this.retrieveResultVisualizationRaw(requestParameters);
         return await response.value();
     }

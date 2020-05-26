@@ -1646,7 +1646,8 @@ paths:
         '200':
           content:
             image/png:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/ResultVisualization'
           description: ''
       tags:
       - timeside
@@ -1922,6 +1923,10 @@ components:
           type: number
           readOnly: true
           description: Duration of audio track.
+        samplerate:
+          type: integer
+          readOnly: true
+          description: Sampling rate of audio source file.
         external_uri:
           type: string
           description: 'Provider''s URI of the audio source.
@@ -2468,6 +2473,28 @@ components:
         waveform_image_url:
           type: string
           readOnly: true
+    ResultVisualization:
+      type: object
+      properties:
+        subprocessor_id:
+          type: string
+          default: ''
+        start:
+          type: integer
+          readOnly: true
+          default: 0
+        stop:
+          type: integer
+          readOnly: true
+          default: -1
+        width:
+          type: integer
+          readOnly: true
+          default: 1024
+        height:
+          type: integer
+          readOnly: true
+          default: 128
     AuthToken:
       type: object
       properties:

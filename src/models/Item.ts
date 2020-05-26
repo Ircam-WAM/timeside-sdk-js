@@ -87,6 +87,12 @@ export interface Item {
      */
     readonly audioDuration?: number;
     /**
+     * Sampling rate of audio source file.
+     * @type {number}
+     * @memberof Item
+     */
+    readonly samplerate?: number;
+    /**
      * Provider\'s URI of the audio source.  e.g. for Deezer preview: http://www.deezer.com/track/4763165  e.g. for YouTube: https://www.youtube.com/watch?v=oRdxUFDoQe0
      * @type {string}
      * @memberof Item
@@ -144,6 +150,7 @@ export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item
         'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'audioUrl': !exists(json, 'audio_url') ? undefined : ItemAudioUrlFromJSON(json['audio_url']),
         'audioDuration': !exists(json, 'audio_duration') ? undefined : json['audio_duration'],
+        'samplerate': !exists(json, 'samplerate') ? undefined : json['samplerate'],
         'externalUri': !exists(json, 'external_uri') ? undefined : json['external_uri'],
         'externalId': !exists(json, 'external_id') ? undefined : json['external_id'],
         'waveformUrl': !exists(json, 'waveform_url') ? undefined : json['waveform_url'],
