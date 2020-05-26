@@ -1387,7 +1387,13 @@ paths:
     get:
       operationId: listAnnotations
       description: ''
-      parameters: []
+      parameters:
+      - name: track_uuid
+        required: false
+        in: query
+        description: track_uuid
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -1434,6 +1440,12 @@ paths:
         description: A UUID string identifying this annotation.
         schema:
           type: string
+      - name: track_uuid
+        required: false
+        in: query
+        description: track_uuid
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -1451,6 +1463,12 @@ paths:
         in: path
         required: true
         description: A UUID string identifying this annotation.
+        schema:
+          type: string
+      - name: track_uuid
+        required: false
+        in: query
+        description: track_uuid
         schema:
           type: string
       requestBody:
@@ -1483,6 +1501,12 @@ paths:
         description: A UUID string identifying this annotation.
         schema:
           type: string
+      - name: track_uuid
+        required: false
+        in: query
+        description: track_uuid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1511,6 +1535,12 @@ paths:
         in: path
         required: true
         description: A UUID string identifying this annotation.
+        schema:
+          type: string
+      - name: track_uuid
+        required: false
+        in: query
+        description: track_uuid
         schema:
           type: string
       responses:

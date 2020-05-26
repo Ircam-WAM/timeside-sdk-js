@@ -147,6 +147,7 @@ export interface DestroyAnalysisTrackRequest {
 
 export interface DestroyAnnotationRequest {
     uuid: string;
+    trackUuid?: string;
 }
 
 export interface DestroyAnnotationTrackRequest {
@@ -178,6 +179,10 @@ export interface DestroyTaskRequest {
 
 export interface ListAnnotationTracksRequest {
     itemUuid?: string;
+}
+
+export interface ListAnnotationsRequest {
+    trackUuid?: string;
 }
 
 export interface ListItemsRequest {
@@ -214,6 +219,7 @@ export interface PartialUpdateAnalysisTrackRequest {
 
 export interface PartialUpdateAnnotationRequest {
     uuid: string;
+    trackUuid?: string;
     annotation?: Annotation;
 }
 
@@ -260,6 +266,7 @@ export interface RetrieveAnalysisTrackRequest {
 
 export interface RetrieveAnnotationRequest {
     uuid: string;
+    trackUuid?: string;
 }
 
 export interface RetrieveAnnotationTrackRequest {
@@ -339,6 +346,7 @@ export interface UpdateAnalysisTrackRequest {
 
 export interface UpdateAnnotationRequest {
     uuid: string;
+    trackUuid?: string;
     annotation?: Annotation;
 }
 
@@ -962,6 +970,10 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
+        if (requestParameters.trackUuid !== undefined) {
+            queryParameters['track_uuid'] = requestParameters.trackUuid;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -1320,8 +1332,12 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listAnnotationsRaw(): Promise<runtime.ApiResponse<Array<Annotation>>> {
+    async listAnnotationsRaw(requestParameters: ListAnnotationsRequest): Promise<runtime.ApiResponse<Array<Annotation>>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.trackUuid !== undefined) {
+            queryParameters['track_uuid'] = requestParameters.trackUuid;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1345,8 +1361,8 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listAnnotations(): Promise<Array<Annotation>> {
-        const response = await this.listAnnotationsRaw();
+    async listAnnotations(requestParameters: ListAnnotationsRequest): Promise<Array<Annotation>> {
+        const response = await this.listAnnotationsRaw(requestParameters);
         return await response.value();
     }
 
@@ -1935,6 +1951,10 @@ export class TimesideApi extends runtime.BaseAPI {
 
         const queryParameters: runtime.HTTPQuery = {};
 
+        if (requestParameters.trackUuid !== undefined) {
+            queryParameters['track_uuid'] = requestParameters.trackUuid;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
@@ -2299,6 +2319,10 @@ export class TimesideApi extends runtime.BaseAPI {
         }
 
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.trackUuid !== undefined) {
+            queryParameters['track_uuid'] = requestParameters.trackUuid;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2974,6 +2998,10 @@ export class TimesideApi extends runtime.BaseAPI {
         }
 
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.trackUuid !== undefined) {
+            queryParameters['track_uuid'] = requestParameters.trackUuid;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
