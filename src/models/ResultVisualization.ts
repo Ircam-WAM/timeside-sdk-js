@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ResultVisualizationVisualization,
+    ResultVisualizationVisualizationFromJSON,
+    ResultVisualizationVisualizationFromJSONTyped,
+    ResultVisualizationVisualizationToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -21,34 +28,10 @@ import { exists, mapValues } from '../runtime';
 export interface ResultVisualization {
     /**
      * 
-     * @type {string}
+     * @type {ResultVisualizationVisualization}
      * @memberof ResultVisualization
      */
-    subprocessorId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ResultVisualization
-     */
-    readonly start?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ResultVisualization
-     */
-    readonly stop?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ResultVisualization
-     */
-    readonly width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ResultVisualization
-     */
-    readonly height?: number;
+    visualization?: ResultVisualizationVisualization;
 }
 
 export function ResultVisualizationFromJSON(json: any): ResultVisualization {
@@ -61,11 +44,7 @@ export function ResultVisualizationFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'subprocessorId': !exists(json, 'subprocessor_id') ? undefined : json['subprocessor_id'],
-        'start': !exists(json, 'start') ? undefined : json['start'],
-        'stop': !exists(json, 'stop') ? undefined : json['stop'],
-        'width': !exists(json, 'width') ? undefined : json['width'],
-        'height': !exists(json, 'height') ? undefined : json['height'],
+        'visualization': !exists(json, 'visualization') ? undefined : ResultVisualizationVisualizationFromJSON(json['visualization']),
     };
 }
 
@@ -78,7 +57,7 @@ export function ResultVisualizationToJSON(value?: ResultVisualization | null): a
     }
     return {
         
-        'subprocessor_id': value.subprocessorId,
+        'visualization': ResultVisualizationVisualizationToJSON(value.visualization),
     };
 }
 

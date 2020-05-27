@@ -1672,6 +1672,40 @@ paths:
         description: A UUID string identifying this Result.
         schema:
           type: string
+      - name: subprocessor_id
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+      - name: start
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+          default: 0
+      - name: stop
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+          default: 0
+      - name: width
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+          default: 1024
+      - name: height
+        required: false
+        in: query
+        description: ''
+        schema:
+          type: number
+          default: 128
       responses:
         '200':
           content:
@@ -2279,6 +2313,20 @@ components:
           maxLength: 512
         description:
           type: string
+        render_type:
+          enum:
+          - 0
+          - 1
+          type: integer
+          description: 'Rendering types:
+
+
+            vector: 0
+
+
+            image: 1'
+          minimum: -2147483648
+          maximum: 2147483647
         preset:
           type: string
         sub_processor:
@@ -2506,25 +2554,25 @@ components:
     ResultVisualization:
       type: object
       properties:
-        subprocessor_id:
-          type: string
-          default: ''
-        start:
-          type: integer
+        visualization:
+          type: object
+          properties:
+            subprocessor_id:
+              type: string
+              readOnly: true
+            start:
+              type: number
+              default: 0
+            stop:
+              type: number
+              default: -1
+            width:
+              type: integer
+              default: 1024
+            height:
+              type: integer
+              default: 128
           readOnly: true
-          default: 0
-        stop:
-          type: integer
-          readOnly: true
-          default: -1
-        width:
-          type: integer
-          readOnly: true
-          default: 1024
-        height:
-          type: integer
-          readOnly: true
-          default: 128
     AuthToken:
       type: object
       properties:

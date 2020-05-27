@@ -311,6 +311,11 @@ export interface RetrieveResultRequest {
 
 export interface RetrieveResultVisualizationRequest {
     uuid: string;
+    subprocessorId?: number;
+    start?: number;
+    stop?: number;
+    width?: number;
+    height?: number;
 }
 
 export interface RetrieveSelectionRequest {
@@ -2692,6 +2697,26 @@ export class TimesideApi extends runtime.BaseAPI {
         }
 
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.subprocessorId !== undefined) {
+            queryParameters['subprocessor_id'] = requestParameters.subprocessorId;
+        }
+
+        if (requestParameters.start !== undefined) {
+            queryParameters['start'] = requestParameters.start;
+        }
+
+        if (requestParameters.stop !== undefined) {
+            queryParameters['stop'] = requestParameters.stop;
+        }
+
+        if (requestParameters.width !== undefined) {
+            queryParameters['width'] = requestParameters.width;
+        }
+
+        if (requestParameters.height !== undefined) {
+            queryParameters['height'] = requestParameters.height;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

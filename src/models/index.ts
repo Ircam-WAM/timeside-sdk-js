@@ -16,6 +16,7 @@ export * from './ProcessorList';
 export * from './Provider';
 export * from './Result';
 export * from './ResultVisualization';
+export * from './ResultVisualizationVisualization';
 export * from './Selection';
 export * from './SubProcessor';
 export * from './Task';

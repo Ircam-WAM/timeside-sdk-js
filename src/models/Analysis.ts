@@ -44,6 +44,12 @@ export interface Analysis {
      */
     description?: string;
     /**
+     * Rendering types:  vector: 0  image: 1
+     * @type {number}
+     * @memberof Analysis
+     */
+    renderType?: AnalysisRenderTypeEnum;
+    /**
      * 
      * @type {string}
      * @memberof Analysis
@@ -77,6 +83,7 @@ export function AnalysisFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'renderType': !exists(json, 'render_type') ? undefined : json['render_type'],
         'preset': json['preset'],
         'subProcessor': json['sub_processor'],
         'parametersSchema': json['parameters_schema'],
@@ -94,10 +101,20 @@ export function AnalysisToJSON(value?: Analysis | null): any {
         
         'title': value.title,
         'description': value.description,
+        'render_type': value.renderType,
         'preset': value.preset,
         'sub_processor': value.subProcessor,
         'parameters_schema': value.parametersSchema,
     };
+}
+
+/**
+* @export
+* @enum {string}
+*/
+export enum AnalysisRenderTypeEnum {
+    NUMBER_0 = 0,
+    NUMBER_1 = 1
 }
 
 
