@@ -33,3 +33,5 @@ package.json
 
 # Added documentation
 README.md
+
+src/index.ts
