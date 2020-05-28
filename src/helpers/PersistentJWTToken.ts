@@ -19,7 +19,7 @@ export class LocalStorageJWTToken implements PersistentJWTToken {
   }
 
   init () {
-    // setToken can throw InvalidTokenError (from jwtDecode)
+    // 'jwt-decode' can throw InvalidTokenError
     try {
       this._token = this.getFromPersistentStorage()
       if (!this._token) {

@@ -26,73 +26,65 @@ npm install --save @ircam/timeside-sdk
 npm install --save portable-fetch
 ```
 
-### Example for Typescript
+### API Docs
+
+This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/timeside/api/schema/).
+You can also use the [following document](https://sandbox.wasabi.telemeta.org/timeside/api/docs/)
+
+If you are looking for some implementation examples, you can have a look at [Timeside Player](https://github.com/Ircam-Web/timeside-player/).
+You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/timeside-player/blob/master/src/utils/api.ts) file
+
+### Example (ESModule)
 
 ```javascript
-import { DefaultApi, Configuration } from '@ircam/timeside-sdk'
-// Use alternative fetch API (for Node / Polyfill)
 import portableFetch from 'portable-fetch'
 
-const config = new Configuration({
-	// API URL
-	basepath: 'https://wasabi.telemeta.org',
+import {
+  TimesideApi,
+  Configuration,
+  AutoRefreshConfiguration,
+  LocalStorageJWTToken,
+	JWTToken
+} from '@ircam/timeside-sdk'
 
-	// Send cookies with requests
-	credentials: 'include',
+export const basePath = 'https://sandbox.wasabi.telemeta.org'
 
+// This helper saves the JWTToken to window.localStorage
+// You may also implements your own way of storing your Token
+// by implementing the PersistentJWTToken interface
+export const persistentToken = new LocalStorageJWTToken()
+persistentToken.init()
+
+const urlConfig = {
+  basePath,
 	// Use alternative fetch API (for Node / Polyfill)
-	fetchApi: portableFetch
-})
+  fetchApi: portableFetch,
+}
 
-const api = new DefaultApi(config)
+// rawApi is the the api without jwt middlewares
+// Use it for login or routes where you don't need authentication
+export const rawApi = new TimesideApi(new Configuration(urlConfig))
+
+// Configuration to auto-refresh token when needed
+const config = AutoRefreshConfiguration(urlConfig, persistentToken)
+const api = new TimesideApi(new Configuration(config))
 
 async function callApi () {
+	// Login
+	const username = 'your_username'
+	const password = 'your_secret_password'
+	const tokenObtainPair = { username, password }
+	const token = await rawApi.createTokenObtainPair({ tokenObtainPair })
+	persistentToken.token = JWTToken.fromBase64(token.access, token.refresh)
+
 	// List items
 	const items = await api.listItems({})
 	console.log(items)
+	const itemUuid = items[0].uuid
 
-	// Create an item
-	const body: Item = {
-		title: 'test'
-	}
-	const item = await api.createItem({ body })
-	console.log(item)
-}
-
-try {
-	callApi()
-} catch (e) {
-	if (e.status === 401) {
-		console.error(`Woops. Seems like you're not authorized`)
-	} else {
-		console.error('Something occured', e)
-	}
-}
-```
-
-### Example for Javascript
-
-```typescript
-import { DefaultApi } from '@ircam/timeside-sdk'
-// Use alternative fetch API (for Node / Polyfill)
-import portableFetch from 'portable-fetch'
-
-
-const api = new DefaultApi({
-	// API URL
-	basepath: 'https://wasabi.telemeta.org',
-
-	// Send cookies with requests
-	credentials: 'include',
-
-	// Use alternative fetch API (for Node / Polyfill)
-	fetchApi: portableFetch
-})
-
-async function callApi () {
-	// List items
-	const items = await api.listItems({})
-	console.log(items)
+	// Get the item's Waveform
+	const waveform = await api.retrieveItemWaveform({ uuid: itemUuid })
+	console.log(waveform)
 
 	// Create an item
 	const body = {
@@ -100,15 +92,21 @@ async function callApi () {
 	}
 	const item = await api.createItem({ body })
 	console.log(item)
+
+	// And get/create :
+	// Annotations, Analysis, AnalysisResult,
+	// Transcode, Visualization (like Spectrogram) etc..
+	// ...
 }
 
-try {
-	callApi()
-} catch (e) {
-	if (e.status === 401) {
-		console.error(`Woops. Seems like you're not authorized`)
-	} else {
-		console.error('Something occured', e)
+// Wrap with anonymous function to use
+// top-level async/await
+(async () => {
+	try {
+		await callApi()
+	} catch (e) {
+		// Throw Response Error
+		console.error('Something occured', e.statusText)
 	}
-}
+})()
 ```
