@@ -28,8 +28,8 @@ npm install --save portable-fetch
 
 ### API Docs
 
-This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/timeside/api/schema/).
-You can also use the [following document](https://sandbox.wasabi.telemeta.org/timeside/api/docs/)
+This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/timeside/api/schema/).    
+You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/timeside/api/docs/).
 
 If you are looking for some implementation examples, you can have a look at [Timeside Player](https://github.com/Ircam-Web/timeside-player/).
 You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/timeside-player/blob/master/src/utils/api.ts) file
