@@ -44,7 +44,7 @@ import {
   Configuration,
   AutoRefreshConfiguration,
   LocalStorageJWTToken,
-	JWTToken
+  JWTToken
 } from '@ircam/timeside-sdk'
 
 export const basePath = 'https://sandbox.wasabi.telemeta.org'
@@ -57,7 +57,7 @@ persistentToken.init()
 
 const urlConfig = {
   basePath,
-	// Use alternative fetch API (for Node / Polyfill)
+  // Use alternative fetch API (for Node / Polyfill)
   fetchApi: portableFetch,
 }
 
@@ -70,43 +70,43 @@ const config = AutoRefreshConfiguration(urlConfig, persistentToken)
 const api = new TimesideApi(new Configuration(config))
 
 async function callApi () {
-	// Login
-	const username = 'your_username'
-	const password = 'your_secret_password'
-	const tokenObtainPair = { username, password }
-	const token = await rawApi.createTokenObtainPair({ tokenObtainPair })
-	persistentToken.token = JWTToken.fromBase64(token.access, token.refresh)
+  // Login
+  const username = 'your_username'
+  const password = 'your_secret_password'
+  const tokenObtainPair = { username, password }
+  const token = await rawApi.createTokenObtainPair({ tokenObtainPair })
+  persistentToken.token = JWTToken.fromBase64(token.access, token.refresh)
 
-	// List items
-	const items = await api.listItems({})
-	console.log(items)
-	const itemUuid = items[0].uuid
+  // List items
+  const items = await api.listItems({})
+  console.log(items)
+  const itemUuid = items[0].uuid
 
-	// Get the item's Waveform
-	const waveform = await api.retrieveItemWaveform({ uuid: itemUuid })
-	console.log(waveform)
+  // Get the item's Waveform
+  const waveform = await api.retrieveItemWaveform({ uuid: itemUuid })
+  console.log(waveform)
 
-	// Create an item
-	const body = {
-		title: 'test'
-	}
-	const item = await api.createItem({ body })
-	console.log(item)
+  // Create an item
+  const body = {
+    title: 'test'
+  }
+  const item = await api.createItem({ body })
+  console.log(item)
 
-	// And get/create :
-	// Annotations, Analysis, AnalysisResult,
-	// Transcode, Visualization (like Spectrogram) etc..
-	// ...
+  // And get/create :
+  // Annotations, Analysis, AnalysisResult,
+  // Transcode, Visualization (like Spectrogram) etc..
+  // ...
 }
 
 // Wrap with anonymous function to use
 // top-level async/await
 (async () => {
-	try {
-		await callApi()
-	} catch (e) {
-		// Throw Response Error
-		console.error('Something occured', e.statusText)
-	}
+  try {
+    await callApi()
+  } catch (e) {
+    // Throw Response Error
+    console.error('Something occured', e.statusText)
+  }
 })()
 ```
