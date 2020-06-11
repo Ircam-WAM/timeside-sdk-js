@@ -1067,7 +1067,13 @@ paths:
     get:
       operationId: listAnalysisTracks
       description: ''
-      parameters: []
+      parameters:
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -1114,6 +1120,12 @@ paths:
         description: ''
         schema:
           type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
+        schema:
+          type: string
       responses:
         '200':
           content:
@@ -1131,6 +1143,12 @@ paths:
         in: path
         required: true
         description: ''
+        schema:
+          type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
         schema:
           type: string
       requestBody:
@@ -1163,6 +1181,12 @@ paths:
         description: ''
         schema:
           type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1191,6 +1215,12 @@ paths:
         in: path
         required: true
         description: ''
+        schema:
+          type: string
+      - name: item_uuid
+        required: false
+        in: query
+        description: item_uuid
         schema:
           type: string
       responses:
