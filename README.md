@@ -36,7 +36,7 @@ You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/t
 
 ### Example (ESModule)
 
-Initialize on Node
+## Initialize on Node
 
 ```javascript
 import crossFetch from 'cross-fetch'
@@ -50,7 +50,7 @@ import {
   Task,
 } from '@ircam/timeside-sdk'
 
-// Polyfill FormData because SDK use `new FormData`
+// Polyfill FormData because SDK use `new FormData` which is not available in Node.
 // @ts-ignore
 global.FormData = formDataNode
 
@@ -65,7 +65,9 @@ const api = new TimesideApi(ServerSideConfiguration({
 }))
 ```
 
-Initialize on the browser
+## Initialize on the browser
+
+Initialize a raw api to make login, refreshToken API calls.
 
 ```javascript
 import {
@@ -76,30 +78,43 @@ import {
   JWTToken
 } from '@ircam/timeside-sdk'
 
-export const basePath = 'https://sandbox.wasabi.telemeta.org'
-
-// This helper saves the JWTToken to window.localStorage
-// You may also implements your own way of storing your Token
-// by implementing the PersistentJWTToken interface
-export const persistentToken = new LocalStorageJWTToken()
-persistentToken.init()
-
 const urlConfig = {
-  basePath,
-  // Use alternative fetch API (for Node / Polyfill)
-  fetchApi: portableFetch,
+  basePath: 'https://sandbox.wasabi.telemeta.org'
 }
 
 // rawApi is the the api without jwt middlewares
 // Use it for login or routes where you don't need authentication
-export const rawApi = new TimesideApi(new Configuration(urlConfig))
+const rawApi = new TimesideApi(new Configuration(urlConfig))
+```
 
-// Configuration to auto-refresh token when needed
+Init a persistent token save it to browser's local storage.
+By default, the token is saved in the 'timeside-api-token' key. You can provide an string parameter to `LocalStorageJWTToken` to change it.
+
+```javascript
+// This helper saves the JWTToken to window.localStorage
+// You may also implements your own way of storing your Token
+// by implementing the PersistentJWTToken interface
+const persistentToken = new LocalStorageJWTToken()
+
+// Check if a token already exist
+persistentToken.init()
+
+// Configuration to auto-refresh access token when expired
 const config = AutoRefreshConfiguration(urlConfig, persistentToken)
 const api = new TimesideApi(new Configuration(config))
 ```
 
-Make some API calls
+Login and save the JWT Token
+
+```javascript
+async function login (username, password) {
+  const tokenObtainPair = { username, password }
+  const token = await rawApi.createTokenObtainPair({ tokenObtainPair })
+  persistentToken.token = JWTToken.fromBase64(token.access, token.refresh)
+}
+```
+
+### Make some API calls (Browser or Node)
 
 ```javascript
 
