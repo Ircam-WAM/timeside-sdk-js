@@ -6,3 +6,4 @@ export * from './LocalStorageJWTToken'
 export * from './URL';
 export * from './AbortableFetch';
 export * from './AutoRefreshConfiguration';
+export * from './Status';
