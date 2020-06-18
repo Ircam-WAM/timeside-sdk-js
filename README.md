@@ -23,7 +23,7 @@ It can be used in both TypeScript and JavaScript. In TypeScript, the definition 
 npm install --save @ircam/timeside-sdk
 
 # If you need to polyfill Fetch (for Node / older browsers), you may use
-npm install --save portable-fetch
+npm install --save cross-fetch
 ```
 
 ### API Docs
@@ -36,9 +36,38 @@ You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/t
 
 ### Example (ESModule)
 
-```javascript
-import portableFetch from 'portable-fetch'
+Initialize on Node
 
+```
+import crossFetch from 'cross-fetch'
+import formDataNode from 'formdata-node'
+import {
+  TimesideApi,
+  ServerSideConfiguration,
+  Selection,
+  Experience,
+  TaskStatus,
+  Task,
+} from '@ircam/timeside-sdk'
+
+// Polyfill FormData because SDK use `new FormData`
+// @ts-ignore
+global.FormData = formDataNode
+
+const api = new TimesideApi(ServerSideConfiguration({
+  // Use sandbox endpoint
+  basePath: 'https://sandbox.wasabi.telemeta.org',
+  // Credentials (get from environment)
+  username: process.env.TIMESIDE_API_USER,
+  password: process.env.TIMESIDE_API_PASS,
+  // Ponyfill fetchApi
+  fetchApi: crossFetch
+}))
+```
+
+Initialize on the browser
+
+```javascript
 import {
   TimesideApi,
   Configuration,
@@ -68,15 +97,13 @@ export const rawApi = new TimesideApi(new Configuration(urlConfig))
 // Configuration to auto-refresh token when needed
 const config = AutoRefreshConfiguration(urlConfig, persistentToken)
 const api = new TimesideApi(new Configuration(config))
+```
+
+Make some API calls
+
+```javascript
 
 async function callApi () {
-  // Login
-  const username = 'your_username'
-  const password = 'your_secret_password'
-  const tokenObtainPair = { username, password }
-  const token = await rawApi.createTokenObtainPair({ tokenObtainPair })
-  persistentToken.token = JWTToken.fromBase64(token.access, token.refresh)
-
   // List items
   const items = await api.listItems({})
   console.log(items)
@@ -87,8 +114,9 @@ async function callApi () {
   console.log(waveform)
 
   // Create an item
-  const body = {
-    title: 'test'
+  const item = {
+    title: 'Unknown Song',
+		description: 'Some great song!'
   }
   const item = await api.createItem({ body })
   console.log(item)
@@ -100,7 +128,7 @@ async function callApi () {
 }
 
 // Wrap with anonymous function to use
-// top-level async/await
+// "top-level" async/await
 (async () => {
   try {
     await callApi()
