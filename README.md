@@ -1,23 +1,14 @@
-## timeside-sdk
+# Timeside API SDK / client 
 
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+Timeside API: https://github.com/parisson/timeside
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+Features :
+- Typescript
+- Javascript
+- Node.js
+- Fetch API
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Install
+## Install
 
 ```
 npm install --save @ircam/timeside-sdk
@@ -26,7 +17,7 @@ npm install --save @ircam/timeside-sdk
 npm install --save cross-fetch
 ```
 
-### API Docs
+## API Docs
 
 This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/timeside/api/schema/).    
 You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/timeside/api/docs/).
@@ -34,20 +25,16 @@ You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/timeside/api
 If you are looking for some implementation examples, you can have a look at [Timeside Player](https://github.com/Ircam-Web/timeside-player/).
 You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/timeside-player/blob/master/src/utils/api.ts) file
 
-### Example (ESModule)
+## Example
 
-## Initialize on Node
+### Initialize on Node
 
 ```javascript
 import crossFetch from 'cross-fetch'
 import formDataNode from 'formdata-node'
 import {
   TimesideApi,
-  ServerSideConfiguration,
-  Selection,
-  Experience,
-  TaskStatus,
-  Task,
+  ServerSideConfiguration
 } from '@ircam/timeside-sdk'
 
 // Polyfill FormData because SDK use `new FormData` which is not available in Node.
@@ -65,9 +52,9 @@ const api = new TimesideApi(ServerSideConfiguration({
 }))
 ```
 
-## Initialize on the browser
+### Initialize on the browser
 
-Initialize a raw api to make login, refreshToken API calls.
+Initialize a raw client to make raw calls (login, refreshToken etc..).
 
 ```javascript
 import {
@@ -87,8 +74,8 @@ const urlConfig = {
 const rawApi = new TimesideApi(new Configuration(urlConfig))
 ```
 
-Init a persistent token save it to browser's local storage.
-By default, the token is saved in the 'timeside-api-token' key. You can provide an string parameter to `LocalStorageJWTToken` to change it.
+Init a persistent token to save it to browser's local storage.
+By default, the token is saved in the 'timeside-api-token' local storage's key. You can provide an string parameter to `LocalStorageJWTToken` constructor to change it.
 
 ```javascript
 // This helper saves the JWTToken to window.localStorage
@@ -96,7 +83,7 @@ By default, the token is saved in the 'timeside-api-token' key. You can provide 
 // by implementing the PersistentJWTToken interface
 const persistentToken = new LocalStorageJWTToken()
 
-// Check if a token already exist
+// Check if a token already exist and parse it
 persistentToken.init()
 
 // Configuration to auto-refresh access token when expired
@@ -131,7 +118,7 @@ async function callApi () {
   // Create an item
   const item = {
     title: 'Unknown Song',
-		description: 'Some great song!'
+    description: 'Some great song!'
   }
   const item = await api.createItem({ body })
   console.log(item)
@@ -141,15 +128,4 @@ async function callApi () {
   // Transcode, Visualization (like Spectrogram) etc..
   // ...
 }
-
-// Wrap with anonymous function to use
-// "top-level" async/await
-(async () => {
-  try {
-    await callApi()
-  } catch (e) {
-    // Throw Response Error
-    console.error('Something occured', e.statusText)
-  }
-})()
 ```
