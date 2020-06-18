@@ -38,7 +38,7 @@ You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/t
 
 Initialize on Node
 
-```
+```javascript
 import crossFetch from 'cross-fetch'
 import formDataNode from 'formdata-node'
 import {
