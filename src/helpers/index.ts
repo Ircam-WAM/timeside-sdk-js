@@ -7,3 +7,4 @@ export * from './AbortableFetch';
 export * from './AutoRefreshConfiguration';
 export * from './Status';
 export * from './ServerSideConfiguration'
+export * from './TimesideApi';
