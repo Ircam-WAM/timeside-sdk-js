@@ -43,7 +43,7 @@ export function ServerSideConfiguration(config: ServerSideConfigurationParameter
       {
         pre: async (context: RequestContext): Promise<FetchParams | void> => {
           // Token do not exist or refresh token is expired
-          if (!token || !token.refresh.isExpired()) {
+          if (!token || token.refresh.isExpired()) {
             const { access, refresh } = await rawApi.createTokenObtainPair({ tokenObtainPair: credentials })
             token = JWTToken.fromBase64(access, refresh)
 
