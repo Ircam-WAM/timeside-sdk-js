@@ -22,9 +22,6 @@ npm install --save cross-fetch
 This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/timeside/api/schema/).    
 You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/timeside/api/docs/).
 
-If you are looking for some implementation examples, you can have a look at [Timeside Player](https://github.com/Ircam-Web/timeside-player/).
-You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/timeside-player/blob/master/src/utils/api.ts) file
-
 ## Example
 
 ### Initialize on Node
@@ -129,3 +126,17 @@ async function callApi () {
   // ...
 }
 ```
+
+
+## Integration examples
+
+If you are looking for some implementation examples, here's a list of project that uses this SDK.
+
+### Timeside player (browser)
+
+[Timeside Player](https://github.com/Ircam-Web/timeside-player/) uses this SDK to provide a player from Timeside API.
+You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/timeside-player/blob/master/src/utils/api.ts) file
+
+### Timeside scripts (node)
+
+[Timeside Scripts](https://github.com/Ircam-Web/timeside-scripts) host Node.JS scripts.
