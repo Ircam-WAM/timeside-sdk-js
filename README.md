@@ -140,3 +140,7 @@ You may be interested in the [`src/utils/api.ts`](https://github.com/Ircam-Web/t
 ### Timeside scripts (node)
 
 [Timeside Scripts](https://github.com/Ircam-Web/timeside-scripts) host Node.JS scripts.
+
+#### Authors
+
+- [Martin Desrumaux](https://github.com/gnuletik)
