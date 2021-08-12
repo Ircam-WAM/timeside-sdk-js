@@ -21,9 +21,8 @@ export class JWTTokenComponent {
     this.decoded = jwtDecode<DecodedToken>(base64)
   }
 
-  // We use an offset of 100ms to anticipate
-  // network latency of API requests
-  isExpired (offsetMs = 100): boolean {
+  // We use an offset of 5s to refresh the token before it expired
+  isExpired (offsetMs = 5000): boolean {
     return (Date.now() + offsetMs) >= this.decoded.exp * 1000
   }
 }
