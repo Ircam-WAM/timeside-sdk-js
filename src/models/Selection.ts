@@ -24,7 +24,7 @@ export interface Selection {
      * @type {string}
      * @memberof Selection
      */
-    readonly title?: string;
+    title?: string;
     /**
      * 
      * @type {string}
@@ -85,6 +85,7 @@ export function SelectionToJSON(value?: Selection | null): any {
     }
     return {
         
+        'title': value.title,
         'items': value.items,
         'selections': value.selections,
         'author': value.author,

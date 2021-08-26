@@ -67,6 +67,12 @@ export interface Analysis {
      * @memberof Analysis
      */
     parametersSchema: object;
+    /**
+     * boolean to avoid celery when testing
+     * @type {boolean}
+     * @memberof Analysis
+     */
+    test?: boolean;
 }
 
 export function AnalysisFromJSON(json: any): Analysis {
@@ -87,6 +93,7 @@ export function AnalysisFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'preset': json['preset'],
         'subProcessor': json['sub_processor'],
         'parametersSchema': json['parameters_schema'],
+        'test': !exists(json, 'test') ? undefined : json['test'],
     };
 }
 
@@ -105,6 +112,7 @@ export function AnalysisToJSON(value?: Analysis | null): any {
         'preset': value.preset,
         'sub_processor': value.subProcessor,
         'parameters_schema': value.parametersSchema,
+        'test': value.test,
     };
 }
 

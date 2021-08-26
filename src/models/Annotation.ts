@@ -39,6 +39,12 @@ export interface Annotation {
     track: string;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof Annotation
+     */
+    results?: Array<string>;
+    /**
+     * 
      * @type {string}
      * @memberof Annotation
      */
@@ -76,6 +82,7 @@ export function AnnotationFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
         'track': json['track'],
+        'results': !exists(json, 'results') ? undefined : json['results'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'startTime': !exists(json, 'start_time') ? undefined : json['start_time'],
@@ -93,6 +100,7 @@ export function AnnotationToJSON(value?: Annotation | null): any {
     return {
         
         'track': value.track,
+        'results': value.results,
         'title': value.title,
         'description': value.description,
         'start_time': value.startTime,

@@ -61,6 +61,12 @@ export interface Task {
      * @memberof Task
      */
     item?: string | null;
+    /**
+     * boolean to avoid celery when testing
+     * @type {boolean}
+     * @memberof Task
+     */
+    test?: boolean;
 }
 
 export function TaskFromJSON(json: any): Task {
@@ -80,6 +86,7 @@ export function TaskFromJSONTyped(json: any, ignoreDiscriminator: boolean): Task
         'status': !exists(json, 'status') ? undefined : json['status'],
         'author': !exists(json, 'author') ? undefined : json['author'],
         'item': !exists(json, 'item') ? undefined : json['item'],
+        'test': !exists(json, 'test') ? undefined : json['test'],
     };
 }
 
@@ -97,6 +104,7 @@ export function TaskToJSON(value?: Task | null): any {
         'status': value.status,
         'author': value.author,
         'item': value.item,
+        'test': value.test,
     };
 }
 
