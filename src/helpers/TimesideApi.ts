@@ -44,7 +44,7 @@ export class TimesideApi extends GeneratedApi {
     }
 
     const response = await this.request({
-      path: `/timeside/api/items/`,
+      path: `/api/items/`,
       method: 'POST',
       headers: headerParameters,
       query: queryParameters,

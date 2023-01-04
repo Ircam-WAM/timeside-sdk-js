@@ -419,7 +419,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis/`,
+            path: `/api/analysis/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -454,7 +454,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/`,
+            path: `/api/analysis_tracks/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -489,7 +489,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotations/`,
+            path: `/api/annotations/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -524,7 +524,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotation_tracks/`,
+            path: `/api/annotation_tracks/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -593,7 +593,7 @@ export class TimesideApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/timeside/api-token-auth/`,
+            path: `/api-token-auth/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -629,7 +629,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/experiences/`,
+            path: `/api/experiences/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -665,7 +665,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/`,
+            path: `/api/items/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -701,7 +701,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/presets/`,
+            path: `/api/presets/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -738,7 +738,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/selections/`,
+            path: `/api/selections/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -775,7 +775,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/tasks/`,
+            path: `/api/tasks/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -812,7 +812,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/token/`,
+            path: `/api/token/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -849,7 +849,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/token/refresh/`,
+            path: `/api/token/refresh/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -886,7 +886,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/token/verify/`,
+            path: `/api/token/verify/`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -924,7 +924,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -963,7 +963,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1002,7 +1002,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1041,7 +1041,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1077,7 +1077,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1121,7 +1121,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1157,7 +1157,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1194,7 +1194,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1231,7 +1231,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1263,7 +1263,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis/`,
+            path: `/api/analysis/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1299,7 +1299,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/`,
+            path: `/api/analysis_tracks/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1335,7 +1335,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotation_tracks/`,
+            path: `/api/annotation_tracks/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1371,7 +1371,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotations/`,
+            path: `/api/annotations/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1403,7 +1403,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/token-csrf/`,
+            path: `/api/token-csrf/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1436,7 +1436,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/experiences/`,
+            path: `/api/experiences/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1477,7 +1477,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/`,
+            path: `/api/items/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1510,7 +1510,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/presets/`,
+            path: `/api/presets/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1544,7 +1544,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/processors/`,
+            path: `/api/processors/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1578,7 +1578,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/providers/`,
+            path: `/api/providers/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1620,7 +1620,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/results/`,
+            path: `/api/results/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1654,7 +1654,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/selections/`,
+            path: `/api/selections/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1688,7 +1688,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/subprocessors/`,
+            path: `/api/subprocessors/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1722,7 +1722,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/tasks/`,
+            path: `/api/tasks/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1756,7 +1756,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/users/`,
+            path: `/api/users/`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1793,7 +1793,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/{uuid}/parameters_default/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis_tracks/{uuid}/parameters_default/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1830,7 +1830,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/processors/{pid}/parameters_default/`.replace(`{${"pid"}}`, encodeURIComponent(String(requestParameters.pid))),
+            path: `/api/processors/{pid}/parameters_default/`.replace(`{${"pid"}}`, encodeURIComponent(String(requestParameters.pid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1868,7 +1868,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/processors/{pid}/parameters_schema/`.replace(`{${"pid"}}`, encodeURIComponent(String(requestParameters.pid))),
+            path: `/api/processors/{pid}/parameters_schema/`.replace(`{${"pid"}}`, encodeURIComponent(String(requestParameters.pid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1907,7 +1907,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1950,7 +1950,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1993,7 +1993,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2036,7 +2036,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2076,7 +2076,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2124,7 +2124,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2164,7 +2164,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2205,7 +2205,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2246,7 +2246,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -2284,7 +2284,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2324,7 +2324,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2364,7 +2364,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2404,7 +2404,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2441,7 +2441,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2486,7 +2486,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2535,7 +2535,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/{uuid}/waveform/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/items/{uuid}/waveform/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2573,7 +2573,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2611,7 +2611,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/processors/{pid}/`.replace(`{${"pid"}}`, encodeURIComponent(String(requestParameters.pid))),
+            path: `/api/processors/{pid}/`.replace(`{${"pid"}}`, encodeURIComponent(String(requestParameters.pid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2649,7 +2649,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/providers/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/providers/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2695,7 +2695,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/results/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/results/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2753,7 +2753,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/results/{uuid}/visual/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/results/{uuid}/visual/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2791,7 +2791,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2829,7 +2829,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/subprocessors/{sub_processor_id}/`.replace(`{${"sub_processor_id"}}`, encodeURIComponent(String(requestParameters.subProcessorId))),
+            path: `/api/subprocessors/{sub_processor_id}/`.replace(`{${"sub_processor_id"}}`, encodeURIComponent(String(requestParameters.subProcessorId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2867,7 +2867,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2905,7 +2905,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/users/{username}/`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters.username))),
+            path: `/api/users/{username}/`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters.username))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2944,7 +2944,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/{uuid}/set_parameters/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis_tracks/{uuid}/set_parameters/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2983,7 +2983,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3026,7 +3026,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/analysis_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3069,7 +3069,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotations/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3112,7 +3112,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/annotation_tracks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3152,7 +3152,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/experiences/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3200,7 +3200,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/items/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3240,7 +3240,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/presets/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3281,7 +3281,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/selections/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -3322,7 +3322,7 @@ export class TimesideApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/timeside/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            path: `/api/tasks/{uuid}/`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

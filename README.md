@@ -1,6 +1,6 @@
 # Timeside API SDK / client 
 
-Timeside API: https://github.com/parisson/timeside
+Timeside API: https://github.com/Ircam-WAM/TimeSide
 
 Features :
 - Typescript
@@ -19,8 +19,8 @@ npm install --save cross-fetch
 
 ## API Docs
 
-This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/timeside/api/schema/).    
-You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/timeside/api/docs/).
+This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/api/schema/).    
+You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/api/docs/).
 
 ## Example
 

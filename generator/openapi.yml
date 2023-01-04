@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: RESTful API of TimeSide, a scalable audio processing framework.
 paths:
-  /timeside/api/users/:
+  /api/users/:
     get:
       operationId: listUsers
       description: Users of the API able to share data.
@@ -20,7 +20,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/users/{username}/:
+  /api/users/{username}/:
     get:
       operationId: retrieveUser
       description: Users of the API able to share data.
@@ -41,7 +41,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/items/:
+  /api/items/:
     get:
       operationId: listItems
       description: ''
@@ -93,7 +93,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/items/{uuid}/:
+  /api/items/{uuid}/:
     get:
       operationId: retrieveItem
       description: ''
@@ -236,7 +236,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/providers/:
+  /api/providers/:
     get:
       operationId: listProviders
       description: Audio providers available in the API.
@@ -252,7 +252,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/providers/{uuid}/:
+  /api/providers/{uuid}/:
     get:
       operationId: retrieveProvider
       description: Audio providers available in the API.
@@ -272,7 +272,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/selections/:
+  /api/selections/:
     get:
       operationId: listSelections
       description: Set of items and other selections.
@@ -312,7 +312,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/selections/{uuid}/:
+  /api/selections/{uuid}/:
     get:
       operationId: retrieveSelection
       description: Set of items and other selections.
@@ -407,7 +407,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/processors/:
+  /api/processors/:
     get:
       operationId: listProcessors
       description: Audio process to compute on items given potential parameters
@@ -423,7 +423,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/processors/{pid}/:
+  /api/processors/{pid}/:
     get:
       operationId: retrieveProcessor
       description: Audio process to compute on items given potential parameters
@@ -443,7 +443,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/processors/{pid}/parameters_default/:
+  /api/processors/{pid}/parameters_default/:
     get:
       operationId: parametersDefaultProcessor
       description: Audio process to compute on items given potential parameters
@@ -463,7 +463,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/processors/{pid}/parameters_schema/:
+  /api/processors/{pid}/parameters_schema/:
     get:
       operationId: parametersSchemaProcessor
       description: Audio process to compute on items given potential parameters
@@ -483,7 +483,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/subprocessors/:
+  /api/subprocessors/:
     get:
       operationId: listSubProcessors
       description: 'Store a result id associated with a given Processor,
@@ -501,7 +501,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/subprocessors/{sub_processor_id}/:
+  /api/subprocessors/{sub_processor_id}/:
     get:
       operationId: retrieveSubProcessor
       description: 'Store a result id associated with a given Processor,
@@ -523,7 +523,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/presets/:
+  /api/presets/:
     get:
       operationId: listPresets
       description: Processor with its potential parameters.
@@ -563,7 +563,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/presets/{uuid}/:
+  /api/presets/{uuid}/:
     get:
       operationId: retrievePreset
       description: Processor with its potential parameters.
@@ -658,7 +658,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/experiences/:
+  /api/experiences/:
     get:
       operationId: listExperiences
       description: Set of presets and other experiences.
@@ -698,7 +698,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/experiences/{uuid}/:
+  /api/experiences/{uuid}/:
     get:
       operationId: retrieveExperience
       description: Set of presets and other experiences.
@@ -793,7 +793,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/tasks/:
+  /api/tasks/:
     get:
       operationId: listTasks
       description: Experience applied to a selection or a single item.
@@ -833,7 +833,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/tasks/{uuid}/:
+  /api/tasks/{uuid}/:
     get:
       operationId: retrieveTask
       description: Experience applied to a selection or a single item.
@@ -928,7 +928,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/analysis/:
+  /api/analysis/:
     get:
       operationId: listAnalysis
       description: ''
@@ -968,7 +968,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/analysis/{uuid}/:
+  /api/analysis/{uuid}/:
     get:
       operationId: retrieveAnalysis
       description: ''
@@ -1063,7 +1063,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/analysis_tracks/:
+  /api/analysis_tracks/:
     get:
       operationId: listAnalysisTracks
       description: ''
@@ -1109,7 +1109,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/analysis_tracks/{uuid}/:
+  /api/analysis_tracks/{uuid}/:
     get:
       operationId: retrieveAnalysisTrack
       description: ''
@@ -1228,7 +1228,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/analysis_tracks/{uuid}/parameters_default/:
+  /api/analysis_tracks/{uuid}/parameters_default/:
     get:
       operationId: parametersDefaultAnalysisTrack
       description: ''
@@ -1248,7 +1248,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/annotation_tracks/:
+  /api/annotation_tracks/:
     get:
       operationId: listAnnotationTracks
       description: ''
@@ -1294,7 +1294,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/annotation_tracks/{uuid}/:
+  /api/annotation_tracks/{uuid}/:
     get:
       operationId: retrieveAnnotationTrack
       description: ''
@@ -1413,7 +1413,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/annotations/:
+  /api/annotations/:
     get:
       operationId: listAnnotations
       description: ''
@@ -1459,7 +1459,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/annotations/{uuid}/:
+  /api/annotations/{uuid}/:
     get:
       operationId: retrieveAnnotation
       description: ''
@@ -1578,7 +1578,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/results/:
+  /api/results/:
     get:
       operationId: listResults
       description: Result of processing on items.
@@ -1606,7 +1606,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/results/{uuid}/:
+  /api/results/{uuid}/:
     get:
       operationId: retrieveResult
       description: Result of processing on items.
@@ -1638,7 +1638,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/token-csrf/:
+  /api/token-csrf/:
     get:
       operationId: listCsrfTokens
       description: ''
@@ -1653,7 +1653,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/items/{uuid}/waveform/:
+  /api/items/{uuid}/waveform/:
     get:
       operationId: retrieveItemWaveform
       description: Gives audio waveform of an item.
@@ -1691,7 +1691,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/results/{uuid}/visual/:
+  /api/results/{uuid}/visual/:
     get:
       operationId: retrieveResultVisualization
       description: 'PNG rendering of 2D numerical data (example: a spectrogram).'
@@ -1745,7 +1745,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/analysis_tracks/{uuid}/set_parameters/:
+  /api/analysis_tracks/{uuid}/set_parameters/:
     post:
       operationId: setParametersAnalysisTrack
       description: ''
@@ -1776,7 +1776,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api-token-auth/:
+  /api-token-auth/:
     post:
       operationId: createAuthToken
       description: ''
@@ -1801,7 +1801,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/token/:
+  /api/token/:
     post:
       operationId: createTokenObtainPair
       description: 'Takes a set of user credentials and returns an access and refresh
@@ -1829,7 +1829,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/token/refresh/:
+  /api/token/refresh/:
     post:
       operationId: createTokenRefresh
       description: 'Takes a refresh type JSON web token and returns an access type
@@ -1857,7 +1857,7 @@ paths:
           description: ''
       tags:
       - timeside
-  /timeside/api/token/verify/:
+  /api/token/verify/:
     post:
       operationId: createTokenVerify
       description: 'Takes a token and indicates if it is valid.  This view provides

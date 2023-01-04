@@ -1,16 +1,16 @@
 // Building URL from ID for API POST requests where an Hyperlink is required
-// https://github.com/Parisson/TimeSide/issues/188
+// https://github.com/Ircam-WAM/TimeSide/issues/188
 
 export function getItemUrl (basePath: string, uuid: string) {
-  return `${basePath}/timeside/api/items/${uuid}/`
+  return `${basePath}/api/items/${uuid}/`
 }
 
 export function getAnalysisUrl (basePath: string, uuid: string) {
-  return `${basePath}/timeside/api/analysis/${uuid}/`
+  return `${basePath}/api/analysis/${uuid}/`
 }
 
 export function getAnnotationTrackUrl (basePath: string, uuid: string) {
-  return `${basePath}/timeside/api/annotation_tracks/${uuid}/`
+  return `${basePath}/api/annotation_tracks/${uuid}/`
 }
 
 export function getUuidFromResultUrl (url: string) {

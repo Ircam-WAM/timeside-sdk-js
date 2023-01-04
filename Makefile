@@ -2,7 +2,7 @@ generator-dir := generator
 generator-config := $(addprefix $(generator-dir)/,typescript-fetch.config.yaml)
 spec-openapi := $(addprefix ${generator-dir}/,openapi.yml)
 api-dest := .
-OPEN_API_URL = https://timeside.ircam.fr/timeside/api/schema/
+OPEN_API_URL = https://timeside.ircam.fr/api/schema/
 
 all: install api
 
