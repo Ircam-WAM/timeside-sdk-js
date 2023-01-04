@@ -15,7 +15,7 @@
   "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ircam-web/timeside-sdk-js.git"
+    "url": "https://github.com/ircam-wam/timeside-sdk-js.git"
   },
   "keywords": [
     "timeside",
