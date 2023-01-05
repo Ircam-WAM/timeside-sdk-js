@@ -19,7 +19,7 @@ paths:
                   $ref: '#/components/schemas/User'
           description: ''
       tags:
-      - api
+      - timeside
   /api/users/{username}/:
     get:
       operationId: retrieveUser
@@ -40,7 +40,7 @@ paths:
                 $ref: '#/components/schemas/User'
           description: ''
       tags:
-      - api
+      - timeside
   /api/items/:
     get:
       operationId: listItems
@@ -68,7 +68,7 @@ paths:
                   $ref: '#/components/schemas/ItemList'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createItem
       description: ''
@@ -92,7 +92,7 @@ paths:
                 $ref: '#/components/schemas/Item'
           description: ''
       tags:
-      - api
+      - timeside
   /api/items/{uuid}/:
     get:
       operationId: retrieveItem
@@ -124,7 +124,7 @@ paths:
                 $ref: '#/components/schemas/Item'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateItem
       description: ''
@@ -166,7 +166,7 @@ paths:
                 $ref: '#/components/schemas/Item'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateItem
       description: ''
@@ -208,7 +208,7 @@ paths:
                 $ref: '#/components/schemas/Item'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyItem
       description: ''
@@ -235,7 +235,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/providers/:
     get:
       operationId: listProviders
@@ -251,7 +251,7 @@ paths:
                   $ref: '#/components/schemas/Provider'
           description: ''
       tags:
-      - api
+      - timeside
   /api/providers/{uuid}/:
     get:
       operationId: retrieveProvider
@@ -271,7 +271,7 @@ paths:
                 $ref: '#/components/schemas/Provider'
           description: ''
       tags:
-      - api
+      - timeside
   /api/selections/:
     get:
       operationId: listSelections
@@ -287,7 +287,7 @@ paths:
                   $ref: '#/components/schemas/Selection'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createSelection
       description: Set of items and other selections.
@@ -311,7 +311,7 @@ paths:
                 $ref: '#/components/schemas/Selection'
           description: ''
       tags:
-      - api
+      - timeside
   /api/selections/{uuid}/:
     get:
       operationId: retrieveSelection
@@ -331,7 +331,7 @@ paths:
                 $ref: '#/components/schemas/Selection'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateSelection
       description: Set of items and other selections.
@@ -361,7 +361,7 @@ paths:
                 $ref: '#/components/schemas/Selection'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateSelection
       description: Set of items and other selections.
@@ -391,7 +391,7 @@ paths:
                 $ref: '#/components/schemas/Selection'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroySelection
       description: Set of items and other selections.
@@ -406,7 +406,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/processors/:
     get:
       operationId: listProcessors
@@ -422,7 +422,7 @@ paths:
                   $ref: '#/components/schemas/ProcessorList'
           description: ''
       tags:
-      - api
+      - timeside
   /api/processors/{pid}/:
     get:
       operationId: retrieveProcessor
@@ -442,7 +442,7 @@ paths:
                 $ref: '#/components/schemas/Processor'
           description: ''
       tags:
-      - api
+      - timeside
   /api/processors/{pid}/parameters_default/:
     get:
       operationId: parametersDefaultProcessor
@@ -462,7 +462,7 @@ paths:
                 $ref: '#/components/schemas/Processor'
           description: ''
       tags:
-      - api
+      - timeside
   /api/processors/{pid}/parameters_schema/:
     get:
       operationId: parametersSchemaProcessor
@@ -482,7 +482,7 @@ paths:
                 $ref: '#/components/schemas/Processor'
           description: ''
       tags:
-      - api
+      - timeside
   /api/subprocessors/:
     get:
       operationId: listSubProcessors
@@ -500,7 +500,7 @@ paths:
                   $ref: '#/components/schemas/SubProcessor'
           description: ''
       tags:
-      - api
+      - timeside
   /api/subprocessors/{sub_processor_id}/:
     get:
       operationId: retrieveSubProcessor
@@ -522,7 +522,7 @@ paths:
                 $ref: '#/components/schemas/SubProcessor'
           description: ''
       tags:
-      - api
+      - timeside
   /api/presets/:
     get:
       operationId: listPresets
@@ -538,7 +538,7 @@ paths:
                   $ref: '#/components/schemas/Preset'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createPreset
       description: Processor with its potential parameters.
@@ -562,7 +562,7 @@ paths:
                 $ref: '#/components/schemas/Preset'
           description: ''
       tags:
-      - api
+      - timeside
   /api/presets/{uuid}/:
     get:
       operationId: retrievePreset
@@ -582,7 +582,7 @@ paths:
                 $ref: '#/components/schemas/Preset'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updatePreset
       description: Processor with its potential parameters.
@@ -612,7 +612,7 @@ paths:
                 $ref: '#/components/schemas/Preset'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdatePreset
       description: Processor with its potential parameters.
@@ -642,7 +642,7 @@ paths:
                 $ref: '#/components/schemas/Preset'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyPreset
       description: Processor with its potential parameters.
@@ -657,7 +657,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/experiences/:
     get:
       operationId: listExperiences
@@ -673,7 +673,7 @@ paths:
                   $ref: '#/components/schemas/Experience'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createExperience
       description: Set of presets and other experiences.
@@ -697,7 +697,7 @@ paths:
                 $ref: '#/components/schemas/Experience'
           description: ''
       tags:
-      - api
+      - timeside
   /api/experiences/{uuid}/:
     get:
       operationId: retrieveExperience
@@ -717,7 +717,7 @@ paths:
                 $ref: '#/components/schemas/Experience'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateExperience
       description: Set of presets and other experiences.
@@ -747,7 +747,7 @@ paths:
                 $ref: '#/components/schemas/Experience'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateExperience
       description: Set of presets and other experiences.
@@ -777,7 +777,7 @@ paths:
                 $ref: '#/components/schemas/Experience'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyExperience
       description: Set of presets and other experiences.
@@ -792,7 +792,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/tasks/:
     get:
       operationId: listTasks
@@ -808,7 +808,7 @@ paths:
                   $ref: '#/components/schemas/Task'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createTask
       description: Experience applied to a selection or a single item.
@@ -832,7 +832,7 @@ paths:
                 $ref: '#/components/schemas/Task'
           description: ''
       tags:
-      - api
+      - timeside
   /api/tasks/{uuid}/:
     get:
       operationId: retrieveTask
@@ -852,7 +852,7 @@ paths:
                 $ref: '#/components/schemas/Task'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateTask
       description: Experience applied to a selection or a single item.
@@ -882,7 +882,7 @@ paths:
                 $ref: '#/components/schemas/Task'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateTask
       description: Experience applied to a selection or a single item.
@@ -912,7 +912,7 @@ paths:
                 $ref: '#/components/schemas/Task'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyTask
       description: Experience applied to a selection or a single item.
@@ -927,7 +927,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/analysis/:
     get:
       operationId: listAnalysis
@@ -943,7 +943,7 @@ paths:
                   $ref: '#/components/schemas/Analysis'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createAnalysis
       description: ''
@@ -967,7 +967,7 @@ paths:
                 $ref: '#/components/schemas/Analysis'
           description: ''
       tags:
-      - api
+      - timeside
   /api/analysis/{uuid}/:
     get:
       operationId: retrieveAnalysis
@@ -987,7 +987,7 @@ paths:
                 $ref: '#/components/schemas/Analysis'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateAnalysis
       description: ''
@@ -1017,7 +1017,7 @@ paths:
                 $ref: '#/components/schemas/Analysis'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateAnalysis
       description: ''
@@ -1047,7 +1047,7 @@ paths:
                 $ref: '#/components/schemas/Analysis'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyAnalysis
       description: ''
@@ -1062,7 +1062,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/analysis_tracks/:
     get:
       operationId: listAnalysisTracks
@@ -1084,7 +1084,7 @@ paths:
                   $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createAnalysisTrack
       description: ''
@@ -1108,7 +1108,7 @@ paths:
                 $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
   /api/analysis_tracks/{uuid}/:
     get:
       operationId: retrieveAnalysisTrack
@@ -1134,7 +1134,7 @@ paths:
                 $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateAnalysisTrack
       description: ''
@@ -1170,7 +1170,7 @@ paths:
                 $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateAnalysisTrack
       description: ''
@@ -1206,7 +1206,7 @@ paths:
                 $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyAnalysisTrack
       description: ''
@@ -1227,7 +1227,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/analysis_tracks/{uuid}/parameters_default/:
     get:
       operationId: parametersDefaultAnalysisTrack
@@ -1247,7 +1247,7 @@ paths:
                 $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
   /api/annotation_tracks/:
     get:
       operationId: listAnnotationTracks
@@ -1269,7 +1269,7 @@ paths:
                   $ref: '#/components/schemas/AnnotationTrack'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createAnnotationTrack
       description: ''
@@ -1293,7 +1293,7 @@ paths:
                 $ref: '#/components/schemas/AnnotationTrack'
           description: ''
       tags:
-      - api
+      - timeside
   /api/annotation_tracks/{uuid}/:
     get:
       operationId: retrieveAnnotationTrack
@@ -1319,7 +1319,7 @@ paths:
                 $ref: '#/components/schemas/AnnotationTrack'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateAnnotationTrack
       description: ''
@@ -1355,7 +1355,7 @@ paths:
                 $ref: '#/components/schemas/AnnotationTrack'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateAnnotationTrack
       description: ''
@@ -1391,7 +1391,7 @@ paths:
                 $ref: '#/components/schemas/AnnotationTrack'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyAnnotationTrack
       description: ''
@@ -1412,7 +1412,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/annotations/:
     get:
       operationId: listAnnotations
@@ -1434,7 +1434,7 @@ paths:
                   $ref: '#/components/schemas/Annotation'
           description: ''
       tags:
-      - api
+      - timeside
     post:
       operationId: createAnnotation
       description: ''
@@ -1458,7 +1458,7 @@ paths:
                 $ref: '#/components/schemas/Annotation'
           description: ''
       tags:
-      - api
+      - timeside
   /api/annotations/{uuid}/:
     get:
       operationId: retrieveAnnotation
@@ -1484,7 +1484,7 @@ paths:
                 $ref: '#/components/schemas/Annotation'
           description: ''
       tags:
-      - api
+      - timeside
     put:
       operationId: updateAnnotation
       description: ''
@@ -1520,7 +1520,7 @@ paths:
                 $ref: '#/components/schemas/Annotation'
           description: ''
       tags:
-      - api
+      - timeside
     patch:
       operationId: partialUpdateAnnotation
       description: ''
@@ -1556,7 +1556,7 @@ paths:
                 $ref: '#/components/schemas/Annotation'
           description: ''
       tags:
-      - api
+      - timeside
     delete:
       operationId: destroyAnnotation
       description: ''
@@ -1577,7 +1577,7 @@ paths:
         '204':
           description: ''
       tags:
-      - api
+      - timeside
   /api/results/:
     get:
       operationId: listResults
@@ -1605,7 +1605,7 @@ paths:
                   $ref: '#/components/schemas/Result'
           description: ''
       tags:
-      - api
+      - timeside
   /api/results/{uuid}/:
     get:
       operationId: retrieveResult
@@ -1637,7 +1637,7 @@ paths:
                 $ref: '#/components/schemas/Result'
           description: ''
       tags:
-      - api
+      - timeside
   /api/token-csrf/:
     get:
       operationId: listCsrfTokens
@@ -1652,7 +1652,7 @@ paths:
                 items: {}
           description: ''
       tags:
-      - api
+      - timeside
   /api/items/{uuid}/waveform/:
     get:
       operationId: retrieveItemWaveform
@@ -1690,7 +1690,7 @@ paths:
                 $ref: '#/components/schemas/ItemWaveform'
           description: ''
       tags:
-      - api
+      - timeside
   /api/results/{uuid}/visual/:
     get:
       operationId: retrieveResultVisualization
@@ -1744,7 +1744,7 @@ paths:
                 $ref: '#/components/schemas/ResultVisualization'
           description: ''
       tags:
-      - api
+      - timeside
   /api/analysis_tracks/{uuid}/set_parameters/:
     post:
       operationId: setParametersAnalysisTrack
@@ -1775,7 +1775,7 @@ paths:
                 $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
-      - api
+      - timeside
   /api-token-auth/:
     post:
       operationId: createAuthToken
@@ -1800,7 +1800,7 @@ paths:
                 $ref: '#/components/schemas/AuthToken'
           description: ''
       tags:
-      - api-token-auth
+      - timeside-token-auth
   /api/token/:
     post:
       operationId: createTokenObtainPair
@@ -1828,7 +1828,7 @@ paths:
                 $ref: '#/components/schemas/TokenObtainPair'
           description: ''
       tags:
-      - api
+      - timeside
   /api/token/refresh/:
     post:
       operationId: createTokenRefresh
@@ -1856,7 +1856,7 @@ paths:
                 $ref: '#/components/schemas/TokenRefresh'
           description: ''
       tags:
-      - api
+      - timeside
   /api/token/verify/:
     post:
       operationId: createTokenVerify
@@ -1884,7 +1884,7 @@ paths:
                 $ref: '#/components/schemas/TokenVerify'
           description: ''
       tags:
-      - api
+      - timeside
 components:
   schemas:
     User:
