@@ -19,7 +19,7 @@ npm install --save cross-fetch
 
 ## API Docs
 
-This SDK is generated from the [OpenAPI Schema of Wasabi available here](https://sandbox.wasabi.telemeta.org/api/schema/).    
+This SDK is generated from the [OpenAPI Schema of available here](https://timeside.ircam.fr/api/schema/).
 You can also use the [ReDoc UI](https://sandbox.wasabi.telemeta.org/api/docs/).
 
 ## Example
