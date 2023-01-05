@@ -7,15 +7,15 @@ OPEN_API_URL = https://timeside.ircam.fr/api/schema/
 all: install api
 
 install:
-# Check docker
-ifeq (, $(shell which docker))
- $(error No "docker" in PATH, consider doing apt install docker)
-endif
+	# Check docker
+	ifeq (, $(shell which docker))
+	$(error No "docker" in PATH, consider doing apt install docker)
+	endif
 
 	# Log dependencies' version
 	docker --version
 
-$(spec-openapi):
+	$(spec-openapi):
 	curl --fail $(OPEN_API_URL) -o $(spec-openapi)
 
 api: $(spec-openapi)
