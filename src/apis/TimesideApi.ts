@@ -27,18 +27,54 @@ import {
     AnnotationTrack,
     AnnotationTrackFromJSON,
     AnnotationTrackToJSON,
-    AuthToken,
-    AuthTokenFromJSON,
-    AuthTokenToJSON,
     Experience,
     ExperienceFromJSON,
     ExperienceToJSON,
+    InlineResponse200,
+    InlineResponse200FromJSON,
+    InlineResponse200ToJSON,
+    InlineResponse2001,
+    InlineResponse2001FromJSON,
+    InlineResponse2001ToJSON,
+    InlineResponse20010,
+    InlineResponse20010FromJSON,
+    InlineResponse20010ToJSON,
+    InlineResponse20011,
+    InlineResponse20011FromJSON,
+    InlineResponse20011ToJSON,
+    InlineResponse20012,
+    InlineResponse20012FromJSON,
+    InlineResponse20012ToJSON,
+    InlineResponse20013,
+    InlineResponse20013FromJSON,
+    InlineResponse20013ToJSON,
+    InlineResponse2002,
+    InlineResponse2002FromJSON,
+    InlineResponse2002ToJSON,
+    InlineResponse2003,
+    InlineResponse2003FromJSON,
+    InlineResponse2003ToJSON,
+    InlineResponse2004,
+    InlineResponse2004FromJSON,
+    InlineResponse2004ToJSON,
+    InlineResponse2005,
+    InlineResponse2005FromJSON,
+    InlineResponse2005ToJSON,
+    InlineResponse2006,
+    InlineResponse2006FromJSON,
+    InlineResponse2006ToJSON,
+    InlineResponse2007,
+    InlineResponse2007FromJSON,
+    InlineResponse2007ToJSON,
+    InlineResponse2008,
+    InlineResponse2008FromJSON,
+    InlineResponse2008ToJSON,
+    InlineResponse2009,
+    InlineResponse2009FromJSON,
+    InlineResponse2009ToJSON,
     Item,
     ItemFromJSON,
     ItemToJSON,
-    ItemList,
-    ItemListFromJSON,
-    ItemListToJSON,
     ItemWaveform,
     ItemWaveformFromJSON,
     ItemWaveformToJSON,
@@ -48,9 +84,6 @@ import {
     Processor,
     ProcessorFromJSON,
     ProcessorToJSON,
-    ProcessorList,
-    ProcessorListFromJSON,
-    ProcessorListToJSON,
     Provider,
     ProviderFromJSON,
     ProviderToJSON,
@@ -97,12 +130,6 @@ export interface CreateAnnotationRequest {
 
 export interface CreateAnnotationTrackRequest {
     annotationTrack?: AnnotationTrack;
-}
-
-export interface CreateAuthTokenRequest {
-    username: string;
-    password: string;
-    token?: string;
 }
 
 export interface CreateExperienceRequest {
@@ -178,26 +205,81 @@ export interface DestroyTaskRequest {
     uuid: string;
 }
 
+export interface ListAnalysisRequest {
+    limit?: number;
+    offset?: number;
+}
+
 export interface ListAnalysisTracksRequest {
+    limit?: number;
+    offset?: number;
     itemUuid?: string;
 }
 
 export interface ListAnnotationTracksRequest {
+    limit?: number;
+    offset?: number;
     itemUuid?: string;
 }
 
 export interface ListAnnotationsRequest {
+    limit?: number;
+    offset?: number;
     trackUuid?: string;
 }
 
+export interface ListExperiencesRequest {
+    limit?: number;
+    offset?: number;
+}
+
 export interface ListItemsRequest {
+    limit?: number;
+    offset?: number;
     providerPid?: string;
     externalId?: string;
 }
 
+export interface ListPresetsRequest {
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListProcessorsRequest {
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListProvidersRequest {
+    limit?: number;
+    offset?: number;
+}
+
 export interface ListResultsRequest {
+    limit?: number;
+    offset?: number;
     itemUuid?: string;
     presetUuid?: string;
+}
+
+export interface ListSelectionsRequest {
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListSubProcessorsRequest {
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListTasksRequest {
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListUsersRequest {
+    limit?: number;
+    offset?: number;
 }
 
 export interface ParametersDefaultAnalysisTrackRequest {
@@ -538,75 +620,6 @@ export class TimesideApi extends runtime.BaseAPI {
      */
     async createAnnotationTrack(requestParameters: CreateAnnotationTrackRequest): Promise<AnnotationTrack> {
         const response = await this.createAnnotationTrackRaw(requestParameters);
-        return await response.value();
-    }
-
-    /**
-     */
-    async createAuthTokenRaw(requestParameters: CreateAuthTokenRequest): Promise<runtime.ApiResponse<AuthToken>> {
-        if (requestParameters.username === null || requestParameters.username === undefined) {
-            throw new runtime.RequiredError('username','Required parameter requestParameters.username was null or undefined when calling createAuthToken.');
-        }
-
-        if (requestParameters.password === null || requestParameters.password === undefined) {
-            throw new runtime.RequiredError('password','Required parameter requestParameters.password was null or undefined when calling createAuthToken.');
-        }
-
-        const queryParameters: runtime.HTTPQuery = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = typeof token === 'function' ? token("bearerAuth", []) : token;
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const consumes: runtime.Consume[] = [
-            { contentType: 'application/x-www-form-urlencoded' },
-            { contentType: 'multipart/form-data' },
-            { contentType: 'application/json' },
-        ];
-        // @ts-ignore: canConsumeForm may be unused
-        const canConsumeForm = runtime.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any };
-        let useForm = false;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new URLSearchParams();
-        }
-
-        if (requestParameters.username !== undefined) {
-            formParams.append('username', requestParameters.username as any);
-        }
-
-        if (requestParameters.password !== undefined) {
-            formParams.append('password', requestParameters.password as any);
-        }
-
-        if (requestParameters.token !== undefined) {
-            formParams.append('token', requestParameters.token as any);
-        }
-
-        const response = await this.request({
-            path: `/api-token-auth/`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: formParams,
-        });
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AuthTokenFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createAuthToken(requestParameters: CreateAuthTokenRequest): Promise<AuthToken> {
-        const response = await this.createAuthTokenRaw(requestParameters);
         return await response.value();
     }
 
@@ -1249,8 +1262,16 @@ export class TimesideApi extends runtime.BaseAPI {
 
     /**
      */
-    async listAnalysisRaw(): Promise<runtime.ApiResponse<Array<Analysis>>> {
+    async listAnalysisRaw(requestParameters: ListAnalysisRequest): Promise<runtime.ApiResponse<InlineResponse2009>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1269,20 +1290,28 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AnalysisFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2009FromJSON(jsonValue));
     }
 
     /**
      */
-    async listAnalysis(): Promise<Array<Analysis>> {
-        const response = await this.listAnalysisRaw();
+    async listAnalysis(requestParameters: ListAnalysisRequest): Promise<InlineResponse2009> {
+        const response = await this.listAnalysisRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async listAnalysisTracksRaw(requestParameters: ListAnalysisTracksRequest): Promise<runtime.ApiResponse<Array<AnalysisTrack>>> {
+    async listAnalysisTracksRaw(requestParameters: ListAnalysisTracksRequest): Promise<runtime.ApiResponse<InlineResponse20010>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         if (requestParameters.itemUuid !== undefined) {
             queryParameters['item_uuid'] = requestParameters.itemUuid;
@@ -1305,20 +1334,28 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AnalysisTrackFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse20010FromJSON(jsonValue));
     }
 
     /**
      */
-    async listAnalysisTracks(requestParameters: ListAnalysisTracksRequest): Promise<Array<AnalysisTrack>> {
+    async listAnalysisTracks(requestParameters: ListAnalysisTracksRequest): Promise<InlineResponse20010> {
         const response = await this.listAnalysisTracksRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async listAnnotationTracksRaw(requestParameters: ListAnnotationTracksRequest): Promise<runtime.ApiResponse<Array<AnnotationTrack>>> {
+    async listAnnotationTracksRaw(requestParameters: ListAnnotationTracksRequest): Promise<runtime.ApiResponse<InlineResponse20011>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         if (requestParameters.itemUuid !== undefined) {
             queryParameters['item_uuid'] = requestParameters.itemUuid;
@@ -1341,20 +1378,28 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AnnotationTrackFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse20011FromJSON(jsonValue));
     }
 
     /**
      */
-    async listAnnotationTracks(requestParameters: ListAnnotationTracksRequest): Promise<Array<AnnotationTrack>> {
+    async listAnnotationTracks(requestParameters: ListAnnotationTracksRequest): Promise<InlineResponse20011> {
         const response = await this.listAnnotationTracksRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async listAnnotationsRaw(requestParameters: ListAnnotationsRequest): Promise<runtime.ApiResponse<Array<Annotation>>> {
+    async listAnnotationsRaw(requestParameters: ListAnnotationsRequest): Promise<runtime.ApiResponse<InlineResponse20012>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         if (requestParameters.trackUuid !== undefined) {
             queryParameters['track_uuid'] = requestParameters.trackUuid;
@@ -1377,12 +1422,12 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AnnotationFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse20012FromJSON(jsonValue));
     }
 
     /**
      */
-    async listAnnotations(requestParameters: ListAnnotationsRequest): Promise<Array<Annotation>> {
+    async listAnnotations(requestParameters: ListAnnotationsRequest): Promise<InlineResponse20012> {
         const response = await this.listAnnotationsRaw(requestParameters);
         return await response.value();
     }
@@ -1422,8 +1467,16 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      * Set of presets and other experiences.
      */
-    async listExperiencesRaw(): Promise<runtime.ApiResponse<Array<Experience>>> {
+    async listExperiencesRaw(requestParameters: ListExperiencesRequest): Promise<runtime.ApiResponse<InlineResponse2007>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1442,21 +1495,29 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExperienceFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2007FromJSON(jsonValue));
     }
 
     /**
      * Set of presets and other experiences.
      */
-    async listExperiences(): Promise<Array<Experience>> {
-        const response = await this.listExperiencesRaw();
+    async listExperiences(requestParameters: ListExperiencesRequest): Promise<InlineResponse2007> {
+        const response = await this.listExperiencesRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async listItemsRaw(requestParameters: ListItemsRequest): Promise<runtime.ApiResponse<Array<ItemList>>> {
+    async listItemsRaw(requestParameters: ListItemsRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         if (requestParameters.providerPid !== undefined) {
             queryParameters['provider_pid'] = requestParameters.providerPid;
@@ -1483,12 +1544,12 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ItemListFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
     /**
      */
-    async listItems(requestParameters: ListItemsRequest): Promise<Array<ItemList>> {
+    async listItems(requestParameters: ListItemsRequest): Promise<InlineResponse2001> {
         const response = await this.listItemsRaw(requestParameters);
         return await response.value();
     }
@@ -1496,8 +1557,16 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      * Processor with its potential parameters.
      */
-    async listPresetsRaw(): Promise<runtime.ApiResponse<Array<Preset>>> {
+    async listPresetsRaw(requestParameters: ListPresetsRequest): Promise<runtime.ApiResponse<InlineResponse2006>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1516,22 +1585,30 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PresetFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2006FromJSON(jsonValue));
     }
 
     /**
      * Processor with its potential parameters.
      */
-    async listPresets(): Promise<Array<Preset>> {
-        const response = await this.listPresetsRaw();
+    async listPresets(requestParameters: ListPresetsRequest): Promise<InlineResponse2006> {
+        const response = await this.listPresetsRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Audio process to compute on items given potential parameters
      */
-    async listProcessorsRaw(): Promise<runtime.ApiResponse<Array<ProcessorList>>> {
+    async listProcessorsRaw(requestParameters: ListProcessorsRequest): Promise<runtime.ApiResponse<InlineResponse2004>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1550,22 +1627,30 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProcessorListFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2004FromJSON(jsonValue));
     }
 
     /**
      * Audio process to compute on items given potential parameters
      */
-    async listProcessors(): Promise<Array<ProcessorList>> {
-        const response = await this.listProcessorsRaw();
+    async listProcessors(requestParameters: ListProcessorsRequest): Promise<InlineResponse2004> {
+        const response = await this.listProcessorsRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Audio providers available in the API.
      */
-    async listProvidersRaw(): Promise<runtime.ApiResponse<Array<Provider>>> {
+    async listProvidersRaw(requestParameters: ListProvidersRequest): Promise<runtime.ApiResponse<InlineResponse2002>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1584,22 +1669,30 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProviderFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2002FromJSON(jsonValue));
     }
 
     /**
      * Audio providers available in the API.
      */
-    async listProviders(): Promise<Array<Provider>> {
-        const response = await this.listProvidersRaw();
+    async listProviders(requestParameters: ListProvidersRequest): Promise<InlineResponse2002> {
+        const response = await this.listProvidersRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Result of processing on items.
      */
-    async listResultsRaw(requestParameters: ListResultsRequest): Promise<runtime.ApiResponse<Array<Result>>> {
+    async listResultsRaw(requestParameters: ListResultsRequest): Promise<runtime.ApiResponse<InlineResponse20013>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         if (requestParameters.itemUuid !== undefined) {
             queryParameters['item_uuid'] = requestParameters.itemUuid;
@@ -1626,13 +1719,13 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ResultFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse20013FromJSON(jsonValue));
     }
 
     /**
      * Result of processing on items.
      */
-    async listResults(requestParameters: ListResultsRequest): Promise<Array<Result>> {
+    async listResults(requestParameters: ListResultsRequest): Promise<InlineResponse20013> {
         const response = await this.listResultsRaw(requestParameters);
         return await response.value();
     }
@@ -1640,8 +1733,16 @@ export class TimesideApi extends runtime.BaseAPI {
     /**
      * Set of items and other selections.
      */
-    async listSelectionsRaw(): Promise<runtime.ApiResponse<Array<Selection>>> {
+    async listSelectionsRaw(requestParameters: ListSelectionsRequest): Promise<runtime.ApiResponse<InlineResponse2003>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1660,22 +1761,30 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SelectionFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2003FromJSON(jsonValue));
     }
 
     /**
      * Set of items and other selections.
      */
-    async listSelections(): Promise<Array<Selection>> {
-        const response = await this.listSelectionsRaw();
+    async listSelections(requestParameters: ListSelectionsRequest): Promise<InlineResponse2003> {
+        const response = await this.listSelectionsRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Store a result id associated with a given Processor, i.e. the id of one of the different process it does.
      */
-    async listSubProcessorsRaw(): Promise<runtime.ApiResponse<Array<SubProcessor>>> {
+    async listSubProcessorsRaw(requestParameters: ListSubProcessorsRequest): Promise<runtime.ApiResponse<InlineResponse2005>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1694,22 +1803,30 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SubProcessorFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2005FromJSON(jsonValue));
     }
 
     /**
      * Store a result id associated with a given Processor, i.e. the id of one of the different process it does.
      */
-    async listSubProcessors(): Promise<Array<SubProcessor>> {
-        const response = await this.listSubProcessorsRaw();
+    async listSubProcessors(requestParameters: ListSubProcessorsRequest): Promise<InlineResponse2005> {
+        const response = await this.listSubProcessorsRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Experience applied to a selection or a single item.
      */
-    async listTasksRaw(): Promise<runtime.ApiResponse<Array<Task>>> {
+    async listTasksRaw(requestParameters: ListTasksRequest): Promise<runtime.ApiResponse<InlineResponse2008>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1728,22 +1845,30 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TaskFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2008FromJSON(jsonValue));
     }
 
     /**
      * Experience applied to a selection or a single item.
      */
-    async listTasks(): Promise<Array<Task>> {
-        const response = await this.listTasksRaw();
+    async listTasks(requestParameters: ListTasksRequest): Promise<InlineResponse2008> {
+        const response = await this.listTasksRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Users of the API able to share data.
      */
-    async listUsersRaw(): Promise<runtime.ApiResponse<Array<User>>> {
+    async listUsersRaw(requestParameters: ListUsersRequest): Promise<runtime.ApiResponse<InlineResponse200>> {
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1762,14 +1887,14 @@ export class TimesideApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(UserFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
     }
 
     /**
      * Users of the API able to share data.
      */
-    async listUsers(): Promise<Array<User>> {
-        const response = await this.listUsersRaw();
+    async listUsers(requestParameters: ListUsersRequest): Promise<InlineResponse200> {
+        const response = await this.listUsersRaw(requestParameters);
         return await response.value();
     }
 
