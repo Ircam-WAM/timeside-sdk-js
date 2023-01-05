@@ -33,6 +33,6 @@ publish:
 	npm install
 	# No need for this because the prepare script is called after install and before publish
 	# npm run build 
-	npm publish
+	npm publish --access public
 
 .PHONY: all install publish api 
