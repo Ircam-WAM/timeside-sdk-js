@@ -67,12 +67,6 @@ export interface ItemList {
      * @memberof ItemList
      */
     mimeType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemList
-     */
-    author?: string | null;
 }
 
 export function ItemListFromJSON(json: any): ItemList {
@@ -93,7 +87,6 @@ export function ItemListFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'sourceFile': !exists(json, 'source_file') ? undefined : json['source_file'],
         'sourceUrl': !exists(json, 'source_url') ? undefined : json['source_url'],
         'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
-        'author': !exists(json, 'author') ? undefined : json['author'],
     };
 }
 
@@ -111,7 +104,6 @@ export function ItemListToJSON(value?: ItemList | null): any {
         'source_file': value.sourceFile,
         'source_url': value.sourceUrl,
         'mime_type': value.mimeType,
-        'author': value.author,
     };
 }
 

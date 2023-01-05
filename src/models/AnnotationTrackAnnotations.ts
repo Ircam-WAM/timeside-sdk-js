@@ -36,12 +36,6 @@ export interface AnnotationTrackAnnotations {
      * @type {string}
      * @memberof AnnotationTrackAnnotations
      */
-    track: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnnotationTrackAnnotations
-     */
     title?: string;
     /**
      * 
@@ -75,7 +69,6 @@ export function AnnotationTrackAnnotationsFromJSONTyped(json: any, ignoreDiscrim
         
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
-        'track': json['track'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'startTime': !exists(json, 'start_time') ? undefined : json['start_time'],
@@ -92,7 +85,6 @@ export function AnnotationTrackAnnotationsToJSON(value?: AnnotationTrackAnnotati
     }
     return {
         
-        'track': value.track,
         'title': value.title,
         'description': value.description,
         'start_time': value.startTime,

@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://timeside.ircam.fr".replace(/\/+$/, "");
+export const BASE_PATH = "https://wasabi.telemeta.org".replace(/\/+$/, "");
 
 const isBlob = (value: any) => typeof Blob !== 'undefined' && value instanceof Blob;
 
