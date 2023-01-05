@@ -8,43 +8,15 @@ paths:
     get:
       operationId: listUsers
       description: Users of the API able to share data.
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/User'
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
           description: ''
       tags:
       - api
@@ -74,18 +46,6 @@ paths:
       operationId: listItems
       description: ''
       parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
       - name: provider_pid
         required: false
         in: query
@@ -103,25 +63,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ItemList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemList'
           description: ''
       tags:
       - api
@@ -296,43 +240,15 @@ paths:
     get:
       operationId: listProviders
       description: Audio providers available in the API.
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Provider'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Provider'
           description: ''
       tags:
       - api
@@ -360,43 +276,15 @@ paths:
     get:
       operationId: listSelections
       description: Set of items and other selections.
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Selection'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Selection'
           description: ''
       tags:
       - api
@@ -523,43 +411,15 @@ paths:
     get:
       operationId: listProcessors
       description: Audio process to compute on items given potential parameters
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ProcessorList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessorList'
           description: ''
       tags:
       - api
@@ -629,43 +489,15 @@ paths:
       description: 'Store a result id associated with a given Processor,
 
         i.e. the id of one of the different process it does.'
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/SubProcessor'
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubProcessor'
           description: ''
       tags:
       - api
@@ -695,43 +527,15 @@ paths:
     get:
       operationId: listPresets
       description: Processor with its potential parameters.
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Preset'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Preset'
           description: ''
       tags:
       - api
@@ -858,43 +662,15 @@ paths:
     get:
       operationId: listExperiences
       description: Set of presets and other experiences.
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Experience'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Experience'
           description: ''
       tags:
       - api
@@ -1021,43 +797,15 @@ paths:
     get:
       operationId: listTasks
       description: Experience applied to a selection or a single item.
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Task'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
           description: ''
       tags:
       - api
@@ -1184,43 +932,15 @@ paths:
     get:
       operationId: listAnalysis
       description: ''
-      parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Analysis'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Analysis'
           description: ''
       tags:
       - api
@@ -1348,18 +1068,6 @@ paths:
       operationId: listAnalysisTracks
       description: ''
       parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
       - name: item_uuid
         required: false
         in: query
@@ -1371,25 +1079,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/AnalysisTrack'
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnalysisTrack'
           description: ''
       tags:
       - api
@@ -1561,18 +1253,6 @@ paths:
       operationId: listAnnotationTracks
       description: ''
       parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
       - name: item_uuid
         required: false
         in: query
@@ -1584,25 +1264,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/AnnotationTrack'
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnnotationTrack'
           description: ''
       tags:
       - api
@@ -1754,18 +1418,6 @@ paths:
       operationId: listAnnotations
       description: ''
       parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
       - name: track_uuid
         required: false
         in: query
@@ -1777,25 +1429,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Annotation'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Annotation'
           description: ''
       tags:
       - api
@@ -1947,18 +1583,6 @@ paths:
       operationId: listResults
       description: Result of processing on items.
       parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
       - name: item_uuid
         required: false
         in: query
@@ -1976,25 +1600,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Result'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result'
           description: ''
       tags:
       - api
