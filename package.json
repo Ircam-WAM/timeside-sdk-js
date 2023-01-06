@@ -17,6 +17,9 @@
     "type": "git",
     "url": "https://github.com/ircam-wam/timeside-sdk-js.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "keywords": [
     "timeside",
     "sdk",
