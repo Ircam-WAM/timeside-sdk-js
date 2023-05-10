@@ -39,10 +39,10 @@ export interface Preset {
     processor?: string | null;
     /**
      * 
-     * @type {string | object}
+     * @type {object}
      * @memberof Preset
      */
-    parameters?: string | object;
+    parameters?: object;
 }
 
 export function PresetFromJSON(json: any): Preset {
@@ -58,7 +58,7 @@ export function PresetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pr
         'url': !exists(json, 'url') ? undefined : json['url'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
         'processor': !exists(json, 'processor') ? undefined : json['processor'],
-        'parameters': !exists(json, 'parameters') ? undefined : string | objectFromJSON(json['parameters']),
+        'parameters': !exists(json, 'parameters') ? undefined : json['parameters'],
     };
 }
 
@@ -72,7 +72,7 @@ export function PresetToJSON(value?: Preset | null): any {
     return {
         
         'processor': value.processor,
-        'parameters': string | objectToJSON(value.parameters),
+        'parameters': value.parameters,
     };
 }
 

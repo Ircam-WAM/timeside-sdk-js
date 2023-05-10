@@ -2269,9 +2269,7 @@ components:
           type: string
           nullable: true
         parameters:
-          oneOf:
-            - type: string
-            - type: object
+          type: object
     Experience:
       type: object
       properties:
