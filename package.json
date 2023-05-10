@@ -1,6 +1,6 @@
 {
   "name": "@ircam/timeside-sdk",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "description": "OpenAPI client for timeside",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
