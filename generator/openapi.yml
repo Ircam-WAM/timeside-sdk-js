@@ -2423,7 +2423,6 @@ components:
           readOnly: true
       required:
       - analysis
-      - item
     AnnotationTrack:
       type: object
       properties:

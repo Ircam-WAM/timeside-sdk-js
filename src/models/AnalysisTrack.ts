@@ -54,7 +54,7 @@ export interface AnalysisTrack {
      * @type {string}
      * @memberof AnalysisTrack
      */
-    item: string;
+    item?: string;
     /**
      * 
      * @type {string}
@@ -96,7 +96,7 @@ export function AnalysisTrackFromJSONTyped(json: any, ignoreDiscriminator: boole
         'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'analysis': json['analysis'],
-        'item': json['item'],
+        'item': !exists(json, 'item') ? undefined : json['item'],
         'resultUrl': !exists(json, 'result_url') ? undefined : json['result_url'],
         'parametersSchema': !exists(json, 'parameters_schema') ? undefined : json['parameters_schema'],
         'parametersDefault': !exists(json, 'parameters_default') ? undefined : json['parameters_default'],
