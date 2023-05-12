@@ -49,6 +49,24 @@ export interface Item {
      * @type {string}
      * @memberof Item
      */
+    readonly pictureUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    readonly artist?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    readonly album?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
     title?: string;
     /**
      * 
@@ -143,6 +161,9 @@ export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'playerUrl': !exists(json, 'player_url') ? undefined : json['player_url'],
+        'pictureUrl': !exists(json, 'picture_url') ? undefined : json['picture_url'],
+        'artist': !exists(json, 'artist') ? undefined : json['artist'],
+        'album': !exists(json, 'album') ? undefined : json['album'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'sourceFile': !exists(json, 'source_file') ? undefined : json['source_file'],

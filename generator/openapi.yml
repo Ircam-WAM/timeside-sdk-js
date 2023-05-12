@@ -1969,6 +1969,15 @@ components:
         player_url:
           type: string
           readOnly: true
+        picture_url:
+          type: string
+          readOnly: true
+        artist:
+          type: string
+          readOnly: true
+        album:
+          type: string
+          readOnly: true
         title:
           type: string
           maxLength: 512
