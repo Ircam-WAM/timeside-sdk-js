@@ -73,6 +73,12 @@ export interface ItemList {
      * @memberof ItemList
      */
     author?: string | null;
+    /**
+     * Provider\'s id of the audio source.  e.g. for Deezer preview: 4763165  e.g. for YouTube: oRdxUFDoQe0
+     * @type {string}
+     * @memberof ItemList
+     */
+    externalId?: string;
 }
 
 export function ItemListFromJSON(json: any): ItemList {
@@ -94,6 +100,7 @@ export function ItemListFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'sourceUrl': !exists(json, 'source_url') ? undefined : json['source_url'],
         'mimeType': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'author': !exists(json, 'author') ? undefined : json['author'],
+        'externalId': !exists(json, 'external_id') ? undefined : json['external_id'],
     };
 }
 
@@ -112,6 +119,7 @@ export function ItemListToJSON(value?: ItemList | null): any {
         'source_url': value.sourceUrl,
         'mime_type': value.mimeType,
         'author': value.author,
+        'external_id': value.externalId,
     };
 }
 

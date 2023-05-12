@@ -1946,6 +1946,16 @@ components:
         author:
           type: string
           nullable: true
+        external_id:
+          type: string
+          description: 'Provider''s id of the audio source.
+
+
+            e.g. for Deezer preview: 4763165
+
+
+            e.g. for YouTube: oRdxUFDoQe0'
+          maxLength: 256
     Item:
       type: object
       properties:
